@@ -297,6 +297,20 @@ button.card:active{transform:translateY(3px) scale(.98)}
 .stats .card{min-height:110px;justify-content:center}
 .stats .big-n{font-size:2rem;font-weight:700}
 
+/* cozinha, mercado, alerta de comida */
+.red-alert{background:#e63946;color:#fff;font-weight:800;font-size:clamp(1.3rem,4.5vw,1.8rem);border-radius:16px;padding:12px;animation:redblink 1s ease-in-out infinite}
+@keyframes redblink{50%{background:#ff6b6b;transform:scale(1.03)}}
+.meal-due{display:block;width:100%;border:0;border-radius:14px;padding:10px;margin:-2px 0 10px;background:#e63946;color:#fff;font-weight:800;font-size:1.15rem;animation:redblink 1s ease-in-out infinite;box-shadow:0 4px 0 #a51d2a}
+.plates .food{display:inline-block;transition:transform .45s ease-out}
+.pantry{background:#fff7d6;border-radius:14px;padding:8px 12px;margin:-4px 0 12px;text-align:center;font-size:1.05rem}
+.market-card{background:#e9fbf2;outline:3px solid var(--green)}
+.card .ing{font-size:1.3rem;letter-spacing:.1em}.card .ing .miss{opacity:.3;filter:grayscale(1)}
+.qty{display:flex;align-items:center;gap:10px}.qty .chip-btn{min-width:42px;font-size:1.3rem;padding:4px 10px;min-height:40px}.qty b{min-width:20px;font-size:1.2rem}
+.pay-bar{position:sticky;bottom:calc(8px + env(safe-area-inset-bottom));z-index:4;background:#fff;box-shadow:0 6px 18px rgba(43,35,80,.18)}
+.counter-ing{position:absolute;left:28%;bottom:36%;font-size:clamp(1.6rem,5vw,2.6rem);z-index:1}
+.cook-fx{position:absolute;bottom:40%;font-size:clamp(2.6rem,8vw,4.2rem);z-index:3;animation:bob .5s ease-in-out infinite}.cook-fx.left{left:24%}.cook-fx.right{left:74%}
+.pan-done{position:absolute;left:76%;bottom:40%;font-size:clamp(2rem,6vw,3.2rem);z-index:1}
+.pack-people .fam-pick{min-width:90px}
 /* noite */
 .evening-tint{position:absolute;inset:0;background:linear-gradient(rgba(255,140,80,.16),rgba(60,40,120,.28));pointer-events:none}
 .night-dark{position:absolute;inset:0;background:rgba(14,16,56,.64);pointer-events:none}
@@ -706,6 +720,44 @@ const S={
  hungry:["Que fome! Vamos comer?", "Quelle faim ! On va manger ?", "Đói bụng quá! Mình đi ăn nhé?"],
  go_restaurant:["Vamos para o restaurante!", "Allons au restaurant !", "Đi nhà hàng thôi!"],
  choose_dish:["Escolha o prato! 😋", "Choisis ton plat ! 😋", "Chọn món đi! 😋"],
+ eat_now:["É HORA DE COMER!", "C’EST L’HEURE DE MANGER !", "ĐẾN GIỜ ĂN RỒI!"],
+ rest_closed:["Fechado (fecha às 19h50)", "Fermé (ferme à 19h50)", "Đã đóng cửa (đóng lúc 19h50)"],
+ rest_closed_t:["Os restaurantes já fecharam! Eles fecham às 19h50.", "Les restaurants sont fermés ! Ils ferment à 19h50.", "Nhà hàng đã đóng cửa! Đóng cửa lúc 19h50."],
+ market:["🛒 Supermercado", "🛒 Supermarché", "🛒 Siêu thị"],
+ market_title:["Supermercado {city}", "Supermarché {city}", "Siêu thị {city}"],
+ market_hint:["Compre ingredientes para cozinhar em casa. Depois a comida é de graça!", "Achète des ingrédients pour cuisiner à la maison. Ensuite, les repas sont gratuits !", "Mua nguyên liệu để nấu ở nhà. Sau đó ăn miễn phí!"],
+ market_leave:["Sair do supermercado", "Quitter le supermarché", "Rời siêu thị"],
+ cart:["Carrinho", "Panier", "Giỏ hàng"],
+ pay_cart:["Pagar 🪙 {n}", "Payer 🪙 {n}", "Trả 🪙 {n}"],
+ bought_ok:["Compras guardadas na cozinha! 🧺", "Courses rangées dans la cuisine ! 🧺", "Đồ đã cất vào bếp! 🧺"],
+ pantry:["Na sua cozinha:", "Dans ta cuisine :", "Trong bếp của bạn:"],
+ pantry_empty:["A cozinha está vazia. Vá ao supermercado!", "La cuisine est vide. Va au supermarché !", "Bếp trống trơn. Đi siêu thị thôi!"],
+ need_ing:["Falta: {list}. Vá ao supermercado!", "Il manque : {list}. Va au supermarché !", "Còn thiếu: {list}. Đi siêu thị nhé!"],
+ cook_title:["Vamos cozinhar: {food}!", "On cuisine : {food} !", "Mình nấu món: {food}!"],
+ cook_s1:["🔪 Preparar os ingredientes", "🔪 Préparer les ingrédients", "🔪 Chuẩn bị nguyên liệu"],
+ cook_s2:["🍳 Cozinhar no fogão", "🍳 Cuire sur la cuisinière", "🍳 Nấu trên bếp"],
+ cook_s3:["🍽️ Colocar na mesa", "🍽️ Mettre la table", "🍽️ Dọn ra bàn"],
+ cook_s1_t:["Lavando e cortando tudo direitinho!", "On lave et on coupe tout bien !", "Rửa và cắt mọi thứ thật cẩn thận!"],
+ cook_s2_t:["Hmm, que cheirinho bom saindo da panela!", "Mmm, ça sent bon dans la casserole !", "Ừm, nồi thơm quá!"],
+ cook_done:["Vocês mesmos cozinharam! Que chefs! 👩‍🍳", "Vous avez cuisiné vous-mêmes ! Quels chefs ! 👩‍🍳", "Tự tay nấu luôn! Đầu bếp giỏi quá! 👩‍🍳"],
+ eat_go:["😋 Comer!", "😋 Manger !", "😋 Ăn thôi!"],
+ ate_all:["Comeram tudo! Pratos limpinhos! 😋", "Tout est mangé ! Les assiettes sont propres ! 😋", "Ăn sạch rồi! Đĩa sạch bóng! 😋"],
+ relax_title:["Antes de dormir, quer fazer alguma coisa?", "Avant de dormir, tu veux faire quelque chose ?", "Trước khi ngủ, bạn muốn làm gì không?"],
+ relax_read:["📖 Ler um livro", "📖 Lire un livre", "📖 Đọc sách"],
+ relax_read_t:["Que história legal! Você leu um capítulo inteiro. 📖", "Quelle belle histoire ! Tu as lu tout un chapitre. 📖", "Truyện hay quá! Bạn đọc hết một chương. 📖"],
+ relax_movie:["🎬 Ver um filme", "🎬 Regarder un film", "🎬 Xem phim"],
+ relax_movie_t:["Filme com pipoca na cama! 🍿", "Un film avec du pop-corn au lit ! 🍿", "Xem phim với bỏng ngô trên giường! 🍿"],
+ relax_game:["🎲 Jogar um jogo", "🎲 Jouer à un jeu", "🎲 Chơi trò chơi"],
+ relax_game_t:["Jogo de tabuleiro com a família! Você ganhou! 🏆", "Un jeu de société en famille ! Tu as gagné ! 🏆", "Chơi cờ cùng gia đình! Bạn thắng rồi! 🏆"],
+ relax_music:["🎧 Ouvir música", "🎧 Écouter de la musique", "🎧 Nghe nhạc"],
+ relax_music_t:["Uma musiquinha calma para relaxar. 🎶", "Une petite musique calme pour se détendre. 🎶", "Một bản nhạc nhẹ để thư giãn. 🎶"],
+ swim:["Roupa de banho", "Maillot de bain", "Đồ bơi"],
+ swim_maio:["👙 Maiô", "👙 Maillot une-pièce", "👙 Đồ bơi nữ"],
+ swim_sunga:["🩳 Sunga", "🩳 Short de bain", "🩳 Quần bơi nam"],
+ pack_for:["Mala de {name}", "Valise de {name}", "Vali của {name}"],
+ copy_mine:["📋 Igual à minha", "📋 Comme la mienne", "📋 Giống của tớ"],
+ no_passport_who:["{name} está sem passaporte na mala!", "{name} n’a pas de passeport dans sa valise !", "{name} chưa có hộ chiếu trong vali!"],
+ pj_forgot_who:["{names} esqueceu o pijama! Vai dormir de camiseta. 😅", "{names} a oublié son pyjama ! Dodo en t-shirt. 😅", "{names} quên đồ ngủ! Ngủ bằng áo phông vậy. 😅"],
 };
 
 /* ============ DADOS ============ */
@@ -727,11 +779,11 @@ const WEARABLE=["camisaBR","kimono","flamenca","poncho","boneNY","boina","sombre
 const DEFAULT_PLAYER={name:"Adele",age:"crianca",skin:1,eyes:"redondo",eyeC:0,smile:"dentes",freckles:false,hair:"ondulado",hairC:3,beard:"nada",tattoo:false,outfit:"camiseta",outC:3,hat:"nada",glasses:"nada",neck:"nada",bag:"nada"};
 // familia da foto: nomes ficam so no aparelho (a crianca escreve no jogo)
 const FAMILY_PRESET=[
- {id:"papai",look:{age:"adulto",skin:2,eyes:"redondo",eyeC:0,smile:"dentes",hair:"curto",hairC:1,beard:"curta",tattoo:true,outfit:"camiseta",outC:8}},
+ {id:"papai",look:{swim:"sunga",age:"adulto",skin:2,eyes:"redondo",eyeC:0,smile:"dentes",hair:"curto",hairC:1,beard:"curta",tattoo:true,outfit:"camiseta",outC:8}},
  {id:"loira",look:{age:"adulto",skin:1,eyes:"redondo",eyeC:0,smile:"dentes",hair:"rabo",hairC:4,outfit:"regata",outC:8,neck:"colar",bag:"bolsa"}},
  {id:"ondulada",look:{age:"crianca",skin:1,eyes:"redondo",eyeC:0,smile:"fechado",hair:"ondulado",hairC:2,outfit:"camiseta",outC:9}},
  {id:"franja",look:{age:"crianca",skin:1,eyes:"amendoado",eyeC:1,smile:"dentes",hair:"franja",hairC:1,outfit:"camiseta",outC:9}},
- {id:"cacheado",look:{age:"crianca",skin:2,eyes:"redondo",eyeC:0,smile:"dentes",hair:"cacheadoCurto",hairC:3,outfit:"short",outC:8}}
+ {id:"cacheado",look:{swim:"sunga",age:"crianca",skin:2,eyes:"redondo",eyeC:0,smile:"dentes",hair:"cacheadoCurto",hairC:3,outfit:"short",outC:8}}
 ];
 const ITEMS={"passaporte":{"e":"🛂","n":["Passaporte","Passeport","Hộ chiếu"]},"roupas":{"e":"👕","n":["Roupas","Vêtements","Quần áo"]},"escova":{"e":"🪥","n":["Escova de dentes","Brosse à dents","Bàn chải đánh răng"]},"camera":{"e":"📷","n":["Câmera","Appareil photo","Máy ảnh"]},"maio":{"e":"👙","n":["Maiô","Maillot de bain","Đồ bơi"]},"protetor":{"e":"🧴","n":["Protetor solar","Crème solaire","Kem chống nắng"]},"casaco":{"e":"🧥","n":["Casaco","Manteau","Áo khoác"]},"cachecol":{"e":"🧣","n":["Cachecol e gorro","Écharpe et bonnet","Khăn quàng và mũ len"]},"guarda":{"e":"☂️","n":["Guarda-chuva","Parapluie","Ô"]},"oculos":{"e":"🕶️","n":["Óculos de sol","Lunettes de soleil","Kính râm"]},"botas":{"e":"🥾","n":["Botas de trilha","Chaussures de randonnée","Giày leo núi"]},"repelente":{"e":"🦟","n":["Repelente","Anti-moustique","Kem chống muỗi"]},"pijama":{"e":"👚","n":["Pijama","Pyjama","Đồ ngủ"]},"garrafa":{"e":"💧","n":["Garrafinha de água","Gourde","Bình nước"]},"mapa":{"e":"🗺️","n":["Mapa","Carte","Bản đồ"]},"lanterna":{"e":"🔦","n":["Lanterna","Lampe de poche","Đèn pin"]},"fone":{"e":"🎧","n":["Fone de ouvido","Casque","Tai nghe"]},"diario":{"e":"📔","n":["Diário de viagem","Carnet de voyage","Nhật ký du lịch"]},"urso":{"e":"🧸","n":["Ursinho","Doudou","Gấu bông"]},"livro":{"e":"📚","n":["Livro","Livre","Sách"]},"jogo":{"e":"🎮","n":["Videogame","Console de jeu","Máy chơi game"]}};
 const ESSENTIALS=["roupas","escova","camera"];
@@ -813,7 +865,7 @@ function go(s,params){
  render();window.scrollTo(0,0);
 }
 function topbar(){
- const inTrip=T&&['uber','airport','flight','arrival','lodge','day','meal','night','summary'].includes(ui.screen);
+ const inTrip=T&&['uber','airport','flight','arrival','lodge','day','meal','market','cook','night','summary'].includes(ui.screen);
  const showHome=!inTrip&&ui.screen!=='title';
  const showCoins=T&&!['summary','choose','home'].includes(ui.screen);
  return `<div class="topbar">
@@ -1113,7 +1165,7 @@ SCREENS.avatar=()=>{
  const row=(label,html)=>`<div class="opt"><h3>${label}</h3><div class="row">${html}</div></div>`;
  let body='';
  if(tab==='corpo')body=`<div class="opt"><h3>${t('name')}</h3><input class="name-in" id="nameIn" maxlength="16" value="${esc(d.name)}" placeholder="${fam&&ui.who==='papai'?t('fam_papai'):t('name_ph')}" oninput="ui.draft.name=this.value"></div>`
-  +row(t('age'),ch('age',['crianca','adulto'],'age_'))+row(t('skin'),sw('skin',SKINS))+(adult?row(t('tattoo'),yn('tattoo')):'');
+  +row(t('age'),ch('age',['crianca','adulto'],'age_'))+row(t('skin'),sw('skin',SKINS))+row(t('swim'),['maio','sunga'].map(v=>`<button class="chip-btn ${(d.swim||(ui.who==='papai'||ui.who==='cacheado'?'sunga':'maio'))===v?'on':''}" onclick="setOpt('swim','${v}')">${t('swim_'+v)}</button>`).join(''))+(adult?row(t('tattoo'),yn('tattoo')):'');
  if(tab==='rosto')body=row(t('eyes'),ch('eyes',FACES,'f_'))+row(t('eye_color'),sw('eyeC',EYEC))+row(t('smile'),ch('smile',['dentes','fechado'],'s_'))+row(t('freckles'),yn('freckles'))+(adult?row(t('beard'),ch('beard',['nada','curta','cheia'],'b_')):'');
  if(tab==='cabelo')body=row(t('hair'),ch('hair',HAIRS,'h_'))+row(t('hair_color'),sw('hairC',HAIRC));
  if(tab==='roupa')body=row(t('outfit'),ch('outfit',OUTFITS,'o_'))+row(t('outfit_color'),sw('outC',OUTC));
@@ -1151,7 +1203,7 @@ function crewIds(){return ['me',...(T&&T.crew?T.crew:[])];}
 // grupo de personagens lado a lado, no chao da cena
 function crewHTML(ids,o){
  o=o||{};const n=ids.length,share=Math.min(o.w||24,94/n),hmax=((o.h||76)*200/372).toFixed(1);
- return `<div class="crew ${o.walk?'walk':''}" ${o.id?`id="${o.id}"`:''} style="left:${o.left||50}%;--share:${share.toFixed(1)}cqw;--hmax:${hmax}cqh">${ids.map(id=>`<div class="mem">${avatarSVG(o.look?Object.assign({},memberLook(id),o.look):memberLook(id))}${id==='me'&&o.status?`<div class="status">${o.status}</div>`:''}</div>`).join('')}</div>`;
+ return `<div class="crew ${o.walk?'walk':''}" ${o.id?`id="${o.id}"`:''} style="left:${o.left||50}%;--share:${share.toFixed(1)}cqw;--hmax:${hmax}cqh">${ids.map(id=>{const lk=o.lookFn?o.lookFn(id):o.look;return `<div class="mem">${avatarSVG(lk?Object.assign({},memberLook(id),lk):memberLook(id))}${id==='me'&&o.status?`<div class="status">${o.status}</div>`:''}</div>`;}).join('')}</div>`;
 }
 SCREENS.family=()=>`<h2 class="center">👨‍👩‍👧‍👦 ${t('family')}</h2><p class="center muted">${t('fam_screen_hint')}</p>
  <div class="grid fam-grid">${G.family.map(m=>`<div class="card"><div class="fam-av">${avatarSVG(m.look,{fit:true})}</div>
@@ -1204,31 +1256,37 @@ function pickCountry(id){ui.country=id;if(!ui.days)ui.days=3;sfx.click();render(
 function pickDays(n){ui.days=n;sfx.click();render();}
 function startPacking(){
  const d=ui.days||3,b=budgetFor(d);
- T={c:ui.country,days:d,dayMs:(ui.dayLen||3)*60000,crew:(ui.crew||[]).slice(),budget:b,money:b,packed:[],missing:[],day:1,elapsed:0,visited:[],bought:[],foods:[],today:[],photos:0,spent:0,
+ T={pantry:{},c:ui.country,days:d,dayMs:(ui.dayLen||3)*60000,crew:(ui.crew||[]).slice(),budget:b,money:b,packed:[],missing:[],day:1,elapsed:0,visited:[],bought:[],foods:[],today:[],photos:0,spent:0,
   lodging:null,lastWalk:-1,coinDay:0,selfieDay:0,cls:'eco',flightNo:'AD'+rnd(100,999),seat:rnd(3,32)+'ABCDEF'[rnd(0,5)],
   gate:'ABC'[rnd(0,2)]+rnd(1,24),driver:pick(DRIVERS),carC:rnd(0,CAR_COLORS.length-1),plate:'ADL-'+rnd(1000,9999)};
- sfx.ok();go('pack');
+ T.bags={me:T.packed};T.crew.forEach(id=>T.bags[id]=[]);
+ sfx.ok();go('pack',{pw:'me'});
 }
 
 SCREENS.pack=()=>{
  const c=COUNTRIES[T.c];
- let slots='';for(let i=0;i<CAP;i++){const id=T.packed[i];slots+=id?`<button class="slot" onclick="toggleItem('${id}')">${ITEMS[id].e}</button>`:`<div class="slot empty"></div>`;}
- const items=Object.keys(ITEMS).map(id=>{const on=T.packed.includes(id);return `<button class="card item ${on?'in':''}" onclick="toggleItem('${id}')">${on?'<span class="chk">✅</span>':''}<div class="e">${ITEMS[id].e}</div><div class="n">${tx(ITEMS[id].n)}</div></button>`;}).join('');
+ const who=ui.pw||'me',bag=bagOf(who),ids=crewIds();
+ let slots='';for(let i=0;i<CAP;i++){const id=bag[i];slots+=id?`<button class="slot" onclick="toggleItem('${id}')">${itemLabel(id,who).e}</button>`:`<div class="slot empty"></div>`;}
+ const items=Object.keys(ITEMS).map(id=>{const on=bag.includes(id),it=itemLabel(id,who);return `<button class="card item ${on?'in':''}" onclick="toggleItem('${id}')">${on?'<span class="chk">✅</span>':''}<div class="e">${it.e}</div><div class="n">${tx(it.n)}</div></button>`;}).join('');
+ const people=ids.length>1?`<div class="row center pack-people">${ids.map(id=>`<button class="fam-pick ${who===id?'on':''}" onclick="ui.pw='${id}';sfx.click();render()"><div class="fh">${avatarSVG(memberLook(id),{head:true})}</div><span>${esc(memberName(id))} · ${bagOf(id).length}/${CAP}${bagOf(id).includes('passaporte')?' 🛂':''}</span></button>`).join('')}</div>`:'';
  return `<h2 class="center">${t('pack_title')} · ${tx(c.name)}</h2>
  <div class="tip">💡 <b>${t('tip')}:</b> ${tx(c.tip)}</div>
- <div class="pack-head"><div class="suitcase"><div class="handle"></div><div class="inside">${slots}</div></div>
- <p class="center muted">${t('pack_hint',{n:CAP})} (${T.packed.length}/${CAP})</p></div>
+ ${people}
+ <div class="pack-head">${ids.length>1?`<p class="center" style="margin:6px 0 0"><b>🧳 ${t('pack_for',{name:esc(memberName(who))})}</b>${who!=='me'?` <button class="chip-btn" onclick="copyMine()">${t('copy_mine')}</button>`:''}</p>`:''}<div class="suitcase"><div class="handle"></div><div class="inside">${slots}</div></div>
+ <p class="center muted">${t('pack_hint',{n:CAP})} (${bag.length}/${CAP})</p></div>
  <div class="grid">${items}</div>
  <div class="row center mt"><button class="btn big green" onclick="closeBag()">${t('close_bag')}</button></div>`;
 };
-function toggleItem(id){const i=T.packed.indexOf(id);if(i>=0)T.packed.splice(i,1);else if(T.packed.length>=CAP){sfx.bad();toast(t('suitcase_full'));return;}else T.packed.push(id);sfx.click();render();}
+function toggleItem(id){const bag=bagOf(ui.pw||'me'),i=bag.indexOf(id);if(i>=0)bag.splice(i,1);else if(bag.length>=CAP){sfx.bad();toast(t('suitcase_full'));return;}else bag.push(id);sfx.click();const y=window.scrollY;render();window.scrollTo(0,y);}
 function closeBag(){
  const c=COUNTRIES[T.c];
- if(!T.packed.includes('passaporte')){sfx.bad();modal(`<div class="big">🛂❓</div><p style="font-size:1.2rem">${t('no_passport')}</p><button class="btn mt" onclick="closeModal()">${t('ok')}</button>`);return;}
+ const ids=crewIds(),noPP=ids.filter(id=>!bagOf(id).includes('passaporte'));
+ if(noPP.length){sfx.bad();ui.pw=noPP[0];render();modal(`<div class="big">🛂❓</div><p style="font-size:1.2rem">${noPP.length===1&&noPP[0]==='me'?t('no_passport'):noPP.map(id=>t('no_passport_who',{name:esc(memberName(id))})).join('<br>')}</p><button class="btn mt" onclick="closeModal()">${t('ok')}</button>`);return;}
  const checks=[...ESSENTIALS,...c.needs];
  T.missing=checks.filter(x=>!T.packed.includes(x));
  sfx.ok();
- modal(`<div class="big">🧳✨</div><h2>${t('bag_ok')}</h2><div class="stack" style="max-width:300px;margin:10px auto">${checks.map(x=>`<div class="chk-line">${T.packed.includes(x)?'✅':'❌'} ${ITEMS[x].e} ${tx(ITEMS[x].n)}</div>`).join('')}</div>
+ modal(`<div class="big">🧳✨</div><h2>${t('bag_ok')}</h2><div class="stack" style="max-width:320px;margin:10px auto">${checks.map(x=>`<div class="chk-line">${T.packed.includes(x)?'✅':'❌'} ${itemLabel(x,'me').e} ${tx(itemLabel(x,'me').n)}</div>`).join('')}</div>
+ ${ids.length>1?`<div class="stack small" style="max-width:340px;margin:0 auto 8px">${ids.filter(id=>id!=='me').map(id=>`<div class="chk-line"><b>${esc(memberName(id))}:</b> ${checks.map(x=>(bagOf(id).includes(x)?'✅':'❌')+itemLabel(x,id).e).join(' ')}</div>`).join('')}</div>`:''}
  <p>${T.missing.length?`<b>${t('forgot')}</b> ${t('forgot_tip')}`:t('all_good')}</p><div class="row center mt"><button class="btn ghost" onclick="closeModal();sfx.click()">${t('bag_reopen')}</button><button class="btn big" onclick="go('uber',{stage:0})">${t('go_uber')}</button></div>`);
 }
 
@@ -1574,6 +1632,129 @@ function findAct(kind,id){
  if(kind==='shop'&&id.indexOf('need_')===0){const x=id.slice(5);return {id,e:ITEMS[x].e,n:ITEMS[x].n,p:NEED_PRICE[x]||12,f:S.need_fact,need:x};}
  return c[kind].find(a=>a.id===id);
 }
+/* ---- supermercado, cozinha e receitas ---- */
+const INGR={
+ arroz:{e:'🍚',p:3,n:['Arroz','Riz','Gạo']},
+ macarrao:{e:'🍝',p:3,n:['Macarrão','Pâtes','Mì ống']},
+ tomate:{e:'🍅',p:2,n:['Tomate','Tomates','Cà chua']},
+ queijo:{e:'🧀',p:3,n:['Queijo','Fromage','Phô mai']},
+ ovos:{e:'🥚',p:2,n:['Ovos','Œufs','Trứng']},
+ pao:{e:'🥖',p:2,n:['Pão','Pain','Bánh mì']},
+ leite:{e:'🥛',p:2,n:['Leite','Lait','Sữa']},
+ farinha:{e:'🌾',p:2,n:['Farinha','Farine','Bột mì']},
+ frango:{e:'🍗',p:5,n:['Frango','Poulet','Thịt gà']},
+ peixe:{e:'🐟',p:5,n:['Peixe','Poisson','Cá']},
+ batata:{e:'🥔',p:1,n:['Batata','Pommes de terre','Khoai tây']},
+ cenoura:{e:'🥕',p:1,n:['Cenoura','Carottes','Cà rốt']},
+ alface:{e:'🥬',p:1,n:['Alface','Salade','Rau xà lách']},
+ frutas:{e:'🍓',p:3,n:['Frutas','Fruits','Trái cây']}
+};
+const RECIPES=[
+ {id:'macarronada',e:'🍝',n:['Macarrão com molho de tomate','Pâtes à la sauce tomate','Mì sốt cà chua'],ing:['macarrao','tomate','queijo']},
+ {id:'omelete',e:'🍳',n:['Omelete de queijo','Omelette au fromage','Trứng chiên phô mai'],ing:['ovos','queijo']},
+ {id:'arrozfrango',e:'🍛',n:['Arroz com frango','Riz au poulet','Cơm gà'],ing:['arroz','frango','cenoura']},
+ {id:'sanduiche',e:'🥪',n:['Sanduíche','Sandwich','Bánh mì kẹp'],ing:['pao','queijo','alface']},
+ {id:'salada',e:'🥗',n:['Salada colorida','Salade colorée','Salad nhiều màu'],ing:['alface','tomate','cenoura']},
+ {id:'peixe',e:'🐟',n:['Peixe com batata','Poisson et pommes de terre','Cá với khoai tây'],ing:['peixe','batata']},
+ {id:'panqueca',e:'🥞',n:['Panquecas','Crêpes','Bánh kếp'],ing:['farinha','ovos','leite']},
+ {id:'frutas',e:'🍓',n:['Salada de frutas','Salade de fruits','Salad trái cây'],ing:['frutas']}
+];
+function pantry(){return T.pantry||(T.pantry={});}
+// restaurantes (inclusive o do hotel) fecham às 19h50: relógio 8h + p*12h, 19h50 = p .986
+function restOpen(){return !T||T.elapsed/T.dayMs<0.986;}
+function hasKitchen(){return T.lodging&&T.lodging!=='hotel';}
+function kitchenLabel(){return T.lodging==='albergue'?t('where_hostel'):t('where_home');}
+function kitchenSVG(){
+ const knobs=(x,y,w,n)=>Array.from({length:n},(_,i)=>`<rect x="${x+i*w/n+4}" y="${y+4}" width="${w/n-8}" height="76" rx="4" fill="none" stroke="#b9824e" stroke-width="3"/><circle cx="${x+(i+1)*w/n-12}" cy="${y+42}" r="4" fill="#7a4a2a"/>`).join('');
+ return `<svg class="bg" viewBox="0 0 800 320" preserveAspectRatio="xMidYMax slice">
+ <defs><pattern id="subway" width="40" height="20" patternUnits="userSpaceOnUse"><rect width="40" height="20" fill="#ffffff"/><rect width="40" height="20" fill="none" stroke="#e8dccb" stroke-width="2"/></pattern>
+ <pattern id="kfloor" width="40" height="40" patternUnits="userSpaceOnUse"><rect width="40" height="40" fill="#f3e3c8"/><rect width="20" height="20" fill="#e2c9a3"/><rect x="20" y="20" width="20" height="20" fill="#e2c9a3"/></pattern></defs>
+ <rect width="800" height="320" fill="#fff4e0"/><rect y="104" width="800" height="88" fill="url(#subway)"/>
+ <rect x="10" y="16" width="300" height="88" rx="6" fill="#d9a066"/>${knobs(10,16,300,3)}
+ <rect x="500" y="16" width="290" height="88" rx="6" fill="#d9a066"/>${knobs(500,16,290,3)}
+ <rect x="326" y="22" width="158" height="118" rx="8" fill="#fff" stroke="#e8dccb" stroke-width="3"/>${windowView(334,30,142,102)}<rect x="403" y="30" width="4" height="102" fill="#fff"/>
+ <path d="M322,20 Q405,46 488,20 L488,34 Q405,58 322,34Z" fill="#ff8fb1"/><text x="336" y="146" font-size="22">🌿</text><text x="452" y="146" font-size="22">🪴</text>
+ <path d="M40,104 L40,122 M70,104 L70,128 M100,104 L100,120" stroke="#9aa3b5" stroke-width="2"/><text x="30" y="138" font-size="18">🥄</text><text x="60" y="144" font-size="18">🍳</text><text x="90" y="136" font-size="18">🍴</text>
+ <rect y="190" width="800" height="16" fill="#efe6d8"/><rect y="204" width="800" height="4" fill="#d6c8b2"/>
+ <rect y="208" width="800" height="56" fill="#d9a066"/>${Array.from({length:8},(_,i)=>`<rect x="${i*100+6}" y="212" width="88" height="48" rx="4" fill="none" stroke="#b9824e" stroke-width="3"/><circle cx="${i*100+82}" cy="236" r="4" fill="#7a4a2a"/>`).join('')}
+ <rect x="80" y="182" width="130" height="10" rx="4" fill="#b9c3d1"/><path d="M146,182 L146,160 Q146,152 156,152 L164,152" stroke="#9aa3b5" stroke-width="5" fill="none" stroke-linecap="round"/>
+ <rect x="236" y="182" width="78" height="9" rx="3" fill="#b07b4f"/><text x="410" y="190" font-size="24">🧺</text>
+ <rect x="588" y="180" width="140" height="12" rx="3" fill="#2b2350"/><circle cx="620" cy="186" r="7" fill="#ff6b4a" opacity=".8"/><circle cx="690" cy="186" r="7" fill="#ff6b4a" opacity=".8"/>
+ <ellipse cx="620" cy="176" rx="26" ry="6" fill="#4a4a5a"/><path d="M646,176 L674,170" stroke="#4a4a5a" stroke-width="5" stroke-linecap="round"/><rect x="674" y="154" width="36" height="24" rx="5" fill="#9aa3b5"/><rect x="670" y="152" width="44" height="5" rx="2" fill="#7a8399"/>
+ <rect x="596" y="212" width="124" height="48" rx="6" fill="#2b2350"/><rect x="610" y="222" width="96" height="28" rx="4" fill="#5b6b8f"/>
+ <rect y="264" width="800" height="56" fill="url(#kfloor)"/></svg>`;
+}
+function marketSVG(){
+ const rows=['🍎🍌🍇🍓🥕🥬🍅🥔🍎🍌','🥛🧀🥚🧈🥖🍞🍝🍚🥛🧀','🍗🐟🥩🧃🍪🍫🥫🧂🍗🐟'];
+ return `<svg class="bg" viewBox="0 0 800 320" preserveAspectRatio="xMidYMax slice"><rect width="800" height="320" fill="#eaf6ff"/>
+ <rect x="250" y="8" width="300" height="34" rx="10" fill="#2fc488"/><text x="400" y="32" text-anchor="middle" font-size="20" font-weight="800" fill="#fff" font-family="inherit">🛒 ${esc(t('market').replace('🛒','').trim()).toUpperCase()}</text>
+ ${rows.map((r,i)=>`<rect x="20" y="${78+i*58}" width="760" height="8" rx="3" fill="#c58b5a"/><text x="30" y="${74+i*58}" font-size="34" letter-spacing="14">${r}</text>`).join('')}
+ <rect y="252" width="800" height="68" fill="#dfe8f2"/><g stroke="#c9d6e4" stroke-width="2">${Array.from({length:12},(_,i)=>`<path d="M${i*70},252 L${i*70-30},320"/>`).join('')}</g>
+ <rect x="600" y="214" width="190" height="46" rx="8" fill="#4d7cfe"/><rect x="590" y="206" width="210" height="12" rx="5" fill="#3157c9"/><rect x="640" y="186" width="40" height="22" rx="4" fill="#2b2350"/></svg>`;
+}
+SCREENS.market=()=>{
+ const cart=ui.cart||{},keys=Object.keys(cart).filter(k=>cart[k]),tot=keys.reduce((s,k)=>s+cart[k]*INGR[k].p,0),pan=pantry();
+ return `<h2 class="center">🛒 ${t('market_title',{city:tx(COUNTRIES[T.c].city)})}</h2>
+ <div class="scene market-scene">${marketSVG()}<div class="npc" style="right:8%;bottom:18%;z-index:1">🧑‍💼</div>${crewHTML(crewIds(),{left:40,h:64,walk:true})}<div class="deco" style="left:3%;bottom:3%;font-size:clamp(2.4rem,7vw,4rem);z-index:2">🛒</div></div>
+ <p class="center muted mt">${t('market_hint')}</p>
+ <div class="grid">${Object.keys(INGR).map(k=>{const q=cart[k]||0,have=pan[k]||0;return `<div class="card ${q?'sel':''}"><div class="e">${INGR[k].e}</div><div class="n">${tx(INGR[k].n)}</div><div class="p">🪙 ${INGR[k].p}${have?` · 🧺 ${have}`:''}</div><div class="qty"><button class="chip-btn" onclick="cartAdd('${k}',-1)">−</button><b>${q}</b><button class="chip-btn" onclick="cartAdd('${k}',1)">+</button></div></div>`;}).join('')}</div>
+ <div class="panel mt center pay-bar"><b>${t('cart')}: ${keys.map(k=>INGR[k].e+'×'+cart[k]).join(' ')||'🛒 0'}</b>
+  <div class="row center mt"><button class="btn ghost" onclick="go('day',{tab:'eat',where:'home'})">${t('market_leave')}</button><button class="btn green" ${tot&&tot<=T.money?'':'disabled'} onclick="payCart()">${t('pay_cart',{n:tot})}</button></div></div>`;
+};
+function cartAdd(k,d){ui.cart=ui.cart||{};ui.cart[k]=Math.max(0,(ui.cart[k]||0)+d);sfx.click();const y=window.scrollY;render();window.scrollTo(0,y);}
+function payCart(){
+ const cart=ui.cart||{},tot=Object.keys(cart).reduce((s,k)=>s+cart[k]*INGR[k].p,0);if(!tot||tot>T.money)return;
+ pay(tot);const pan=pantry();Object.keys(cart).forEach(k=>{if(cart[k])pan[k]=(pan[k]||0)+cart[k];});
+ ui.cart={};floaty('🧺');toast(t('bought_ok'));const y=window.scrollY;render();window.scrollTo(0,y);
+}
+function openRecipe(id){
+ const r=RECIPES.find(x=>x.id===id),pan=pantry(),miss=r.ing.filter(i=>!(pan[i]>0));
+ if(miss.length){sfx.bad();toast(t('need_ing',{list:miss.map(i=>INGR[i].e).join(' ')}));return;}
+ r.ing.forEach(i=>pan[i]--);T.mealDue=false;T.today.push(r.e);sfx.ok();
+ go('cook',{rec:id,cs:0});
+}
+SCREENS.cook=()=>{
+ const r=RECIPES.find(x=>x.id===ui.rec),cs=ui.cs||0;
+ return `<h2 class="center">👩‍🍳 ${t('cook_title',{food:tx(r.n)})}</h2>
+ <div class="scene meal-scene">${kitchenSVG()}${crewHTML(crewIds(),{left:50,h:70})}
+  <div class="counter-ing">${cs===0?r.ing.map(i=>INGR[i].e).join(''):'🥣'}</div>
+  ${ui.cfx?`<div class="cook-fx ${ui.cfx.pos}">${ui.cfx.e}</div>`:''}${cs>=2?`<div class="pan-done">${r.e}</div>`:''}</div>
+ <div class="row center mt">${[['cook_s1'],['cook_s2'],['cook_s3']].map(([k],i)=>`<button class="btn ${cs>i?'green':i===cs?'':'ghost'}" ${i!==cs||ui.cfx?'disabled':''} onclick="cookStep(${i})">${cs>i?'✓ ':''}${t(k)}</button>`).join('')}</div>`;
+};
+function cookStep(i){
+ if(i===2){sfx.ok();T.elapsed=Math.min(T.dayMs-1000,T.elapsed+T.dayMs*0.03);go('meal',{rec:ui.rec,where:'home'});return;}
+ ui.cfx=i===0?{e:'🔪✨',pos:'left'}:{e:'♨️🍳',pos:'right'};sfx.click();render();
+ if(i===1)[0,1,2,3].forEach(k=>later(()=>beep(170+k*25,.16,'sawtooth',.03),k*480));
+ else [0,1,2,3].forEach(k=>later(()=>beep(900,.04,'square',.04),k*380));
+ later(()=>{ui.cfx=null;ui.cs=i+1;toast(t(i===0?'cook_s1_t':'cook_s2_t'));render();},2200);
+}
+// comer de verdade: a comida diminui no prato em 3 mordidas
+function eatBites(){
+ const b=document.getElementById('eatBtn');if(b)b.disabled=true;
+ const n=crewIds().length;
+ [0.72,0.42,0.12].forEach((s,k)=>later(()=>{beep(260+k*70,.07,'triangle',.09);beep(200+k*70,.06,'triangle',.07,.08);for(let i=0;i<n;i++){const p=document.getElementById('plate'+i);if(p)p.style.transform=`scale(${s})`;}},450+k*750));
+ later(()=>{ui.ate=true;sfx.ok();render();},2800);
+}
+function mealAlert(k){
+ const open=restOpen();T.mealDue=true;sfx.ding();setTimeout(sfx.ding,500);
+ const btns=(open?`<button class="btn big green" onclick="goEat('rest')">${t('go_restaurant')}</button>`:'')
+  +(hasKitchen()?`<button class="btn blue" onclick="goEat('home')">${kitchenLabel()}</button>`:(open?`<button class="btn blue" onclick="goEat('hotel')">${t('where_hotel')}</button>`:''));
+ modal(`<div class="red-alert">⏰ ${t('eat_now')}</div><h2 style="color:#d62839">${t(k)}</h2><p style="font-size:1.15rem">${t('hungry')}</p>
+ <div class="stack" style="max-width:320px;margin:10px auto">${btns}<button class="btn ghost" onclick="closeModal()">${t('cancel')}</button></div>`);
+}
+function goEat(w){closeModal();ui.tab='eat';ui.where=w;render();toast(t('choose_dish'));setTimeout(()=>{const g=document.querySelector('.where-bar');if(g)g.scrollIntoView({behavior:'smooth',block:'start'});},80);}
+function nightRelax(k){
+ ui.fx={read:'📖✨',movie:'🎬🍿',game:'🎲🏆',music:'🎧🎶'}[k];sfx.click();render();
+ later(()=>{ui.fx=null;sfx.ok();toast(t('relax_'+k+'_t'));render();},2500);
+}
+
+/* ---- malas: cada pessoa faz a sua ---- */
+const ITEM_SUNGA={e:'🩳',n:['Sunga','Short de bain','Quần bơi']};
+function swimOf(who){const l=memberLook(who);return l.swim||(['papai','cacheado'].includes(who)?'sunga':'maio');}
+function itemLabel(id,who){return id==='maio'&&swimOf(who||'me')==='sunga'?ITEM_SUNGA:ITEMS[id];}
+function bagOf(who){T.bags=T.bags||{me:T.packed};return T.bags[who]||(T.bags[who]=[]);}
+function copyMine(){const who=ui.pw;if(!who||who==='me')return;T.bags[who]=T.packed.slice(0,CAP);sfx.ok();toast('📋 ✓');render();}
+
 /* ---- onde comer: restaurante, restaurante do hotel ou cozinha de casa ---- */
 function mealWhere(){return ui.where||'rest';}
 function mealPrice(a,w){w=w||mealWhere();return Math.max(1,Math.round(a.p*(w==='home'?0.7:w==='hotel'?1.25:1)));}
@@ -1589,49 +1770,50 @@ function mealSVG(w){
   ${[60,300,540].map(x=>`<rect x="${x}" y="30" width="200" height="190" rx="100" fill="#fff"/><svg x="${x+10}" y="40" width="180" height="172"><rect width="180" height="172" rx="90" fill="#000" opacity="0"/></svg>`).join('')}
   ${[60,300,540].map(x=>`<g>${street(x+12,42,176,176)}</g><rect x="${x+97}" y="42" width="6" height="176" fill="#fff"/>`).join('')}
   <path d="M400,0 L400,40" stroke="#b8963e" stroke-width="2"/><path d="M350,40 Q400,74 450,40" stroke="#e8c15a" stroke-width="6" fill="none"/>${[350,375,400,425,450].map(x=>`<circle cx="${x}" cy="${x===400?66:52}" r="6" fill="#fff6c9"/>`).join('')}</svg>`;
- if(w==='home')return `<svg class="bg" viewBox="0 0 800 320" preserveAspectRatio="xMidYMax slice"><defs><pattern id="tiles" width="30" height="30" patternUnits="userSpaceOnUse"><rect width="30" height="30" fill="#fff"/><rect width="14" height="14" fill="#d9f0ec"/><rect x="15" y="15" width="14" height="14" fill="#d9f0ec"/></pattern></defs><rect width="800" height="320" fill="url(#tiles)"/>
-  <rect x="0" y="20" width="250" height="70" fill="#ff8c42"/><g stroke="#c75f1f" stroke-width="3">${[83,166].map(x=>`<path d="M${x},20 L${x},90"/>`).join('')}</g>
-  <rect x="20" y="150" width="210" height="110" fill="#ff8c42"/><rect x="40" y="140" width="80" height="12" rx="3" fill="#2b2350"/><circle cx="60" cy="146" r="6" fill="#ff4d4d"/><circle cx="100" cy="146" r="6" fill="#ff4d4d"/><rect x="58" y="108" width="50" height="34" rx="6" fill="#9aa3b5"/><text x="64" y="104" font-size="26">♨️</text>
-  <rect x="620" y="60" width="120" height="200" rx="14" fill="#e9eef6" stroke="#b9c3d1" stroke-width="3"/><path d="M620,140 L740,140" stroke="#b9c3d1" stroke-width="3"/><rect x="726" y="80" width="5" height="40" rx="2" fill="#9aa3b5"/><rect x="726" y="160" width="5" height="50" rx="2" fill="#9aa3b5"/><text x="640" y="110" font-size="22">🧲</text>
-  <rect x="290" y="40" width="290" height="150" rx="10" fill="#fff"/>${street(302,52,266,126)}<rect x="432" y="52" width="6" height="126" fill="#fff"/><text x="300" y="210" font-size="28">🪴</text></svg>`;
- return `<svg class="bg" viewBox="0 0 800 320" preserveAspectRatio="xMidYMax slice"><rect width="800" height="320" fill="#ffe2c4"/><rect y="0" width="800" height="20" fill="#c0392b"/><g fill="#e85d4a">${Array.from({length:20},(_,i)=>`<path d="M${i*40},20 L${i*40+40},20 L${i*40+20},38Z"/>`).join('')}</g>
+  return `<svg class="bg" viewBox="0 0 800 320" preserveAspectRatio="xMidYMax slice"><rect width="800" height="320" fill="#ffe2c4"/><rect y="0" width="800" height="20" fill="#c0392b"/><g fill="#e85d4a">${Array.from({length:20},(_,i)=>`<path d="M${i*40},20 L${i*40+40},20 L${i*40+20},38Z"/>`).join('')}</g>
   <rect x="50" y="46" width="700" height="190" rx="10" fill="#7a4a2a"/>${street(64,58,672,166)}<g fill="#7a4a2a">${[232,400,568].map(x=>`<rect x="${x-4}" y="58" width="8" height="166"/>`).join('')}</g>
   ${[160,400,640].map(x=>`<path d="M${x},38 L${x},70" stroke="#2b2350" stroke-width="2"/><path d="M${x-18},70 L${x+18},70 L${x+10},58 L${x-10},58Z" fill="#ffc233"/><circle cx="${x}" cy="74" r="8" fill="#fff6c9" opacity=".7"/>`).join('')}
   <text x="20" y="300" font-size="44">🪴</text><text x="740" y="300" font-size="44">🪴</text></svg>`;
 }
 SCREENS.meal=()=>{
- const a=findAct('eat',ui.food),w=ui.where||'rest',ids=crewIds();
- const say=w==='home'?t('meal_cooked',{food:tx(a.n)}):t('meal_served',{food:tx(a.n)});
+ const rec=ui.rec?RECIPES.find(r=>r.id===ui.rec):null,a=rec||findAct('eat',ui.food),w=ui.where||'rest',ids=crewIds();
+ const say=ui.ate?t('ate_all'):rec?t('cook_done'):w==='home'?t('meal_cooked',{food:tx(a.n)}):t('meal_served',{food:tx(a.n)});
  const npc=w==='home'?'':w==='hotel'?'🤵':'🧑‍🍳';
  const title=w==='rest'?'🍽️ '+t('rest_name',{city:tx(COUNTRIES[T.c].city)}):(w==='hotel'?'🏨 ':'🍳 ')+esc(lodgeName());
  return `<h2 class="center">${title}</h2>
- <div class="scene meal-scene">${mealSVG(w)}${npc?`<div class="npc" style="right:3%;bottom:22%;z-index:3">${npc}</div>`:''}<div class="bubble" style="left:4%;top:5%">${say}</div>
-  ${crewHTML(ids,{left:46,h:84})}<div class="meal-table ${w}"><div class="plates">${ids.map(()=>`<span>${a.e}</span>`).join('')}</div></div></div>
- <p class="center mt" style="font-size:1.1rem">😋 ${tx(a.f)}</p>
- <div class="row center"><button class="btn big green" onclick="endMeal()">${t('meal_back')}</button></div>`;
+ <div class="scene meal-scene">${w==='home'?kitchenSVG():mealSVG(w)}${npc?`<div class="npc" style="right:3%;bottom:22%;z-index:3">${npc}</div>`:''}<div class="bubble" style="left:4%;top:5%">${say}</div>
+  ${crewHTML(ids,{left:46,h:84})}<div class="meal-table ${w}"><div class="plates">${ids.map((_,i)=>`<span><b class="food" id="plate${i}">${ui.ate?'✨':a.e}</b></span>`).join('')}</div></div></div>
+ ${rec?'':`<p class="center mt" style="font-size:1.1rem">😋 ${tx(a.f)}</p>`}
+ <div class="row center mt">${ui.ate?`<button class="btn big green" onclick="endMeal()">${t('meal_back')}</button>`:`<button class="btn big" id="eatBtn" onclick="eatBites()">${t('eat_go')}</button>`}</div>`;
 };
 // comer leva um tempinho: o relogio do dia anda um pouco
-function endMeal(){const w=ui.where;T.elapsed=Math.min(T.dayMs-1000,T.elapsed+T.dayMs*0.06);go('day',{tab:'eat',where:w});toast(t('yum'));}
+function endMeal(){const w=ui.where;T.mealDue=false;T.elapsed=Math.min(T.dayMs-1000,T.elapsed+T.dayMs*0.06);go('day',{tab:'eat',where:w});toast(t('yum'));}
 SCREENS.day=()=>{
  const c=COUNTRIES[T.c],tab=ui.tab||'eat';
  const uncomfy=T.missing.some(x=>c.needs.includes(x));
  const card=(kind,a)=>{
   const done=(kind==='visit'&&T.visited.includes(a.id))||(kind==='shop'&&T.bought.includes(a.id));
-  const pr=priceOf(kind,a),afford=T.money>=pr;
-  return `<button class="card act ${done?'done':''} ${a.need?'need':''}" ${done?'disabled':''} onclick="openAct('${kind}','${a.id}')"><div class="e">${a.e}</div><div class="n">${tx(a.n)}</div>
+  const pr=priceOf(kind,a),afford=T.money>=pr,closed=kind==='eat'&&!restOpen();
+  return `<button class="card act ${done||closed?'done':''} ${a.need?'need':''}" ${done?'disabled':''} onclick="openAct('${kind}','${a.id}')"><div class="e">${a.e}</div><div class="n">${tx(a.n)}</div>
    <div class="p ${!afford&&!done?'no':''}">${done?'✓ '+t(kind==='shop'?'bought':'done'):(pr?'🪙 '+pr:t('free'))}</div>${a.need?`<div class="small no">${t('need_tag')}</div>`:''}</button>`;
  };
  let cards='';
  let whereBar='';
- if(tab==='eat'){const w=mealWhere(),alt=T.lodging==='hotel'?'hotel':'home',altLbl=alt==='hotel'?t('where_hotel'):T.lodging==='albergue'?t('where_hostel'):t('where_home');
-  whereBar=`<div class="where-bar"><b>${t('where_title')}</b><div class="row center">${[['rest',t('where_rest')],[alt,altLbl]].map(([k,l])=>`<button class="chip-btn ${w===k?'on':''}" onclick="ui.where='${k}';sfx.click();render()">${l}</button>`).join('')}</div><small class="muted">${t('hint_'+(w==='rest'?'rest':w==='hotel'?'hotel':'home'))}</small></div>`;
-  cards=c.eat.map(a=>card('eat',a)).join('');}
+ if(tab==='eat'){
+  const open=restOpen(),alt=hasKitchen()?'home':'hotel',altLbl=alt==='home'?kitchenLabel():t('where_hotel');
+  let w=mealWhere();if(w!=='rest'&&w!==alt)w='rest';
+  whereBar=`<div class="where-bar"><b>${t('where_title')}</b><div class="row center">${[['rest',t('where_rest')],[alt,altLbl]].map(([k,l])=>`<button class="chip-btn ${w===k?'on':''}" onclick="ui.where='${k}';sfx.click();render()">${l}${k!=='home'&&!open?' 🔒':''}</button>`).join('')}</div><small class="${w!=='home'&&!open?'no':'muted'}">${w!=='home'&&!open?t('rest_closed'):t('hint_'+(w==='rest'?'rest':w==='hotel'?'hotel':'home'))}</small></div>`;
+  if(w==='home'){const pan=pantry(),have=Object.keys(pan).filter(k=>pan[k]>0);
+   whereBar+=`<div class="pantry"><b>${t('pantry')}</b> ${have.length?have.map(k=>`${INGR[k].e}×${pan[k]}`).join(' '):t('pantry_empty')}</div>`;
+   cards=`<button class="card act market-card" onclick="go('market',{cart:{}})"><div class="e">🛒</div><div class="n">${t('market')}</div></button>`+RECIPES.map(r=>{const ok=r.ing.every(i=>pan[i]>0);return `<button class="card act ${ok?'':'done'}" onclick="openRecipe('${r.id}')"><div class="e">${r.e}</div><div class="n">${tx(r.n)}</div><div class="p ing">${r.ing.map(i=>`<span class="${pan[i]>0?'':'miss'}">${INGR[i].e}</span>`).join(' ')}</div></button>`;}).join('');}
+  else cards=c.eat.map(a=>card('eat',a)).join('');}
  if(tab==='visit')cards=`<button class="card act" onclick="doWalk()"><div class="e">🚶‍♀️</div><div class="n">${t('walk_free')}</div><div class="p">${t('free')}</div></button>
   <button class="card act ${T.selfieDay===T.day?'done':''}" onclick="doSelfie()"><div class="e">🤳</div><div class="n">${t('selfie')}</div><div class="p">${T.selfieDay===T.day?'✓ '+t('done'):t('free')}</div></button>`+c.visit.map(a=>card('visit',a)).join('');
  if(tab==='shop')cards=T.missing.map(x=>card('shop',findAct('shop','need_'+x))).join('')+c.shop.map(a=>card('shop',a)).join('');
  return `<div class="hud"><div class="chip">📅 ${t('day_n',{d:T.day,n:T.days})}</div>
   <div class="clock"><div class="tt"><span id="clockP"></span><span id="clockT"></span></div><div class="bar" id="clockBar"><div id="clockFill"></div></div></div>
   <button class="icon-btn" onclick="pauseGame()" aria-label="pausa">⏸️</button></div>
+ ${T.mealDue?`<button class="meal-due" onclick="goEat(restOpen()?'rest':(hasKitchen()?'home':'hotel'))">⏰ ${t('eat_now')}</button>`:''}
  <div class="scene">${sceneSVG(T.c)}${crewHTML(crewIds(),{left:42,walk:true,status:uncomfy?c.uncomfy:''})}</div>
  <div class="tabs">${['eat','visit','shop'].map(k=>`<button class="${tab===k?'on':''}" onclick="setTab('${k}')">${t('tab_'+k)}</button>`).join('')}</div>
  ${whereBar}<div class="grid">${cards}</div>
@@ -1665,15 +1847,9 @@ function updateDayVisuals(){
  if($('clockFill'))$('clockFill').style.width=(p*100)+'%';
  if($('clockBar'))$('clockBar').classList.toggle('late',p>.85);
 }
-function mealAlert(k){
- const alt=T.lodging==='hotel'?'hotel':'home',altLbl=alt==='hotel'?t('where_hotel'):T.lodging==='albergue'?t('where_hostel'):t('where_home');
- sfx.ding();
- modal(`<div class="big">🍽️⏰</div><h2>${t(k)}</h2><p style="font-size:1.15rem">${t('hungry')}</p>
- <div class="stack" style="max-width:320px;margin:10px auto"><button class="btn big green" onclick="goEat('rest')">${t('go_restaurant')}</button><button class="btn blue" onclick="goEat('${alt}')">${altLbl}</button><button class="btn ghost" onclick="closeModal()">${t('cancel')}</button></div>`);
-}
-function goEat(w){closeModal();ui.tab='eat';ui.where=w;render();toast(t('choose_dish'));setTimeout(()=>{const g=document.querySelector('.where-bar');if(g)g.scrollIntoView({behavior:'smooth',block:'start'});},80);}
 function pauseGame(){sfx.click();modal(`<div class="big">⏸️</div><h2>${t('paused')}</h2><button class="btn big green mt" onclick="closeModal()">${t('resume')}</button>`);}
 function openAct(kind,id){
+ if(kind==='eat'&&!restOpen()){sfx.bad();toast(t('rest_closed_t'));return;}
  const a=findAct(kind,id),pr=priceOf(kind,a),can=T.money>=pr;sfx.click();
  const lbl=t(kind==='eat'?'eat_btn':kind==='visit'?'visit_btn':'buy_btn');
  modal(`<div class="big">${a.e}</div><h2>${tx(a.n)}</h2>${a.f?`<p style="font-size:1.1rem">${tx(a.f)}</p>`:''}
@@ -1683,7 +1859,7 @@ function openAct(kind,id){
 function doAct(kind,id){
  const a=findAct(kind,id),pr=priceOf(kind,a);if(T.money<pr)return;closeModal();
  if(pr)pay(pr);else sfx.ok();T.today.push(a.e);
- if(kind==='eat'){T.foods.push(id);go('meal',{food:id,where:mealWhere()});return;}
+ if(kind==='eat'){T.foods.push(id);T.mealDue=false;go('meal',{food:id,where:mealWhere()});return;}
  floaty(a.e);
  if(kind==='visit'){T.visited.push(id);if(hasCamera()){addPhoto(a.e,a.n,false);setTimeout(sfx.shutter,300);toast(t('photo_saved'));}else toast(t('no_camera'));}
  if(kind==='shop'){T.bought.push(id);if(a.need){T.missing=T.missing.filter(x=>x!==a.need);toast(t('now_ok'));}else{G.souvenirs.push({c:T.c,id});if(a.wear&&!G.unlocked.includes(a.wear)){G.unlocked.push(a.wear);setTimeout(()=>{sfx.ding();toast(t('unlocked_new',{item:tx(a.n)}));},1300);}save();toast(t('souvenir_saved'));}}
@@ -1722,12 +1898,13 @@ SCREENS.night=()=>{
    <div class="bedline"><div class="pillows">${ids.map(id=>`<div class="pl"><div class="sl">${avatarSVG(memberLook(id),{head:true,sleep:true})}</div></div>`).join('')}</div></div><div class="zzz-big">Zzz</div></div>
   <p class="center mt" id="nightLeft" style="font-size:1.15rem;font-weight:600"></p>
   <div class="row center"><button class="btn ghost" onclick="wakeUp()">${t('skip_morning')}</button></div>`;
- const n=ui.n||{},pjOn=n.pj&&T.packed.includes('pijama');
+ const n=ui.n||{},PJ={outfit:'pijama',hat:'nada',glasses:'nada',neck:'nada',bag:'nada'};
  return `<h2 class="center">${(LODGING.find(l=>l.id===type)||{}).e||'🏨'} ${esc(lodgeName())}</h2>
  <p class="center" style="font-size:1.1rem">${t('night_intro')}</p>${T.today.length?`<div class="emoji-row center">${T.today.join(' ')}</div>`:''}
- <div class="scene room-scene">${roomSVG(type)}<div class="evening-tint"></div>${crewHTML(ids,{left:60,h:64,look:pjOn?{outfit:'pijama',hat:'nada',glasses:'nada',neck:'nada',bag:'nada'}:null})}${ui.fx?`<div class="night-fx">${ui.fx}</div>`:''}</div>
+ <div class="scene room-scene">${roomSVG(type)}<div class="evening-tint"></div>${crewHTML(ids,{left:60,h:64,lookFn:id=>n.pj&&bagOf(id).includes('pijama')?PJ:null})}${ui.fx?`<div class="night-fx">${ui.fx}</div>`:''}</div>
  <p class="center muted mt">${t('night_hint')}</p>
  <div class="row center">${[['bath','step_bath'],['pj','step_pj'],['teeth','step_teeth']].map(([k,l])=>`<button class="btn ${n[k]?'green':'blue'}" ${n[k]||ui.fx?'disabled':''} onclick="nightStep('${k}')">${n[k]?'✓ ':''}${t(l)}</button>`).join('')}</div>
+ <p class="center mt"><b>${t('relax_title')}</b></p><div class="row center">${['read','movie','game','music'].map(k=>`<button class="chip-btn" ${ui.fx?'disabled':''} onclick="nightRelax('${k}')">${t('relax_'+k)}</button>`).join('')}</div>
  <div class="row center mt"><button class="btn big purple" ${n.bath&&n.pj&&n.teeth&&!ui.fx?'':'disabled'} onclick="goSleep()">${t('step_sleep')}</button></div>`;
 };
 function nightStep(k){
@@ -1735,7 +1912,7 @@ function nightStep(k){
  later(()=>{
   ui.n[k]=true;ui.fx=null;sfx.ok();
   if(k==='bath')toast(t('bath_t'));
-  if(k==='pj')toast(T.packed.includes('pijama')?t('pj_t'):t('pj_forgot'));
+  if(k==='pj'){const no=crewIds().filter(id=>!bagOf(id).includes('pijama'));toast(no.length?t('pj_forgot_who',{names:no.map(id=>memberName(id)).join(', ')}):t('pj_t'));}
   if(k==='teeth')toast(T.packed.includes('escova')||T.bought.includes('need_escova')?t('teeth_t'):t('teeth_forgot'));
   render();
  },2000);
@@ -1751,7 +1928,7 @@ function tickNight(){
  later(tickNight,500);
 }
 function wakeUp(){if(!ui.sleep)return;ui.sleep=false;ui.morning=true;T.day++;sfx.ding();render();}
-function leaveRoom(){T.elapsed=0;T.today=[];T.dayOver=false;go('day',{tab:'visit'});toast(t('good_morning',{d:T.day}));}
+function leaveRoom(){T.elapsed=0;T.today=[];T.dayOver=false;T.mealDue=false;go('day',{tab:'visit'});toast(t('good_morning',{d:T.day}));}
 function startReturn(){go('flight',{fp:0,returning:true});}
 
 /* ---- resumo ---- */

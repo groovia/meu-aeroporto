@@ -1,6 +1,6 @@
 // Service worker do "Meu Aeroporto!": guarda o jogo no aparelho para funcionar sem internet.
 // Ao publicar uma versão nova, troque VERSION para o iPad baixar a atualização.
-const VERSION = 'v6-2026-10-24';
+const VERSION = 'v7-2026-10-24';
 const CACHE = 'meu-aeroporto-' + VERSION;
 const APP_FILES = [
   './',
@@ -46,6 +46,23 @@ self.addEventListener('fetch', event => {
   const url = new URL(req.url);
   const isFont = url.host === 'fonts.googleapis.com' || url.host === 'fonts.gstatic.com';
   if (url.origin !== self.location.origin && !isFont) return;
+  // a página do jogo: busca primeiro na internet (versão mais nova); sem internet, usa a guardada
+  if (req.mode === 'navigate') {
+    event.respondWith((async () => {
+      const cache = await caches.open(CACHE);
+      try {
+        const ctrl = new AbortController();
+        const timer = setTimeout(() => ctrl.abort(), 4000);
+        const res = await fetch(req, { signal: ctrl.signal, cache: 'no-store' });
+        clearTimeout(timer);
+        if (res.ok) cache.put('./index.html', res.clone());
+        return res;
+      } catch (e) {
+        return (await cache.match('./index.html')) || new Response('Sem internet', { status: 503 });
+      }
+    })());
+    return;
+  }
   // abre na hora com o que está guardado e atualiza em segundo plano
   event.respondWith((async () => {
     const cache = await caches.open(CACHE);
