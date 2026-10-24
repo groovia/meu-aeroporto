@@ -98,6 +98,15 @@ button.card:active{transform:translateY(3px) scale(.98)}
 .crew .status{position:absolute;top:8%;right:-6%;font-size:clamp(1.6rem,5vw,2.4rem);animation:bob 1.4s ease-in-out infinite}
 .fam-grid{grid-template-columns:repeat(auto-fill,minmax(170px,1fr))}
 .fam-grid .card{gap:10px}
+.fam-things{font-weight:600;font-size:.95rem;color:var(--muted)}
+.restore-row{display:flex;align-items:center;gap:12px;background:#f4f1fb;border-radius:16px;padding:8px 10px;text-align:left}.restore-row b{flex:1}
+.restore-row .fh{width:56px;height:56px;border-radius:50%;overflow:hidden;background:#dfe9f7;flex:none}.restore-row .fh svg{width:100%;height:100%}
+.phone-mini{width:96px;height:180px;border-radius:22px;background:var(--pc);border:5px solid #1d1b2e;position:relative;display:flex;align-items:flex-end;justify-content:center;padding-bottom:10px;box-shadow:0 5px 0 rgba(0,0,0,.15)}
+.phone-mini .cam{position:absolute;top:10px;left:10px;width:30px;height:30px;border-radius:9px;background:#1d1b2e;box-shadow:inset 0 0 0 4px #444}
+.phone-mini span{background:#fff;border-radius:999px;padding:2px 8px;font-size:.75rem;font-weight:700;color:#2b2350}
+.car-prev{max-width:260px}.car-prev svg{width:100%;display:block}
+.phone-label{color:#fff;font-weight:700;text-align:center;font-size:.85rem;margin:-4px 0 6px}
+.own-car{max-width:420px;margin:0 auto 10px;display:flex;flex-direction:column;gap:8px;align-items:center}
 .fam-add{justify-content:center;min-height:200px;outline:3px dashed var(--green);background:#f2fdf7}
 .fam-del{font-size:.9rem;min-height:38px;padding:6px 12px;color:#d22b4b}
 .fam-av{height:190px;display:flex;align-items:flex-end;justify-content:center}
@@ -769,6 +778,27 @@ const S={
  fam_girl:["👧 Menina", "👧 Fille", "👧 Bé gái"],
  fam_man:["👨 Homem", "👨 Homme", "👨 Đàn ông"],
  fam_woman:["👩 Mulher", "👩 Femme", "👩 Phụ nữ"],
+ fam_restore:["♻️ Pegar meu antigo personagem", "♻️ Récupérer mon ancien personnage", "♻️ Lấy lại nhân vật cũ"],
+ restore_title:["Quem você quer pegar de volta?", "Qui veux-tu récupérer ?", "Bạn muốn lấy lại ai?"],
+ restore_none:["Nenhum personagem foi tirado.", "Aucun personnage n’a été retiré.", "Chưa có nhân vật nào bị xóa."],
+ restore_btn:["Pegar de volta", "Récupérer", "Lấy lại"],
+ restored:["{name} voltou para a família! 🎉", "{name} est de retour dans la famille ! 🎉", "{name} đã trở lại gia đình! 🎉"],
+ tab_coisas:["📱🚗 Celular e carro", "📱🚗 Téléphone et voiture", "📱🚗 Điện thoại và xe"],
+ phone:["Celular", "Téléphone", "Điện thoại"],
+ phone_color:["Cor do celular", "Couleur du téléphone", "Màu điện thoại"],
+ car:["Carro", "Voiture", "Xe ô tô"],
+ car_type:["Tipo de carro", "Type de voiture", "Loại xe"],
+ car_color:["Cor do carro", "Couleur de la voiture", "Màu xe"],
+ car_t_carro:["🚗 Carro", "🚗 Voiture", "🚗 Xe con"],
+ car_t_suv:["🚙 SUV", "🚙 SUV", "🚙 Xe SUV"],
+ car_t_esporte:["🏎️ Esportivo", "🏎️ Sportive", "🏎️ Xe thể thao"],
+ car_t_van:["🚐 Van", "🚐 Van", "🚐 Xe van"],
+ kid_cant_drive:["Crianças ainda não dirigem! O carro fica guardado na garagem. 😉", "Les enfants ne conduisent pas encore ! La voiture reste au garage. 😉", "Trẻ em chưa được lái xe! Xe để trong gara nhé. 😉"],
+ drive_own:["🚗 Ir no carro de {name}", "🚗 Y aller avec la voiture de {name}", "🚗 Đi xe của {name}"],
+ drive_free:["De graça! O carro fica no estacionamento do aeroporto.", "Gratuit ! La voiture reste au parking de l’aéroport.", "Miễn phí! Xe để ở bãi đỗ sân bay."],
+ or_uber:["ou chame um Uber:", "ou appelle un Uber :", "hoặc gọi Uber:"],
+ car_ride:["Indo para o aeroporto no carro de {name}...", "En route pour l’aéroport avec la voiture de {name}...", "Đang đến sân bay bằng xe của {name}..."],
+ car_back:["🚗 Voltaram para casa no carro de {name}. De graça!", "🚗 Retour à la maison avec la voiture de {name}. Gratuit !", "🚗 Về nhà bằng xe của {name}. Miễn phí!"],
 };
 
 /* ============ DADOS ============ */
@@ -1054,17 +1084,29 @@ function stampSVG(cid,o){
  const fs=Math.min(14,118/Math.max(top.length,6));
  return `<svg viewBox="0 0 120 120"><g fill="none" stroke="${col}"><circle cx="60" cy="60" r="55" stroke-width="5"/><circle cx="60" cy="60" r="45" stroke-width="2" stroke-dasharray="4 3"/></g><text x="60" y="38" text-anchor="middle" font-size="${fs.toFixed(1)}" font-weight="700" fill="${col}" font-family="inherit">${esc(top)}</text><text x="60" y="76" text-anchor="middle" font-size="30">${mid}</text><text x="60" y="95" text-anchor="middle" font-size="10" font-weight="600" fill="${col}" font-family="inherit">${esc(date)}</text></svg>`;
 }
-function carSVG(col){
- const p=G.player,sk=SKINS[p.skin],hc=HAIRC[p.hairC];
- return `<svg viewBox="0 0 200 100"><path d="M10,72 L14,52 Q20,42 40,40 L62,18 Q68,12 80,12 L130,12 Q140,12 148,20 L168,40 Q188,42 192,56 L194,72 Z" fill="${col}" stroke="#2b2350" stroke-width="3" stroke-linejoin="round"/>
- <path d="M70,20 L86,20 L86,40 L50,40 Z" fill="#bfe6ff"/><path d="M94,20 L128,20 Q134,20 138,25 L152,40 L94,40 Z" fill="#bfe6ff"/>
- <circle cx="114" cy="33" r="9" fill="${sk}"/><path d="M104,32 Q114,16 124,32 Z" fill="${hc}"/>
- <circle cx="76" cy="33" r="8" fill="#c68952"/><path d="M68,31 Q76,19 84,31 Z" fill="#2a1b12"/>
- <rect x="96" y="48" width="30" height="12" rx="3" fill="#111"/><text x="111" y="57.5" text-anchor="middle" font-size="8" fill="#fff" font-family="sans-serif">Uber</text>
- <circle cx="188" cy="56" r="4" fill="#ffe066"/>
+// tipos de carro: carroceria, janelas e altura das cabecas
+const CAR_SHAPES={
+ carro:{body:'M10,72 L14,52 Q20,42 40,40 L62,18 Q68,12 80,12 L130,12 Q140,12 148,20 L168,40 Q188,42 192,56 L194,72 Z',win:'M70,20 L86,20 L86,40 L50,40 Z M94,20 L128,20 Q134,20 138,25 L152,40 L94,40 Z',hy:33},
+ suv:{body:'M8,72 L10,40 Q14,30 32,28 L54,8 Q60,4 72,4 L140,4 Q150,4 156,12 L174,30 Q192,32 194,46 L194,72 Z',win:'M62,12 L86,12 L86,30 L42,30 Z M94,12 L138,12 Q144,12 148,17 L162,30 L94,30 Z',hy:24},
+ esporte:{body:'M6,72 L10,60 Q20,52 46,50 L78,32 Q86,28 98,28 L134,28 Q144,28 152,34 L174,50 Q194,52 196,64 L196,72 Z',win:'M84,35 L98,35 L98,49 L62,49 Z M104,35 L132,35 Q138,35 142,39 L156,49 L104,49 Z',hy:44},
+ van:{body:'M10,72 L10,18 Q10,6 24,6 L150,6 Q164,6 170,18 L186,40 Q196,42 196,56 L196,72 Z',win:'M20,16 L56,16 L56,40 L20,40 Z M64,16 L100,16 L100,40 L64,40 Z M108,16 L150,16 Q158,16 162,22 L174,40 L108,40 Z',hy:30}
+};
+const CAR_TYPES=['carro','suv','esporte','van'];
+function carSVG(col,type,driver){
+ const sh=CAR_SHAPES[type]||CAR_SHAPES.carro,p=normPlayer(G.player),sk=SKINS[p.skin],hc=HAIRC[p.hairC];
+ const d=driver?normPlayer(driver):null,dsk=d?SKINS[d.skin]:'#c68952',dhc=d?HAIRC[d.hairC]:'#2a1b12';
+ return `<svg viewBox="0 0 200 100"><path d="${sh.body}" fill="${col}" stroke="#2b2350" stroke-width="3" stroke-linejoin="round"/>
+ <path d="${sh.win}" fill="#bfe6ff"/>
+ <circle cx="114" cy="${sh.hy}" r="9" fill="${sk}"/><path d="M104,${sh.hy-1} Q114,${sh.hy-17} 124,${sh.hy-1} Z" fill="${hc}"/>
+ <circle cx="76" cy="${sh.hy}" r="8" fill="${dsk}"/><path d="M68,${sh.hy-2} Q76,${sh.hy-14} 84,${sh.hy-2} Z" fill="${dhc}"/>
+ ${d?'':`<rect x="96" y="${sh.hy+15}" width="30" height="12" rx="3" fill="#111"/><text x="111" y="${sh.hy+24.5}" text-anchor="middle" font-size="8" fill="#fff" font-family="sans-serif">Uber</text>`}
+ <circle cx="188" cy="58" r="4" fill="#ffe066"/>
  <g class="wheel"><circle cx="50" cy="74" r="16" fill="#2b2350"/><circle cx="50" cy="74" r="7" fill="#ccc"/><rect x="48" y="60" width="4" height="9" fill="#ccc"/></g>
  <g class="wheel"><circle cx="152" cy="74" r="16" fill="#2b2350"/><circle cx="152" cy="74" r="7" fill="#ccc"/><rect x="150" y="60" width="4" height="9" fill="#ccc"/></g></svg>`;
 }
+function phoneModel(l){return normPlayer(l).age==='adulto'?'17 Pro Max':'12 Pro Max';}
+function phoneMini(l){const p=normPlayer(l),c=OUTC[p.phoneC!=null?p.phoneC:9];return `<div class="phone-mini" style="--pc:${c}"><div class="cam"></div><span>${phoneModel(p)}</span></div>`;}
+function carOf(l){const p=normPlayer(l);return {col:OUTC[p.carC!=null?p.carC:1],type:p.carType||'carro'};}
 const CONTINENTS=`<g fill="#8fd18b" stroke="#6fb46b" stroke-width="3" stroke-linejoin="round">
 <path d="M42,69 120,45 222,40 300,60 333,97 300,125 294,137 278,180 269,225 250,215 231,194 208,194 161,153 130,110 83,83 Z"/>
 <path d="M360,25 400,20 412,50 380,76 355,55 Z"/>
@@ -1180,13 +1222,16 @@ SCREENS.avatar=()=>{
  if(tab==='rosto')body=row(t('eyes'),ch('eyes',FACES,'f_'))+row(t('eye_color'),sw('eyeC',EYEC))+row(t('smile'),ch('smile',['dentes','fechado'],'s_'))+row(t('freckles'),yn('freckles'))+(adult?row(t('beard'),ch('beard',['nada','curta','cheia'],'b_')):'');
  if(tab==='cabelo')body=row(t('hair'),ch('hair',HAIRS,'h_'))+row(t('hair_color'),sw('hairC',HAIRC));
  if(tab==='roupa')body=row(t('outfit'),ch('outfit',OUTFITS,'o_'))+row(t('outfit_color'),sw('outC',OUTC));
+ if(tab==='coisas'){const cr=carOf(d);body=`<div class="opt"><h3>${t('phone')}</h3><div class="row">${phoneMini(d)}</div></div>`+row(t('phone_color'),sw('phoneC',OUTC))
+  +`<div class="opt"><h3>${t('car')}</h3><div class="car-prev">${carSVG(cr.col,cr.type,d)}</div>${adult?'':`<p class="muted small">${t('kid_cant_drive')}</p>`}</div>`
+  +row(t('car_type'),CAR_TYPES.map(v=>`<button class="chip-btn ${cr.type===v?'on':''}" onclick="setOpt('carType','${v}')">${t('car_t_'+v)}</button>`).join(''))+row(t('car_color'),sw('carC',OUTC));}
  if(tab==='acess')body=row(t('slot_hat'),ch('hat',HATS,'x_'))+row(t('slot_glasses'),ch('glasses',GLASSES,'x_'))+row(t('slot_neck'),ch('neck',NECKS,'x_'))+row(t('slot_bag'),ch('bag',BAGS,'x_'));
  const title=fam?t('look_of',{name:esc(d.name||memberName(ui.who))}):t('create_title');
  return `<h2 class="center">${title}</h2>
  <div class="creator">
   <div class="preview">${avatarSVG(d,{fit:true})}</div>
   <div class="panel">
-   <div class="tabs small-tabs">${['corpo','rosto','cabelo','roupa','acess'].map(k=>`<button class="${tab===k?'on':''}" onclick="ui.atab='${k}';sfx.click();render()">${t('tab_'+k)}</button>`).join('')}</div>
+   <div class="tabs small-tabs">${['corpo','rosto','cabelo','roupa','acess','coisas'].map(k=>`<button class="${tab===k?'on':''}" onclick="ui.atab='${k}';sfx.click();render()">${t('tab_'+k)}</button>`).join('')}</div>
    ${body}
    <div class="row mt"><button class="btn ghost" onclick="randomLook()">${t('random')}</button><button class="btn green" onclick="saveLook()">${t('ready')}</button></div>
   </div>
@@ -1219,9 +1264,11 @@ function crewHTML(ids,o){
 SCREENS.family=()=>`<h2 class="center">👨‍👩‍👧‍👦 ${t('family')}</h2><p class="center muted">${t('fam_screen_hint')}</p>
  <div class="grid fam-grid">${G.family.map(m=>`<div class="card"><div class="fam-av">${avatarSVG(m.look,{fit:true})}</div>
   <input class="name-in" maxlength="16" value="${esc(m.name)}" placeholder="${m.id==='papai'?t('fam_papai'):t('name_ph')}" oninput="setFamName('${m.id}',this.value)">
+ <div class="fam-things">📱 ${phoneModel(m.look)} · ${t('car_t_'+carOf(m.look).type).split(' ')[0]}</div>
   <button class="btn ghost" onclick="editMember('${m.id}')">🎨 ${t('change_look')}</button>
   <button class="chip-btn fam-del" onclick="askRemoveMember('${m.id}')">${t('fam_remove')}</button></div>`).join('')}
-  <button class="card fam-add" onclick="addMember()"><div class="e">➕</div><div class="n">${t('fam_add')}</div></button></div>`;
+  <button class="card fam-add" onclick="addMember()"><div class="e">➕</div><div class="n">${t('fam_add')}</div></button></div>
+ <div class="row center mt"><button class="btn yellow" onclick="openRestore()">${t('fam_restore')}${(G.removed||[]).length?` (${G.removed.length})`:''}</button></div>`;
 // adicionar e tirar pessoas da familia (meninos e homens ja vem de sunga)
 const NEW_LOOK={boy:{age:'crianca',swim:'sunga',hair:'curto',hairC:1,outfit:'short',outC:1,smile:'dentes'},girl:{age:'crianca',swim:'maio',hair:'longo',hairC:1,outfit:'vestido',outC:0,smile:'dentes'},man:{age:'adulto',swim:'sunga',hair:'curto',hairC:0,outfit:'camiseta',outC:7,smile:'dentes'},woman:{age:'adulto',swim:'maio',hair:'longo',hairC:2,outfit:'regata',outC:4,smile:'dentes'}};
 function addMember(){sfx.click();modal(`<div class="big">👨‍👩‍👧‍👦</div><h2>${t('fam_kind')}</h2><div class="row center">${[['boy','fam_boy','blue'],['girl','fam_girl',''],['man','fam_man','blue'],['woman','fam_woman','']].map(([k,l,c])=>`<button class="btn ${c}" onclick="createMember('${k}')">${t(l)}</button>`).join('')}</div><button class="btn ghost mt" onclick="closeModal()">${t('cancel')}</button>`);}
@@ -1230,7 +1277,12 @@ function createMember(k){
  const m={id:'p'+Date.now().toString(36),name:'',look,stamps:{},trips:0};G.family.push(m);save();sfx.ok();editMember(m.id);
 }
 function askRemoveMember(id){sfx.click();modal(`<div class="big">🗑️</div><p style="font-size:1.15rem">${t('fam_remove_q',{name:esc(memberName(id))})}</p><div class="row center mt"><button class="btn ghost" onclick="closeModal()">${t('cancel')}</button><button class="btn" onclick="removeMember('${id}')">${t('fam_yes_remove')}</button></div>`);}
-function removeMember(id){G.family=G.family.filter(m=>m.id!==id);save();closeModal();sfx.ok();render();}
+function removeMember(id){const m=G.family.find(x=>x.id===id);G.family=G.family.filter(x=>x.id!==id);if(m){G.removed=G.removed||[];G.removed.unshift(m);G.removed=G.removed.slice(0,20);}save();closeModal();sfx.ok();render();}
+function openRestore(){
+ sfx.click();const list=G.removed||[];
+ modal(`<div class="big">♻️</div><h2>${t('restore_title')}</h2>${list.length?`<div class="stack">${list.map(m=>`<div class="restore-row"><div class="fh">${avatarSVG(m.look,{head:true})}</div><b>${esc(m.name||memberName(m.id))}</b><button class="btn green" onclick="restoreMember('${m.id}')">${t('restore_btn')}</button></div>`).join('')}</div>`:`<p>${t('restore_none')}</p>`}<button class="btn ghost mt" onclick="closeModal()">${t('cancel')}</button>`);
+}
+function restoreMember(id){const m=(G.removed||[]).find(x=>x.id===id);if(!m)return;G.removed=G.removed.filter(x=>x.id!==id);G.family.push(m);save();closeModal();sfx.ding();toast(t('restored',{name:m.name||memberName(m.id)}));render();}
 function setFamName(id,v){const m=G.family.find(x=>x.id===id);m.name=v.trim();save();}
 function editMember(id){const m=G.family.find(x=>x.id===id);sfx.click();go('avatar',{who:id,draft:Object.assign({},normPlayer(m.look),{name:m.name})});}
 
@@ -1317,21 +1369,24 @@ SCREENS.uber=()=>{
  if(s>=3)return rideScene(s===4);
  let sheet='';
  if(s===0)sheet=`<div class="u-row">🏠 ➜ ✈️ <b>${t('uber_to')}</b></div><div class="u-row">${t('uber_price')}: <b>🪙 ${UBER}</b></div><button class="btn uber" onclick="callUber()">${t('uber_call')}</button><button class="btn ghost" onclick="go('pack')">${t('bag_reopen')}</button>`;
+ const drivers=T.crew.filter(id=>normPlayer(memberLook(id)).age==='adulto');
+ const own=s===0&&drivers.length?`<div class="panel center own-car">${drivers.map(id=>`<button class="btn green" onclick="driveOwn('${id}')">${t('drive_own',{name:esc(memberName(id))})}</button>`).join(' ')}<p class="small muted">${t('drive_free')}</p><b>${t('or_uber')}</b></div>`:'';
  if(s===1)sheet=`<div class="spinner"></div><b>${t('uber_search')}</b>`;
  if(s===2)sheet=`<div class="driver"><div class="dface">${DR.e}</div><div><b>${DR.name}</b> ⭐ 4.9<br><small>${t('uber_car',{color:tx(CAR_COLORS[T.carC].n),plate:T.plate})}</small></div></div><b>${t('uber_found',{name:DR.name})}</b><button class="btn uber" onclick="getInCar()">${t('uber_get_in')}</button>`;
- return `<h2 class="center">🚗 Uber</h2><div class="phone"><div class="screen"><div class="pmap"><div class="road1"></div><div class="pin a">🏠</div><div class="pin b">✈️</div>${s===2?'<div class="mini-car">🚘</div>':''}</div><div class="sheet">${sheet}</div></div></div>`;
+ return `<h2 class="center">🚗 Uber</h2>${own}<div class="phone" style="background:${OUTC[normPlayer(G.player).phoneC!=null?normPlayer(G.player).phoneC:9]}"><div class="phone-label">📱 ${phoneModel(G.player)}</div><div class="screen"><div class="pmap"><div class="road1"></div><div class="pin a">🏠</div><div class="pin b">✈️</div>${s===2?'<div class="mini-car">🚘</div>':''}</div><div class="sheet">${sheet}</div></div></div>`;
 };
 function rideScene(arrived){
  const row='🏠🌳🏢🌳🏪🏫🌳🏠🏬🌳🏡⛪🌳',far='🏙️ 🌲 🏙️ 🌲 🏙️ 🌲';
- return `<h2 class="center">${arrived?t('uber_arrived'):t('uber_ride')}</h2>
+ return `<h2 class="center">${arrived?t('uber_arrived'):T.ownCar?t('car_ride',{name:esc(memberName(T.ownCar))}):t('uber_ride')}</h2>
  <div class="road-scene">
   ${arrived?`<div class="terminal"><div class="sign" style="position:static;display:inline-block">✈ ${t('airport')}</div><div style="font-size:clamp(4rem,12vw,7rem);line-height:1">🏢</div></div>`
    :`<div class="city far"><span>${far}</span><span>${far}</span></div><div class="city"><span>${row}</span><span>${row}</span></div>`}
   <div class="road ${arrived?'stop':''}"></div>
-  <div class="car ${arrived?'parked':''}">${carSVG(CAR_COLORS[T.carC].c)}</div>
+  <div class="car ${arrived?'parked':''}">${T.ownCar?carSVG(carOf(memberLook(T.ownCar)).col,carOf(memberLook(T.ownCar)).type,memberLook(T.ownCar)):carSVG(CAR_COLORS[T.carC].c)}</div>
  </div>
  ${arrived?`<div class="row center mt"><button class="btn big green" onclick="go('airport',{step:0})">${t('get_out')}</button></div>`:''}`;
 }
+function driveOwn(id){sfx.ok();T.ownCar=id;ui.stage=3;render();later(()=>{ui.stage=4;sfx.beepbeep();render();},4500);}
 function callUber(){pay(UBER);ui.stage=1;render();later(()=>{ui.stage=2;sfx.ding();render();},2200);}
 function getInCar(){sfx.click();ui.stage=3;render();later(()=>{ui.stage=4;sfx.beepbeep();render();},4500);}
 
@@ -1956,7 +2011,7 @@ function startReturn(){go('flight',{fp:0,returning:true});}
 /* ---- resumo ---- */
 function finishTrip(){
  if(T.finished)return;T.finished=true;
- T.uberPaid=T.money>=UBER;if(T.uberPaid){T.money-=UBER;T.spent+=UBER;}
+ T.uberPaid=!T.ownCar&&T.money>=UBER;if(T.uberPaid){T.money-=UBER;T.spent+=UBER;}
  G.piggy=T.money;G.trips++;T.crew.forEach(id=>{const m=G.family.find(x=>x.id===id);if(m)m.trips++;});save();
 }
 SCREENS.summary=()=>{
@@ -1967,7 +2022,7 @@ SCREENS.summary=()=>{
  <div class="grid stats mt">${stat('📅',T.days,t('sum_days'))}${stat('📸',T.photos,t('sum_photos'))}${stat('😋',foods.length,t('sum_foods'))}${stat('🎁',souv.length,t('sum_souv'))}${stat('🪙',T.spent,t('sum_spent'))}</div>
  <div class="panel mt center">
   ${foods.length||souv.length?`<div class="emoji-row">${foods.map(id=>findAct('eat',id).e).join(' ')} ${souv.map(id=>findAct('shop',id).e).join(' ')}</div>`:''}
-  <p style="font-size:1.1rem">${T.uberPaid?`🚗 ${t('uber_back')}: -${UBER} 🪙`:t('parents_paid')}</p>
+  <p style="font-size:1.1rem">${T.ownCar?t('car_back',{name:esc(memberName(T.ownCar))}):T.uberPaid?`🚗 ${t('uber_back')}: -${UBER} 🪙`:t('parents_paid')}</p>
   <h2>🐷 ${t('to_piggy')} 🪙 ${G.piggy}</h2><p class="muted">${t('piggy_expl')}</p>
   <button class="btn big green mt" onclick="T=null;go('home')">${t('back_home')}</button></div>`;
 };
