@@ -1,6 +1,6 @@
 // Service worker do "Meu Aeroporto!": guarda o jogo no aparelho para funcionar sem internet.
 // Ao publicar uma versão nova, troque VERSION para o iPad baixar a atualização.
-const VERSION = 'v7-2026-10-24';
+const VERSION = 'v8-2026-10-24';
 const CACHE = 'meu-aeroporto-' + VERSION;
 const APP_FILES = [
   './',

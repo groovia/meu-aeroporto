@@ -98,6 +98,8 @@ button.card:active{transform:translateY(3px) scale(.98)}
 .crew .status{position:absolute;top:8%;right:-6%;font-size:clamp(1.6rem,5vw,2.4rem);animation:bob 1.4s ease-in-out infinite}
 .fam-grid{grid-template-columns:repeat(auto-fill,minmax(170px,1fr))}
 .fam-grid .card{gap:10px}
+.fam-add{justify-content:center;min-height:200px;outline:3px dashed var(--green);background:#f2fdf7}
+.fam-del{font-size:.9rem;min-height:38px;padding:6px 12px;color:#d22b4b}
 .fam-av{height:190px;display:flex;align-items:flex-end;justify-content:center}
 .fam-av svg{height:100%;width:auto}
 .fam-grid .name-in{font-size:1.05rem;padding:8px 12px;text-align:center}
@@ -758,6 +760,15 @@ const S={
  copy_mine:["📋 Igual à minha", "📋 Comme la mienne", "📋 Giống của tớ"],
  no_passport_who:["{name} está sem passaporte na mala!", "{name} n’a pas de passeport dans sa valise !", "{name} chưa có hộ chiếu trong vali!"],
  pj_forgot_who:["{names} esqueceu o pijama! Vai dormir de camiseta. 😅", "{names} a oublié son pyjama ! Dodo en t-shirt. 😅", "{names} quên đồ ngủ! Ngủ bằng áo phông vậy. 😅"],
+ fam_add:["➕ Adicionar pessoa", "➕ Ajouter une personne", "➕ Thêm người"],
+ fam_remove:["🗑️ Tirar", "🗑️ Retirer", "🗑️ Xóa"],
+ fam_remove_q:["Tirar {name} da família do jogo?", "Retirer {name} de la famille du jeu ?", "Xóa {name} khỏi gia đình trong trò chơi?"],
+ fam_yes_remove:["Sim, tirar", "Oui, retirer", "Có, xóa"],
+ fam_kind:["Quem você quer adicionar?", "Qui veux-tu ajouter ?", "Bạn muốn thêm ai?"],
+ fam_boy:["👦 Menino", "👦 Garçon", "👦 Bé trai"],
+ fam_girl:["👧 Menina", "👧 Fille", "👧 Bé gái"],
+ fam_man:["👨 Homem", "👨 Homme", "👨 Đàn ông"],
+ fam_woman:["👩 Mulher", "👩 Femme", "👩 Phụ nữ"],
 };
 
 /* ============ DADOS ============ */
@@ -1208,7 +1219,18 @@ function crewHTML(ids,o){
 SCREENS.family=()=>`<h2 class="center">👨‍👩‍👧‍👦 ${t('family')}</h2><p class="center muted">${t('fam_screen_hint')}</p>
  <div class="grid fam-grid">${G.family.map(m=>`<div class="card"><div class="fam-av">${avatarSVG(m.look,{fit:true})}</div>
   <input class="name-in" maxlength="16" value="${esc(m.name)}" placeholder="${m.id==='papai'?t('fam_papai'):t('name_ph')}" oninput="setFamName('${m.id}',this.value)">
-  <button class="btn ghost" onclick="editMember('${m.id}')">🎨 ${t('change_look')}</button></div>`).join('')}</div>`;
+  <button class="btn ghost" onclick="editMember('${m.id}')">🎨 ${t('change_look')}</button>
+  <button class="chip-btn fam-del" onclick="askRemoveMember('${m.id}')">${t('fam_remove')}</button></div>`).join('')}
+  <button class="card fam-add" onclick="addMember()"><div class="e">➕</div><div class="n">${t('fam_add')}</div></button></div>`;
+// adicionar e tirar pessoas da familia (meninos e homens ja vem de sunga)
+const NEW_LOOK={boy:{age:'crianca',swim:'sunga',hair:'curto',hairC:1,outfit:'short',outC:1,smile:'dentes'},girl:{age:'crianca',swim:'maio',hair:'longo',hairC:1,outfit:'vestido',outC:0,smile:'dentes'},man:{age:'adulto',swim:'sunga',hair:'curto',hairC:0,outfit:'camiseta',outC:7,smile:'dentes'},woman:{age:'adulto',swim:'maio',hair:'longo',hairC:2,outfit:'regata',outC:4,smile:'dentes'}};
+function addMember(){sfx.click();modal(`<div class="big">👨‍👩‍👧‍👦</div><h2>${t('fam_kind')}</h2><div class="row center">${[['boy','fam_boy','blue'],['girl','fam_girl',''],['man','fam_man','blue'],['woman','fam_woman','']].map(([k,l,c])=>`<button class="btn ${c}" onclick="createMember('${k}')">${t(l)}</button>`).join('')}</div><button class="btn ghost mt" onclick="closeModal()">${t('cancel')}</button>`);}
+function createMember(k){
+ closeModal();const look=Object.assign({},DEFAULT_PLAYER,{hat:'nada',glasses:'nada',neck:'nada',bag:'nada',freckles:false},NEW_LOOK[k]);delete look.name;
+ const m={id:'p'+Date.now().toString(36),name:'',look,stamps:{},trips:0};G.family.push(m);save();sfx.ok();editMember(m.id);
+}
+function askRemoveMember(id){sfx.click();modal(`<div class="big">🗑️</div><p style="font-size:1.15rem">${t('fam_remove_q',{name:esc(memberName(id))})}</p><div class="row center mt"><button class="btn ghost" onclick="closeModal()">${t('cancel')}</button><button class="btn" onclick="removeMember('${id}')">${t('fam_yes_remove')}</button></div>`);}
+function removeMember(id){G.family=G.family.filter(m=>m.id!==id);save();closeModal();sfx.ok();render();}
 function setFamName(id,v){const m=G.family.find(x=>x.id===id);m.name=v.trim();save();}
 function editMember(id){const m=G.family.find(x=>x.id===id);sfx.click();go('avatar',{who:id,draft:Object.assign({},normPlayer(m.look),{name:m.name})});}
 
