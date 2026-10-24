@@ -308,6 +308,20 @@ button.card:active{transform:translateY(3px) scale(.98)}
 .stats .card{min-height:110px;justify-content:center}
 .stats .big-n{font-size:2rem;font-weight:700}
 
+/* tela do aviao, jogos, sugestoes, mala grande */
+.cabin-tv{position:absolute;z-index:3;left:44%;top:8%;border:4px solid #1d1b2e;background:#2e2a48;border-radius:10px;font-size:1.6rem;padding:4px 10px;animation:pulse 2s ease-in-out infinite;color:#fff}
+.cabin-tv.big{font-size:2.1rem;padding:6px 14px}
+.ss-tabs{display:flex;gap:6px}.ss-tabs button{flex:1;border:0;border-radius:12px;padding:10px;font-weight:700;background:#2e2a48;color:#fff;font-size:1rem}.ss-tabs button.on{background:#ff6b8b}
+.sugg-box{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+.sugg{border:0;border-radius:999px;background:#ffc233;color:#2b2350;font-weight:700;padding:8px 14px;font-size:1rem}
+.mem-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-width:360px;margin:0 auto;width:100%}
+.mem-card{aspect-ratio:1;border:0;border-radius:12px;background:#4d7cfe;font-size:clamp(1.6rem,6vw,2.4rem);color:#fff}
+.mem-card.up{background:#fff}.mem-card.ok{background:#c9f2df}
+.ttt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;max-width:260px;margin:0 auto;width:100%}
+.ttt-cell{aspect-ratio:1;border:0;border-radius:12px;background:#fff;font-size:clamp(1.8rem,7vw,2.8rem)}
+.gm-score{position:absolute;top:8px;right:12px;font-weight:800;font-size:1.3rem}
+.bag-sizes{margin:6px 0}.bag-sizes .chip-btn{font-size:.95rem}
+.inside{max-height:34vh;overflow:auto}
 /* passeios e filmes */
 .road-scene.going{container-type:size}
 .road-scene.on-foot .city{animation-duration:8s}.road-scene.on-foot .city.far{animation-duration:16s}
@@ -848,6 +862,38 @@ const S={
  movie_stop:["⏹️ Parar", "⏹️ Arrêter", "⏹️ Dừng"],
  movie_end:["Fim do filme! 👏", "Fin du film ! 👏", "Hết phim rồi! 👏"],
  movie_wait:["O avião está dando voltas até o filme acabar! 🛩️", "L’avion tourne en rond jusqu’à la fin du film ! 🛩️", "Máy bay bay vòng chờ hết phim! 🛩️"],
+ more_days:["mais dias", "plus de jours", "thêm ngày"],
+ bag_size:["Tamanho da mala:", "Taille de la valise :", "Cỡ vali:"],
+ bag_s12:["Pequena (12)", "Petite (12)", "Nhỏ (12)"],
+ bag_s20:["Média (20)", "Moyenne (20)", "Vừa (20)"],
+ bag_s30:["Grande (30)", "Grande (30)", "Lớn (30)"],
+ bag_s50:["Gigante (50)", "Géante (50)", "Khổng lồ (50)"],
+ bag_too_small:["Essa mala é pequena demais para o que já está dentro!", "Cette valise est trop petite pour ce qu’il y a dedans !", "Vali này quá nhỏ so với đồ bên trong!"],
+ cat_all:["Tudo", "Tout", "Tất cả"],
+ cat_roupa:["👕 Roupas", "👕 Vêtements", "👕 Quần áo"],
+ cat_higiene:["🧼 Higiene", "🧼 Toilette", "🧼 Vệ sinh"],
+ cat_diversao:["🎈 Diversão", "🎈 Jeux", "🎈 Đồ chơi"],
+ cat_viagem:["🧭 Viagem", "🧭 Voyage", "🧭 Du lịch"],
+ fl_game:["🎮 Jogar", "🎮 Jouer", "🎮 Chơi game"],
+ seat_movies:["🎬 Filmes", "🎬 Films", "🎬 Phim"],
+ seat_games:["🎮 Jogos", "🎮 Jeux", "🎮 Trò chơi"],
+ mem_title:["Jogo da memória", "Jeu de mémoire", "Trò chơi trí nhớ"],
+ mem_moves:["{n} jogadas", "{n} coups", "{n} lượt"],
+ mem_win:["Você achou todos os pares em {n} jogadas! 🏆", "Tu as trouvé toutes les paires en {n} coups ! 🏆", "Bạn tìm được hết các cặp trong {n} lượt! 🏆"],
+ ttt_title:["Jogo da velha", "Morpion", "Cờ ca-rô"],
+ ttt_hint:["Você é o ❌. Faça 3 em linha!", "Tu es les ❌. Aligne 3 cases !", "Bạn là ❌. Xếp 3 ô thẳng hàng!"],
+ ttt_win:["Você ganhou! 🏆", "Tu as gagné ! 🏆", "Bạn thắng rồi! 🏆"],
+ ttt_lose:["O computador ganhou. Tenta de novo!", "L’ordinateur a gagné. Essaie encore !", "Máy tính thắng. Thử lại nhé!"],
+ ttt_draw:["Empate! 🤝", "Match nul ! 🤝", "Hòa! 🤝"],
+ play_again:["Jogar de novo", "Rejouer", "Chơi lại"],
+ game_custom:["Outro jogo (você escreve):", "Un autre jeu (tu l’écris) :", "Trò chơi khác (bạn tự viết):"],
+ game_name_ph:["Nome do jogo", "Nom du jeu", "Tên trò chơi"],
+ game_hint:["No jogo, 1 minuto de verdade vira 1 segundo.", "Dans le jeu, 1 minute devient 1 seconde.", "Trong trò chơi, 1 phút thành 1 giây."],
+ game_play:["▶️ Jogar", "▶️ Jouer", "▶️ Chơi"],
+ game_end:["Fim de jogo! Você fez ⭐ {n} pontos!", "Partie terminée ! Tu as fait ⭐ {n} points !", "Hết giờ! Bạn được ⭐ {n} điểm!"],
+ tour:["Passeio de Uber pela cidade", "Balade en Uber dans la ville", "Dạo quanh thành phố bằng Uber"],
+ tour_title:["Passeando de Uber por {city}", "Balade en Uber dans {city}", "Dạo Uber quanh {city}"],
+ tour_done:["Que passeio lindo! Vocês viram: {list}", "Quelle belle balade ! Vous avez vu : {list}", "Chuyến dạo thật đẹp! Cả nhà đã thấy: {list}"],
 };
 
 /* ============ DADOS ============ */
@@ -1362,7 +1408,8 @@ SCREENS.choose=()=>{
  if(ui.country){const d=ui.days||3,b=budgetFor(d),len=ui.dayLen||3,crew=ui.crew||[];
   plan=`<div class="panel mt center plan" id="planBox"><h2>${COUNTRIES[ui.country].flag} ${tx(COUNTRIES[ui.country].name)}</h2>
   <h3>${t('how_long')}</h3>
-  <div class="row center">${[1,3,7].map(n=>`<button class="chip-btn big ${d===n?'on':''}" onclick="pickDays(${n})">${n===1?t('day1'):t('days',{n})}</button>`).join('')}</div>
+  <div class="row center">${[1,2,3,4,5,6,7].map(n=>`<button class="chip-btn ${d===n?'on':''}" onclick="pickDays(${n})">${n===1?t('day1'):t('days',{n})}</button>`).join('')}</div>
+  <div class="row center mt">${d>7?`<b class="chip-btn on">${t('days',{n:d})}</b>`:''}<button class="chip-btn" onclick="pickDays(Math.max(1,(ui.days||3)-1))">−</button><button class="chip-btn" onclick="pickDays(Math.min(30,(ui.days||3)+1))">+ ${t('more_days')}</button></div>
   <h3 class="mt">${t('day_len')}</h3>
   <div class="row center">${DAY_OPTS.map(n=>`<button class="chip-btn ${len===n?'on':''}" onclick="ui.dayLen=${n};sfx.click();render()">⏱️ ${t('min_n',{n})}</button>`).join('')}</div>
   <h3 class="mt">${t('fam_title')}</h3>
@@ -1382,25 +1429,29 @@ function startPacking(){
  T={pantry:{},c:ui.country,days:d,dayMs:(ui.dayLen||3)*60000,crew:(ui.crew||[]).slice(),budget:b,money:b,packed:[],missing:[],day:1,elapsed:0,visited:[],bought:[],foods:[],today:[],photos:0,spent:0,
   lodging:null,lastWalk:-1,coinDay:0,selfieDay:0,cls:'eco',flightNo:'AD'+rnd(100,999),seat:rnd(3,32)+'ABCDEF'[rnd(0,5)],
   gate:'ABC'[rnd(0,2)]+rnd(1,24),driver:pick(DRIVERS),carC:rnd(0,CAR_COLORS.length-1),plate:'ADL-'+rnd(1000,9999)};
- T.bags={me:T.packed};T.crew.forEach(id=>T.bags[id]=[]);
+ T.bags={me:T.packed};T.crew.forEach(id=>T.bags[id]=[]);T.cap=20;
  sfx.ok();go('pack',{pw:'me'});
 }
 
 SCREENS.pack=()=>{
  const c=COUNTRIES[T.c];
  const who=ui.pw||'me',bag=bagOf(who),ids=crewIds();
- let slots='';for(let i=0;i<CAP;i++){const id=bag[i];slots+=id?`<button class="slot" onclick="toggleItem('${id}')">${itemLabel(id,who).e}</button>`:`<div class="slot empty"></div>`;}
- const items=Object.keys(ITEMS).map(id=>{const on=bag.includes(id),it=itemLabel(id,who);return `<button class="card item ${on?'in':''}" onclick="toggleItem('${id}')">${on?'<span class="chk">✅</span>':''}<div class="e">${it.e}</div><div class="n">${tx(it.n)}</div></button>`;}).join('');
- const people=ids.length>1?`<div class="row center pack-people">${ids.map(id=>`<button class="fam-pick ${who===id?'on':''}" onclick="ui.pw='${id}';sfx.click();render()"><div class="fh">${avatarSVG(memberLook(id),{head:true})}</div><span>${esc(memberName(id))} · ${bagOf(id).length}/${CAP}${bagOf(id).includes('passaporte')?' 🛂':''}</span></button>`).join('')}</div>`:'';
+ const cap=bagCap(),shown=Math.min(cap,Math.max(12,Math.ceil((bag.length+1)/6)*6));
+ let slots='';for(let i=0;i<shown;i++){const id=bag[i];slots+=id?`<button class="slot" onclick="toggleItem('${id}')">${itemLabel(id,who).e}</button>`:`<div class="slot empty"></div>`;}
+ const cat=ui.pcat||'all';
+ const items=Object.keys(ITEMS).filter(id=>cat==='all'||ITEM_CAT[id]===cat).map(id=>{const on=bag.includes(id),it=itemLabel(id,who);return `<button class="card item ${on?'in':''}" onclick="toggleItem('${id}')">${on?'<span class="chk">✅</span>':''}<div class="e">${it.e}</div><div class="n">${tx(it.n)}</div></button>`;}).join('');
+ const people=ids.length>1?`<div class="row center pack-people">${ids.map(id=>`<button class="fam-pick ${who===id?'on':''}" onclick="ui.pw='${id}';sfx.click();render()"><div class="fh">${avatarSVG(memberLook(id),{head:true})}</div><span>${esc(memberName(id))} · ${bagOf(id).length}/${cap}${bagOf(id).includes('passaporte')?' 🛂':''}</span></button>`).join('')}</div>`:'';
  return `<h2 class="center">${t('pack_title')} · ${tx(c.name)}</h2>
  <div class="tip">💡 <b>${t('tip')}:</b> ${tx(c.tip)}</div>
  ${people}
  <div class="pack-head">${ids.length>1?`<p class="center" style="margin:6px 0 0"><b>🧳 ${t('pack_for',{name:esc(memberName(who))})}</b>${who!=='me'?` <button class="chip-btn" onclick="copyMine()">${t('copy_mine')}</button>`:''}</p>`:''}<div class="suitcase"><div class="handle"></div><div class="inside">${slots}</div></div>
- <p class="center muted">${t('pack_hint',{n:CAP})} (${bag.length}/${CAP})</p></div>
+ <p class="center muted">${t('pack_hint',{n:cap})} (${bag.length}/${cap})</p></div>
+ <div class="row center bag-sizes"><b>${t('bag_size')}</b>${BAG_SIZES.map(n=>`<button class="chip-btn ${cap===n?'on':''}" onclick="setBagSize(${n})">🧳 ${t('bag_s'+n)}</button>`).join('')}</div>
+ <div class="tabs cont-tabs">${['all','roupa','higiene','diversao','viagem'].map(k=>`<button class="${cat===k?'on':''}" onclick="ui.pcat='${k}';sfx.click();render()">${t('cat_'+k)}</button>`).join('')}</div>
  <div class="grid">${items}</div>
  <div class="row center mt"><button class="btn big green" onclick="closeBag()">${t('close_bag')}</button></div>`;
 };
-function toggleItem(id){const bag=bagOf(ui.pw||'me'),i=bag.indexOf(id);if(i>=0)bag.splice(i,1);else if(bag.length>=CAP){sfx.bad();toast(t('suitcase_full'));return;}else bag.push(id);sfx.click();const y=window.scrollY;render();window.scrollTo(0,y);}
+function toggleItem(id){const bag=bagOf(ui.pw||'me'),i=bag.indexOf(id);if(i>=0)bag.splice(i,1);else if(bag.length>=bagCap()){sfx.bad();toast(t('suitcase_full'));return;}else bag.push(id);sfx.click();const y=window.scrollY;render();window.scrollTo(0,y);}
 function closeBag(){
  const c=COUNTRIES[T.c];
  const ids=crewIds(),noPP=ids.filter(id=>!bagOf(id).includes('passaporte'));
@@ -1530,13 +1581,13 @@ SCREENS.flight=()=>{
  const title=ui.landed?(ret?t('fl_landed_home'):t('fl_landed',{city:tx(c.city)})):(ret?t('fl_home'):t('fl_title',{dest:tx(c.dest)}));
  const btns=ui.landed?`<button class="btn big green" onclick="${ret?"go('summary')":"go('arrival',{step:0})"}">${t('get_off')}</button>`
   :`<button class="btn ${ui.sleeping?'yellow':'purple'}" onclick="toggleSleep()">${ui.sleeping?t('wake_btn'):t('sleep_btn')}</button><button class="btn ghost" onclick="skipFlight()">${t('skip')}</button>`;
- const fun=ui.landed||ui.sleeping?'':`<div class="row center mt fl-fun">${['fl_movie','fl_window','fl_music'].map(k=>`<button class="chip-btn" onclick="${k==='fl_movie'?'openMovies()':`sfx.click();toast(t('${k}_t'))`}">${t(k)}</button>`).join('')}</div>`;
+ const fun=ui.landed||ui.sleeping?'':`<div class="row center mt fl-fun">${['fl_movie','fl_game','fl_window','fl_music'].map(k=>`<button class="chip-btn" onclick="${k==='fl_movie'?"openSeat('movies')":k==='fl_game'?"openSeat('games')":`sfx.click();toast(t('${k}_t'))`}">${t(k)}</button>`).join('')}</div>`;
  return `<h2 class="center">${ui.landed?'🛬':'✈️'} ${title}</h2>${ui.landed?'':`<p class="center fl-left" id="flLeft"></p>`}
  <div class="mapbox ${ui.sleeping?'night':''}" id="mapbox">${mapSVG(ret)}</div>
- ${!ui.landed&&!ui.sleeping&&(ui.movie||ui.moviePick)?moviePanel():''}
+ ${!ui.landed&&!ui.sleeping&&(ui.movie||ui.moviePick||ui.mem||ui.ttt||ui.game)?seatPanel():''}
  <div class="cabin ${first?'first':'eco'} ${ui.sleeping?'sleeping':''}" id="cabin">
   <div class="label">${first?t('first_lbl'):t('eco_lbl')} · ${T.seat}</div>
-  <div class="porthole"></div>
+  <div class="porthole"></div>${ui.sleeping?'':`<button class="cabin-tv ${first?'big':''}" onclick="openSeat('movies')" aria-label="tela">📺</button>`}
   ${first&&ui.sleeping?`<div class="bed"><div class="pillow"></div><div class="bed-head">${avatarSVG(G.player,{head:true,sleep:true})}</div><div class="blanket"></div></div>`
    :`<div class="seat"><div class="sleeper">${avatarSVG(G.player,{head:true,sleep:ui.sleeping})}</div></div>`}
   ${T.crew.length?`<div class="crew-seats">${T.crew.map(id=>`<div class="mini-seat ${first?'first':''}"><div>${avatarSVG(memberLook(id),{head:true,sleep:ui.sleeping})}</div></div>`).join('')}</div>`:''}
@@ -1553,10 +1604,10 @@ function startFlight(){
   if(ui.screen!=='flight')return;
   const dur=flightMs();
   // com filme passando, o aviao so pousa quando o filme acabar
-  const cap=ui.movie&&!ui.movie.done?0.995:1;
+  const cap=(ui.movie&&!ui.movie.done)||(ui.game&&!ui.game.done)?0.995:1;
   if(!modalOpen&&ui.fp<cap)ui.fp=Math.min(cap,ui.fp+dt/(ui.sleeping?dur/5:dur));
   placePlane();
-  const fl=document.getElementById('flLeft');if(fl&&ui.fp>=0.995&&ui.movie&&!ui.movie.done)fl.textContent=t('movie_wait');else if(fl){const s=Math.ceil((1-ui.fp)*(ui.sleeping?dur/5:dur)/1000);fl.textContent='⏱️ '+t('fl_left',{t:`${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`});}
+  const fl=document.getElementById('flLeft');if(fl&&ui.fp>=0.995&&((ui.movie&&!ui.movie.done)||(ui.game&&!ui.game.done)))fl.textContent=t('movie_wait');else if(fl){const s=Math.ceil((1-ui.fp)*(ui.sleeping?dur/5:dur)/1000);fl.textContent='⏱️ '+t('fl_left',{t:`${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`});}
   if(ui.fp>=.35&&!ui.snackDone&&!modalOpen&&!ui.sleeping)snackModal();
   if(ui.fp>=.72&&!ui.drinkDone&&!modalOpen&&!ui.sleeping)drinkModal();
   if(ui.fp>=1&&!ui.landed){landed();return;}
@@ -1883,10 +1934,17 @@ const ITEM_SUNGA={e:'🩳',n:['Sunga','Short de bain','Quần bơi']};
 function swimOf(who){const l=memberLook(who);return l.swim||(['papai','cacheado'].includes(who)?'sunga':'maio');}
 function itemLabel(id,who){return id==='maio'&&swimOf(who||'me')==='sunga'?ITEM_SUNGA:ITEMS[id];}
 function bagOf(who){T.bags=T.bags||{me:T.packed};return T.bags[who]||(T.bags[who]=[]);}
-function copyMine(){const who=ui.pw;if(!who||who==='me')return;T.bags[who]=T.packed.slice(0,CAP);sfx.ok();toast('📋 ✓');render();}
+function copyMine(){const who=ui.pw;if(!who||who==='me')return;T.bags[who]=T.packed.slice(0,bagCap());sfx.ok();toast('📋 ✓');render();}
 
 /* ---- passeios: ir a pe ou de Uber, chegar e tirar foto ---- */
-const UBER_CITY=5;
+const UBER_CITY=5,TOUR_PRICE=8;
+function cityTour(){
+ if(T.money<TOUR_PRICE){sfx.bad();toast(t('no_money'));return;}
+ const c=COUNTRIES[T.c],seen=shuffle(c.visit.map(v=>v.e)).slice(0,4);
+ pay(TOUR_PRICE);T.today.push('🚗');T.elapsed=Math.min(T.dayMs-1000,T.elapsed+T.dayMs*0.04);
+ go('going',{mode:'tour',seen});
+ later(()=>{go('day',{tab:'visit'});toast(t('tour_done',{list:seen.join(' ')}));},7000);
+}
 function goVisit(id,mode){
  const a=findAct('visit',id),price=a.p+(mode==='uber'?UBER_CITY:0);
  if(T.money<price){sfx.bad();toast(t('no_money'));return;}
@@ -1897,13 +1955,13 @@ function goVisit(id,mode){
  later(()=>go('place',{place:id}),mode==='walk'?5200:3800);
 }
 SCREENS.going=()=>{
- const a=findAct('visit',ui.place),c=COUNTRIES[T.c],walk=ui.mode==='walk';
- const row=`🏠🌳🏪${c.icons}🌳🏢🏡🌳${(c.scene&&c.scene.deco||[]).join('')}🏫🌳`,far='🏙️ 🌲 🏙️ 🌲 🏙️ 🌲';
- return `<h2 class="center">${walk?'🚶':'🚗'} ${t(walk?'going_walk':'going_car',{place:tx(a.n)})}</h2>
+ const tour=ui.mode==='tour',a=tour?null:findAct('visit',ui.place),c=COUNTRIES[T.c],walk=ui.mode==='walk';
+ const row=tour?`🏢🌳${(ui.seen||[]).join('🌳🏪')}🌳🏡${c.icons}🌳`:`🏠🌳🏪${c.icons}🌳🏢🏡🌳${(c.scene&&c.scene.deco||[]).join('')}🏫🌳`,far='🏙️ 🌲 🏙️ 🌲 🏙️ 🌲';
+ return `<h2 class="center">${walk?'🚶':'🚗'} ${tour?t('tour_title',{city:tx(c.city)}):t(walk?'going_walk':'going_car',{place:tx(a.n)})}</h2>
  <div class="road-scene going ${walk?'on-foot':''}"><div class="city far"><span>${far}</span><span>${far}</span></div><div class="city"><span>${row}</span><span>${row}</span></div>
   <div class="road ${walk?'sidewalk':''}"></div>
   ${walk?crewHTML(crewIds(),{left:50,walk:true,h:62}):`<div class="car">${carSVG('#ffc233','carro')}</div>`}
-  <div class="goal">${a.e}</div></div>`;
+  ${a?`<div class="goal">${a.e}</div>`:''}</div>`;
 };
 SCREENS.place=()=>{
  const a=findAct('visit',ui.place);
@@ -1932,19 +1990,19 @@ const MOVIES=[
 ];
 function fmtMs(ms){const s=Math.max(0,Math.ceil(ms/1000));return `${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`;}
 function openMovies(){sfx.click();ui.moviePick=true;render();setTimeout(()=>{const el=document.getElementById('seatScreen');if(el)el.scrollIntoView({behavior:'smooth',block:'center'});},60);}
-function moviePanel(){
+function moviePanel(tabs){
  if(ui.movie){const m=ui.movie,p=Math.min(1,m.el/m.total);
   return `<div class="seat-screen" id="seatScreen"><div class="ss-scene ${m.playing?'playing':''}" style="background:radial-gradient(circle at 50% 70%,${m.col},#0b0b1e)">
    <div class="ss-side">${m.side.map((e,i)=>`<span style="animation-delay:-${i*1.3}s">${e}</span>`).join('')}</div><div class="ss-main">${m.e}</div>${m.done?`<div class="ss-end">${t('movie_end')}</div>`:''}</div>
    <div class="ss-title">🎬 ${esc(m.title)}</div><div class="ss-bar"><div id="ssFill" style="width:${p*100}%"></div></div>
    <div class="ss-time" id="ssTime">${fmtMs(m.el)} / ${fmtMs(m.total)}</div>
    <div class="row center">${m.done?'':`<button class="chip-btn" onclick="moviePlayPause()">${m.playing?t('movie_pause'):t('movie_resume')}</button>`}<button class="chip-btn" onclick="movieStop()">${t('movie_stop')}</button></div></div>`;}
- return `<div class="seat-screen" id="seatScreen"><div class="ss-title">🎬 ${t('movie_pick')}</div><p class="ss-hint">${t('movie_hint')}</p>
+ return `<div class="seat-screen" id="seatScreen">${tabs||''}<div class="ss-title">🎬 ${t('movie_pick')}</div><p class="ss-hint">${t('movie_hint')}</p>
   <div class="ss-list">${MOVIES.map(m=>`<button class="ss-item" onclick="startMovie('${m.id}')"><span class="e">${m.e}</span><b>${tx(m.n)}</b><small>${Math.floor(m.d/60)}h${String(m.d%60).padStart(2,'0')}</small></button>`).join('')}</div>
-  <div class="ss-custom"><b>${t('movie_custom')}</b><input id="mvName" class="name-in" maxlength="40" placeholder="${t('movie_name_ph')}">
+  <div class="ss-custom"><b>${t('movie_custom')}</b><input id="mvName" class="name-in" maxlength="40" autocomplete="off" placeholder="${t('movie_name_ph')}" oninput="suggest('mvName','movies','mvSugg')" onkeydown="suggKey(event,'mvName','mvSugg')"><div class="sugg-box" id="mvSugg"></div>
    <div class="row center"><input id="mvH" type="number" min="0" max="5" value="2" class="num-in"> ${t('movie_h')} <input id="mvM" type="number" min="0" max="59" value="0" class="num-in"> ${t('movie_m')}</div>
    <button class="btn green" onclick="startMovie('custom')">${t('movie_play')}</button></div>
-  <button class="chip-btn" onclick="ui.moviePick=false;render()">${t('close')}</button></div>`;
+  <button class="chip-btn" onclick="closeSeat()">${t('close')}</button></div>`;
 }
 function startMovie(id){
  let m;
@@ -1964,6 +2022,125 @@ function movieTick(){
 }
 function moviePlayPause(){const m=ui.movie;if(!m)return;m.playing=!m.playing;m.last=performance.now();sfx.click();render();if(m.playing)movieTick();}
 function movieStop(){ui.movie=null;ui.moviePick=false;sfx.click();render();}
+
+/* ---- mala: tamanho escolhido e categorias ---- */
+const BAG_SIZES=[12,20,30,50];
+function bagCap(){return T.cap||20;}
+const ITEM_CAT={passaporte:'viagem',roupas:'roupa',escova:'higiene',camera:'viagem',maio:'roupa',protetor:'higiene',casaco:'roupa',cachecol:'roupa',guarda:'viagem',oculos:'roupa',botas:'roupa',repelente:'higiene',pijama:'roupa',garrafa:'viagem',mapa:'viagem',lanterna:'viagem',fone:'diversao',diario:'diversao',urso:'diversao',livro:'diversao',jogo:'diversao'};
+const MORE_ITEMS={
+ vestido:{e:'👗',c:'roupa',n:['Vestido','Robe','Váy']},
+ calca:{e:'👖',c:'roupa',n:['Calça jeans','Jean','Quần jean']},
+ shorts:{e:'🩳',c:'roupa',n:['Shorts','Short','Quần short']},
+ tenis:{e:'👟',c:'roupa',n:['Tênis','Baskets','Giày thể thao']},
+ sandalia:{e:'👡',c:'roupa',n:['Sandália','Sandales','Dép quai hậu']},
+ chinelo:{e:'🩴',c:'roupa',n:['Chinelo','Tongs','Dép tông']},
+ meias:{e:'🧦',c:'roupa',n:['Meias','Chaussettes','Tất']},
+ luvas:{e:'🧤',c:'roupa',n:['Luvas','Gants','Găng tay']},
+ bone:{e:'🧢',c:'roupa',n:['Boné','Casquette','Mũ lưỡi trai']},
+ chapeu:{e:'👒',c:'roupa',n:['Chapéu de sol','Chapeau de soleil','Mũ rộng vành']},
+ pente:{e:'🪮',c:'higiene',n:['Pente','Peigne','Lược']},
+ sabonete:{e:'🧼',c:'higiene',n:['Sabonete','Savon','Xà phòng']},
+ toalha:{e:'🛁',c:'higiene',n:['Toalha','Serviette','Khăn tắm']},
+ curativo:{e:'🩹',c:'higiene',n:['Curativos','Pansements','Băng dán']},
+ bola:{e:'⚽',c:'diversao',n:['Bola','Ballon','Quả bóng']},
+ boneca:{e:'🪆',c:'diversao',n:['Boneca','Poupée','Búp bê']},
+ puzzle:{e:'🧩',c:'diversao',n:['Quebra-cabeça','Puzzle','Xếp hình']},
+ lapis:{e:'🖍️',c:'diversao',n:['Lápis de cor','Crayons de couleur','Bút màu']},
+ cartas:{e:'🃏',c:'diversao',n:['Jogo de cartas','Jeu de cartes','Bộ bài']},
+ tablet:{e:'📱',c:'diversao',n:['Tablet','Tablette','Máy tính bảng']},
+ unicornio:{e:'🦄',c:'diversao',n:['Unicórnio de pelúcia','Licorne en peluche','Kỳ lân bông']},
+ pipa:{e:'🪁',c:'diversao',n:['Pipa','Cerf-volant','Diều']},
+ mochila:{e:'🎒',c:'viagem',n:['Mochila','Sac à dos','Ba lô']},
+ travesseiro:{e:'😴',c:'viagem',n:['Travesseiro de viagem','Oreiller de voyage','Gối du lịch']},
+ carregador:{e:'🔌',c:'viagem',n:['Carregador','Chargeur','Sạc điện thoại']},
+ mergulho:{e:'🤿',c:'viagem',n:['Máscara de mergulho','Masque de plongée','Kính lặn']},
+ boia:{e:'🛟',c:'viagem',n:['Boia','Bouée','Phao bơi']},
+ lanche:{e:'🍪',c:'viagem',n:['Lanchinhos','Goûters','Đồ ăn vặt']},
+ carteira:{e:'👛',c:'viagem',n:['Carteira','Porte-monnaie','Ví tiền']}
+};
+Object.keys(MORE_ITEMS).forEach(k=>{ITEMS[k]={e:MORE_ITEMS[k].e,n:MORE_ITEMS[k].n};ITEM_CAT[k]=MORE_ITEMS[k].c;});
+function setBagSize(n){
+ const over=crewIds().filter(id=>bagOf(id).length>n);
+ if(over.length){sfx.bad();toast(t('bag_too_small'));return;}
+ T.cap=n;sfx.click();render();
+}
+
+/* ---- sugestoes ao escrever nome de filme ou jogo ---- */
+const SUGG_MOVIES=['Harry Potter','Frozen','Frozen 2','Moana','Moana 2','Encanto','Toy Story','Procurando Nemo','Shrek','Divertida Mente','Divertida Mente 2','O Rei Leão','Aladdin','Enrolados','Zootopia','Meu Malvado Favorito','Minions','Kung Fu Panda','Como Treinar o seu Dragão','Carros','Ratatouille','Viva: A Vida é uma Festa','Lilo & Stitch','Wish','Barbie','Super Mario Bros. O Filme','Sonic','Elementos','Red: Crescer é uma Fera','Luca','A Pequena Sereia','Cinderela','Branca de Neve','Mulan','Valente','Up: Altas Aventuras','Paddington','Matilda','Wonka','Homem-Aranha','Pokémon','Os Incríveis','Monstros S.A.','Divertida Mente'];
+const SUGG_GAMES=['Roblox','Minecraft','Mario Kart','Super Mario','Pokémon','Just Dance','Animal Crossing','Among Us','Subway Surfers','Stumble Guys','Fortnite','Zelda','Sonic','Toca Boca','Hello Kitty','Candy Crush','Angry Birds','Fall Guys','Tetris','Pac-Man','Kirby','Splatoon','Lego','The Sims','Brawl Stars','Pou','Talking Tom'];
+function norm(s){return String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');}
+function suggest(inputId,listName,boxId){
+ const v=norm(document.getElementById(inputId).value.trim()),box=document.getElementById(boxId);if(!box)return;
+ if(!v){box.innerHTML='';return;}
+ const list=[...new Set(listName==='games'?SUGG_GAMES:SUGG_MOVIES)];
+ const hits=list.filter(x=>norm(x).startsWith(v)).concat(list.filter(x=>!norm(x).startsWith(v)&&norm(x).includes(v))).slice(0,6);
+ box.innerHTML=hits.map(x=>`<button class="sugg" onclick="pickSugg('${inputId}','${boxId}',this.textContent)">${esc(x)}</button>`).join('');
+}
+function pickSugg(inputId,boxId,text){const i=document.getElementById(inputId);i.value=text;document.getElementById(boxId).innerHTML='';sfx.click();}
+// Enter completa com a primeira sugestao
+function suggKey(e,inputId,boxId){if(e.key==='Enter'){const b=document.querySelector('#'+boxId+' .sugg');if(b){e.preventDefault();pickSugg(inputId,boxId,b.textContent);}}}
+
+/* ---- tela do aviao: filmes e jogos ---- */
+function openSeat(tab){sfx.click();ui.mem=null;ui.ttt=null;if(ui.game&&ui.game.done)ui.game=null;if(ui.movie&&ui.movie.done)ui.movie=null;ui.moviePick=true;ui.seatTab=tab||'movies';render();setTimeout(()=>{const el=document.getElementById('seatScreen');if(el)el.scrollIntoView({behavior:'smooth',block:'center'});},60);}
+const MEM_EMOJI=['🐶','🐱','🦄','🐸','🦊','🐼'];
+function startMemory(){const cards=shuffle([...MEM_EMOJI,...MEM_EMOJI]);ui.mem={cards,open:[],done:[],moves:0};ui.moviePick=false;sfx.ok();render();}
+function memFlip(i){
+ const m=ui.mem;if(!m||m.open.length>=2||m.open.includes(i)||m.done.includes(i))return;
+ m.open.push(i);sfx.click();
+ if(m.open.length===2){m.moves++;const [a,b]=m.open;
+  if(m.cards[a]===m.cards[b]){m.done.push(a,b);m.open=[];sfx.ok();if(m.done.length===m.cards.length){sfx.ding();toast(t('mem_win',{n:m.moves}));}}
+  else later(()=>{m.open=[];render();},800);}
+ render();
+}
+function startTTT(){ui.ttt={b:Array(9).fill(''),win:null};ui.moviePick=false;sfx.ok();render();}
+const TTT_LINES=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+function tttWinner(b){for(const [a,c,d] of TTT_LINES)if(b[a]&&b[a]===b[c]&&b[a]===b[d])return b[a];return b.every(x=>x)?'=':null;}
+function tttPlay(i){
+ const g=ui.ttt;if(!g||g.win||g.b[i])return;g.b[i]='❌';sfx.click();g.win=tttWinner(g.b);
+ if(!g.win){// computador: ganhar, bloquear, centro ou aleatorio
+  const free=g.b.map((v,k)=>v?null:k).filter(k=>k!==null);
+  const tryLine=sym=>{for(const k of free){const c=g.b.slice();c[k]=sym;if(tttWinner(c)===sym)return k;}return null;};
+  let k=tryLine('⭕');if(k===null)k=tryLine('❌');if(k===null&&!g.b[4])k=4;if(k===null)k=pick(free);
+  g.b[k]='⭕';g.win=tttWinner(g.b);
+ }
+ if(g.win)later(()=>{sfx.ding();toast(g.win==='❌'?t('ttt_win'):g.win==='⭕'?t('ttt_lose'):t('ttt_draw'));},200);
+ render();
+}
+function startCustomGame(){
+ const name=(document.getElementById('gmName').value||'').trim()||'🎮',mi=Math.max(1,Math.min(180,parseInt(document.getElementById('gmM').value)||30));
+ ui.moviePick=false;ui.game={title:name,total:mi*1000,el:0,playing:true,done:false,last:performance.now(),score:0};sfx.ok();render();gameTick();
+}
+function gameTick(){
+ const g=ui.game;if(!g||ui.screen!=='flight'||g.done)return;
+ const now=performance.now();if(g.playing&&!modalOpen){g.el+=now-g.last;g.score+=Math.floor(Math.random()*40);}g.last=now;
+ if(g.el>=g.total){g.el=g.total;g.done=true;g.playing=false;sfx.ding();toast(t('game_end',{n:g.score}));render();return;}
+ const f=document.getElementById('gmFill'),tm=document.getElementById('gmTime'),sc=document.getElementById('gmScore');
+ if(f)f.style.width=(g.el/g.total*100)+'%';if(tm)tm.textContent=`${fmtMs(g.el)} / ${fmtMs(g.total)}`;if(sc)sc.textContent='⭐ '+g.score;
+ later(gameTick,250);
+}
+function gamePause(){const g=ui.game;if(!g)return;g.playing=!g.playing;g.last=performance.now();sfx.click();render();if(g.playing)gameTick();}
+function closeSeat(){ui.moviePick=false;ui.movie=null;ui.game=null;ui.mem=null;ui.ttt=null;sfx.click();render();}
+function seatPanel(){
+ const back=`<button class="chip-btn" onclick="closeSeat()">${t('close')}</button>`;
+ if(ui.movie)return moviePanel();
+ if(ui.mem){const m=ui.mem;return `<div class="seat-screen" id="seatScreen"><div class="ss-title">🧠 ${t('mem_title')} · ${t('mem_moves',{n:m.moves})}</div>
+  <div class="mem-grid">${m.cards.map((e,i)=>{const up=m.open.includes(i)||m.done.includes(i);return `<button class="mem-card ${up?'up':''} ${m.done.includes(i)?'ok':''}" onclick="memFlip(${i})">${up?e:'❓'}</button>`;}).join('')}</div>
+  <div class="row center">${m.done.length===m.cards.length?`<button class="chip-btn" onclick="startMemory()">🔄 ${t('play_again')}</button>`:''}${back}</div></div>`;}
+ if(ui.ttt){const g=ui.ttt;return `<div class="seat-screen" id="seatScreen"><div class="ss-title">⭕ ${t('ttt_title')}</div><p class="ss-hint">${g.win?(g.win==='❌'?t('ttt_win'):g.win==='⭕'?t('ttt_lose'):t('ttt_draw')):t('ttt_hint')}</p>
+  <div class="ttt-grid">${g.b.map((v,i)=>`<button class="ttt-cell" onclick="tttPlay(${i})">${v}</button>`).join('')}</div>
+  <div class="row center">${g.win?`<button class="chip-btn" onclick="startTTT()">🔄 ${t('play_again')}</button>`:''}${back}</div></div>`;}
+ if(ui.game){const g=ui.game;return `<div class="seat-screen" id="seatScreen"><div class="ss-scene game ${g.playing?'playing':''}" style="background:linear-gradient(135deg,#2fc488,#4d7cfe)"><div class="ss-side"><span>🪙</span><span>⭐</span><span>💎</span></div><div class="ss-main">🎮</div><div class="gm-score" id="gmScore">⭐ ${g.score}</div>${g.done?`<div class="ss-end">${t('game_end',{n:g.score})}</div>`:''}</div>
+  <div class="ss-title">🎮 ${esc(g.title)}</div><div class="ss-bar"><div id="gmFill" style="width:${g.el/g.total*100}%"></div></div><div class="ss-time" id="gmTime">${fmtMs(g.el)} / ${fmtMs(g.total)}</div>
+  <div class="row center">${g.done?'':`<button class="chip-btn" onclick="gamePause()">${g.playing?t('movie_pause'):t('movie_resume')}</button>`}${back}</div></div>`;}
+ const tab=ui.seatTab||'movies';
+ const tabs=`<div class="ss-tabs">${[['movies','seat_movies'],['games','seat_games']].map(([k,l])=>`<button class="${tab===k?'on':''}" onclick="ui.seatTab='${k}';sfx.click();render()">${t(l)}</button>`).join('')}</div>`;
+ if(tab==='games')return `<div class="seat-screen" id="seatScreen">${tabs}
+  <div class="ss-list"><button class="ss-item" onclick="startMemory()"><span class="e">🧠</span><b>${t('mem_title')}</b></button><button class="ss-item" onclick="startTTT()"><span class="e">⭕</span><b>${t('ttt_title')}</b></button></div>
+  <div class="ss-custom"><b>${t('game_custom')}</b><input id="gmName" class="name-in" maxlength="40" autocomplete="off" placeholder="${t('game_name_ph')}" oninput="suggest('gmName','games','gmSugg')" onkeydown="suggKey(event,'gmName','gmSugg')"><div class="sugg-box" id="gmSugg"></div>
+   <div class="row center"><input id="gmM" type="number" min="1" max="180" value="30" class="num-in"> ${t('movie_m')}</div><p class="ss-hint">${t('game_hint')}</p>
+   <button class="btn green" onclick="startCustomGame()">${t('game_play')}</button></div>${back}</div>`;
+ return moviePanel(tabs);
+}
 
 /* ---- onde comer: restaurante, restaurante do hotel ou cozinha de casa ---- */
 function mealWhere(){return ui.where||'rest';}
@@ -2018,7 +2195,8 @@ SCREENS.day=()=>{
    cards=`<button class="card act market-card" onclick="go('market',{cart:{}})"><div class="e">🛒</div><div class="n">${t('market')}</div></button>`+RECIPES.map(r=>{const ok=r.ing.every(i=>pan[i]>0);return `<button class="card act ${ok?'':'done'}" onclick="openRecipe('${r.id}')"><div class="e">${r.e}</div><div class="n">${tx(r.n)}</div><div class="p ing">${r.ing.map(i=>`<span class="${pan[i]>0?'':'miss'}">${INGR[i].e}</span>`).join(' ')}</div></button>`;}).join('');}
   else cards=c.eat.map(a=>card('eat',a)).join('');}
  if(tab==='visit')cards=`<button class="card act" onclick="doWalk()"><div class="e">🚶‍♀️</div><div class="n">${t('walk_free')}</div><div class="p">${t('free')}</div></button>
-  <button class="card act ${T.selfieDay===T.day?'done':''}" onclick="doSelfie()"><div class="e">🤳</div><div class="n">${t('selfie')}</div><div class="p">${T.selfieDay===T.day?'✓ '+t('done'):t('free')}</div></button>`+c.visit.map(a=>card('visit',a)).join('');
+  <button class="card act ${T.selfieDay===T.day?'done':''}" onclick="doSelfie()"><div class="e">🤳</div><div class="n">${t('selfie')}</div><div class="p">${T.selfieDay===T.day?'✓ '+t('done'):t('free')}</div></button>
+  <button class="card act" onclick="cityTour()"><div class="e">🚗</div><div class="n">${t('tour')}</div><div class="p">🪙 ${TOUR_PRICE}</div></button>`+c.visit.map(a=>card('visit',a)).join('');
  if(tab==='shop')cards=T.missing.map(x=>card('shop',findAct('shop','need_'+x))).join('')+c.shop.map(a=>card('shop',a)).join('');
  return `<div class="hud"><div class="chip">📅 ${t('day_n',{d:T.day,n:T.days})}</div>
   <div class="clock"><div class="tt"><span id="clockP"></span><span id="clockT"></span></div><div class="bar" id="clockBar"><div id="clockFill"></div></div></div>
