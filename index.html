@@ -107,7 +107,7 @@ button.card:active{transform:translateY(3px) scale(.98)}
 .fam-pick .fh svg{width:100%;height:100%}
 .heads{display:flex;gap:4px}.heads div{width:70px;height:70px;border-radius:50%;overflow:hidden;background:#fff;box-shadow:0 3px 0 rgba(0,0,0,.1)}.heads svg{width:100%;height:100%}
 .crew-seats{position:absolute;left:48%;bottom:-4%;display:flex;gap:8px;height:70%}
-.mini-seat{width:clamp(56px,11vw,90px);height:100%;background:#4d7cfe;border-radius:28px 28px 8px 8px;position:relative;box-shadow:inset 0 -10px 0 rgba(0,0,0,.15)}
+.mini-seat{width:clamp(44px,8.5vw,78px);height:100%;background:#4d7cfe;border-radius:28px 28px 8px 8px;position:relative;box-shadow:inset 0 -10px 0 rgba(0,0,0,.15)}
 .mini-seat.first{background:#8b5cf6}
 .mini-seat>div{position:absolute;left:50%;top:6%;width:92%;transform:translateX(-50%)}
 .mini-seat svg{width:100%;display:block}
@@ -261,7 +261,7 @@ button.card:active{transform:translateY(3px) scale(.98)}
 .cabin.first{background:linear-gradient(#f3e9ff,#d9c6ff)}
 .cabin.sleeping{background:linear-gradient(#2a2c5e,#46407a)}
 .cabin .label{position:absolute;z-index:3;top:10px;left:14px;font-weight:700;background:#fff;border-radius:999px;padding:4px 12px;font-size:.9rem}
-.cabin .porthole{position:absolute;right:6%;top:18%;width:22%;max-width:130px;aspect-ratio:3/4;border-radius:40%;border:8px solid #fff;background:linear-gradient(#7cc8ff,#d6f1ff);overflow:hidden}
+.cabin .porthole{position:absolute;right:3%;top:18%;width:16%;max-width:110px;aspect-ratio:3/4;border-radius:40%;border:8px solid #fff;background:linear-gradient(#7cc8ff,#d6f1ff);overflow:hidden}
 .cabin.sleeping .porthole{background:linear-gradient(#141640,#2e2a6b)}
 .cabin .porthole:after{content:'☁️';position:absolute;top:30%;font-size:1.8rem;animation:drift2 4s linear infinite}
 .cabin.sleeping .porthole:after{content:'⭐';font-size:1.1rem}
@@ -297,6 +297,15 @@ button.card:active{transform:translateY(3px) scale(.98)}
 .stats .card{min-height:110px;justify-content:center}
 .stats .big-n{font-size:2rem;font-weight:700}
 
+/* hospedagem */
+.keycard{display:flex;align-items:center;gap:12px;max-width:320px;margin:14px auto;background:linear-gradient(135deg,#ffd84d,#ffb703);border-radius:18px;padding:12px 18px;box-shadow:0 6px 0 #d39a0c;animation:pop .5s cubic-bezier(.2,1.6,.4,1)}
+.keycard span{font-size:2.4rem}.keycard b{font-size:1.8rem}.keycard small{margin-left:auto;font-weight:600;color:#6b4a00;text-align:right}
+.sparkles{position:absolute;top:12%;left:22%;font-size:2.2rem;animation:twinkle 1.6s ease-in-out infinite;z-index:2;pointer-events:none}
+.sparkles.s2{left:70%;top:22%;animation-delay:-.6s}.sparkles.s3{left:48%;top:6%;animation-delay:-1.1s;font-size:1.6rem}
+@keyframes twinkle{50%{transform:scale(1.4) rotate(20deg);opacity:.4}}
+.pp-multi{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));max-height:58vh;overflow:auto}
+.pp-multi .pp-page{grid-template-columns:80px 1fr;min-height:120px}.pp-multi .pp-stamp{width:86px}
+.fl-left{font-weight:700;font-size:1.15rem;margin:0 0 8px}
 /* modal e efeitos */
 .overlay{position:fixed;inset:0;background:rgba(30,22,60,.55);display:flex;align-items:center;justify-content:center;padding:16px;z-index:50;animation:fade .2s}
 .modal{background:#fff;border-radius:28px;width:100%;max-width:540px;max-height:92vh;overflow:auto;padding:22px;text-align:center;animation:pop .35s cubic-bezier(.2,1.4,.4,1);box-shadow:0 10px 0 rgba(0,0,0,.15)}
@@ -614,6 +623,35 @@ const S={
  cont_asia:["Ásia","Asie","Châu Á"],
  cont_oceania:["Oceania","Océanie","Châu Đại Dương"],
  countries_n:["{n} países para descobrir","{n} pays à découvrir","{n} quốc gia để khám phá"],
+ give_passports:["Entregar os passaportes 🛂", "Donner les passeports 🛂", "Đưa các hộ chiếu 🛂"],
+ show_passports:["Mostrar os passaportes 🛂", "Montrer les passeports 🛂", "Xuất trình các hộ chiếu 🛂"],
+ bag_reopen:["Abrir a mala de novo 🧳", "Rouvrir la valise 🧳", "Mở lại vali 🧳"],
+ hotel_name:["Hotel {city}", "Hôtel {city}", "Khách sạn {city}"],
+ lk_hello_hotel:["Bem-vinda ao {place}! Posso ver os passaportes, por favor?", "Bienvenue ! Ici, c’est l’{place}. Je peux voir les passeports, s’il te plaît ?", "Chào mừng đến {place}! Cho cô xem hộ chiếu nhé?"],
+ lk_hello_casa:["Oi! Eu sou a dona da casa. Posso ver os passaportes?", "Coucou ! Je suis la propriétaire de la maison. Je peux voir les passeports ?", "Chào cháu! Bà là chủ nhà. Cho bà xem hộ chiếu nhé?"],
+ lk_hello_apto:["Olá! Eu cuido do prédio. Posso ver os passaportes?", "Bonjour ! Je m’occupe de l’immeuble. Je peux voir les passeports ?", "Xin chào! Chú quản lý tòa nhà. Cho chú xem hộ chiếu nhé?"],
+ lk_hello_albergue:["Oi, viajante! Bem-vinda ao albergue. Posso ver os passaportes?", "Salut, voyageuse ! Bienvenue à l’auberge. Je peux voir les passeports ?", "Chào bạn du lịch! Chào mừng đến hostel. Cho mình xem hộ chiếu nhé?"],
+ lk_done_room:["Check-in feito! Aqui está a chave do quarto {room}.", "Enregistrement terminé ! Voici la clé de la chambre {room}.", "Xong thủ tục! Đây là chìa khóa phòng {room}."],
+ lk_done_casa:["Tudo certo! Aqui está a chave da casa. Fique à vontade!", "C’est bon ! Voici la clé de la maison. Fais comme chez toi !", "Xong rồi! Đây là chìa khóa nhà. Cứ tự nhiên như ở nhà nhé!"],
+ lk_done_bed:["Check-in feito! Sua cama é a número {room}. Aqui está a chave do armário.", "Enregistrement terminé ! Ton lit est le numéro {room}. Voici la clé du casier.", "Xong thủ tục! Giường của bạn là số {room}. Đây là chìa khóa tủ đồ."],
+ see_room:["Ver o quarto ✨", "Voir la chambre ✨", "Xem phòng ✨"],
+ see_house:["Entrar na casa ✨", "Entrer dans la maison ✨", "Vào nhà ✨"],
+ room_wow:["Uau, que lindo!", "Waouh, c’est magnifique !", "Ồ, đẹp quá!"],
+ room_feat_hotel:["Cama gigante, toalha em forma de cisne e chocolate no travesseiro!", "Un lit géant, une serviette en forme de cygne et un chocolat sur l’oreiller !", "Giường thật to, khăn gấp hình thiên nga và sô-cô-la trên gối!"],
+ room_feat_casa:["Uma casa aconchegante, com colcha de retalhos e um gatinho no tapete!", "Une maison douillette, avec un édredon en patchwork et un chaton sur le tapis !", "Một ngôi nhà ấm cúng, có chăn chắp vá và chú mèo con trên thảm!"],
+ room_feat_apto:["Um janelão com vista para a cidade inteira!", "Une grande baie vitrée avec vue sur toute la ville !", "Cửa sổ lớn nhìn ra cả thành phố!"],
+ room_feat_albergue:["Beliche! Você prefere a cama de cima ou a de baixo?", "Des lits superposés ! Tu préfères le lit du haut ou du bas ?", "Giường tầng! Bạn thích tầng trên hay tầng dưới?"],
+ key_lbl:["Chave", "Clé", "Chìa khóa"],
+ stamp_all:["Carimbo novo para todo mundo!", "Un nouveau tampon pour tout le monde !", "Con dấu mới cho mọi người!"],
+ whose_pp:["De quem é o passaporte?", "À qui est le passeport ?", "Hộ chiếu của ai?"],
+ fl_left:["Chegada em {t}", "Arrivée dans {t}", "Còn {t} nữa là đến"],
+ fl_movie:["🎬 Ver filme", "🎬 Regarder un film", "🎬 Xem phim"],
+ fl_movie_t:["Você assistiu a um desenho muito engraçado! 😂", "Tu as regardé un dessin animé très drôle ! 😂", "Bạn đã xem một bộ phim hoạt hình rất vui! 😂"],
+ fl_window:["🪟 Olhar a janela", "🪟 Regarder par le hublot", "🪟 Nhìn ra cửa sổ"],
+ fl_window_t:["Lá embaixo, as nuvens parecem algodão-doce!", "En bas, les nuages ressemblent à de la barbe à papa !", "Ở dưới, mây trông như kẹo bông!"],
+ fl_music:["🎧 Ouvir música", "🎧 Écouter de la musique", "🎧 Nghe nhạc"],
+ fl_music_t:["Você ouviu sua música favorita bem baixinho. 🎶", "Tu as écouté ta chanson préférée tout doucement. 🎶", "Bạn nghe bài hát yêu thích thật nhỏ. 🎶"],
+ fl_drink:["Quer uma bebida?", "Tu veux une boisson ?", "Bạn muốn uống gì không?"],
 };
 
 /* ============ DADOS ============ */
@@ -659,6 +697,7 @@ const SAVE_KEY='meu-aeroporto-v1';
 const DEF={lang:'pt',mute:false,player:null,stamps:{},album:[],souvenirs:[],piggy:0,trips:0,family:null,unlocked:[]};
 let G=load();
 if(!G.family)G.family=FAMILY_PRESET.map(f=>({id:f.id,name:'',look:Object.assign({},f.look)}));
+G.family.forEach(m=>{if(!m.stamps)m.stamps={};if(!m.trips)m.trips=0;});
 let T=null;            // viagem atual
 let ui={screen:'title'};
 let modalOpen=false, dayTimer=null, lastTs=0, raf=null, timers=[];
@@ -720,7 +759,7 @@ function go(s,params){
  render();window.scrollTo(0,0);
 }
 function topbar(){
- const inTrip=T&&['uber','airport','flight','arrival','day','summary'].includes(ui.screen);
+ const inTrip=T&&['uber','airport','flight','arrival','lodge','day','summary'].includes(ui.screen);
  const showHome=!inTrip&&ui.screen!=='title';
  const showCoins=T&&!['summary','choose','home'].includes(ui.screen);
  return `<div class="topbar">
@@ -1068,13 +1107,9 @@ function editMember(id){const m=G.family.find(x=>x.id===id);sfx.click();go('avat
 
 SCREENS.home=()=>{
  const n=Object.keys(G.stamps).length;
- return `<div class="scene room">
-  <div class="win"></div>
-  <div class="deco" style="left:3%;bottom:5%;font-size:clamp(2.6rem,8vw,4.5rem)">🪴</div>
-  <div class="deco" style="right:2%;bottom:3%;font-size:clamp(4rem,12vw,7rem)">🛏️</div>
-  <div class="deco" style="right:12%;top:9%;font-size:clamp(2.4rem,7vw,4rem)">🖼️</div>
-  <button class="deco globe-btn" style="left:18%;bottom:8%" onclick="go('choose')" aria-label="globo">🌍</button>
-  ${crewHTML(['me',...G.family.map(m=>m.id)],{left:56,walk:true,h:80})}
+ return `<div class="scene home-scene">${homeSVG()}
+  <button class="deco globe-btn" style="left:3%;bottom:2%;z-index:2" onclick="go('choose')" aria-label="globo">🌍</button>
+  ${crewHTML(['me',...G.family.map(m=>m.id)],{left:58,walk:true,h:78})}
  </div>
  <h2 class="center mt">${t('home_hi',{name:pname()})}</h2>
  <div class="grid home-menu">
@@ -1139,14 +1174,14 @@ function closeBag(){
  T.missing=checks.filter(x=>!T.packed.includes(x));
  sfx.ok();
  modal(`<div class="big">🧳✨</div><h2>${t('bag_ok')}</h2><div class="stack" style="max-width:300px;margin:10px auto">${checks.map(x=>`<div class="chk-line">${T.packed.includes(x)?'✅':'❌'} ${ITEMS[x].e} ${tx(ITEMS[x].n)}</div>`).join('')}</div>
- <p>${T.missing.length?`<b>${t('forgot')}</b> ${t('forgot_tip')}`:t('all_good')}</p><button class="btn big mt" onclick="go('uber',{stage:0})">${t('go_uber')}</button>`);
+ <p>${T.missing.length?`<b>${t('forgot')}</b> ${t('forgot_tip')}`:t('all_good')}</p><div class="row center mt"><button class="btn ghost" onclick="closeModal();sfx.click()">${t('bag_reopen')}</button><button class="btn big" onclick="go('uber',{stage:0})">${t('go_uber')}</button></div>`);
 }
 
 SCREENS.uber=()=>{
  const s=ui.stage||0,DR=T.driver;
  if(s>=3)return rideScene(s===4);
  let sheet='';
- if(s===0)sheet=`<div class="u-row">🏠 ➜ ✈️ <b>${t('uber_to')}</b></div><div class="u-row">${t('uber_price')}: <b>🪙 ${UBER}</b></div><button class="btn uber" onclick="callUber()">${t('uber_call')}</button>`;
+ if(s===0)sheet=`<div class="u-row">🏠 ➜ ✈️ <b>${t('uber_to')}</b></div><div class="u-row">${t('uber_price')}: <b>🪙 ${UBER}</b></div><button class="btn uber" onclick="callUber()">${t('uber_call')}</button><button class="btn ghost" onclick="go('pack')">${t('bag_reopen')}</button>`;
  if(s===1)sheet=`<div class="spinner"></div><b>${t('uber_search')}</b>`;
  if(s===2)sheet=`<div class="driver"><div class="dface">${DR.e}</div><div><b>${DR.name}</b> ⭐ 4.9<br><small>${t('uber_car',{color:tx(CAR_COLORS[T.carC].n),plate:T.plate})}</small></div></div><b>${t('uber_found',{name:DR.name})}</b><button class="btn uber" onclick="getInCar()">${t('uber_get_in')}</button>`;
  return `<h2 class="center">🚗 Uber</h2><div class="phone"><div class="screen"><div class="pmap"><div class="road1"></div><div class="pin a">🏠</div><div class="pin b">✈️</div>${s===2?'<div class="mini-car">🚘</div>':''}</div><div class="sheet">${sheet}</div></div></div>`;
@@ -1178,7 +1213,7 @@ function apCheckin(){
   ${k<2||(k===2&&!ui.bagGone)?'<div class="deco" style="left:82%;bottom:6%;font-size:clamp(2.6rem,7vw,4rem)">🧳</div>':''}
   ${k===2&&ui.bagGone?'<div class="bag-anim">🧳</div>':''}<div class="belt"></div>
   ${crewHTML(crewIds(),{left:72})}</div>`;
- if(k===0)html+=`<div class="row center mt"><button class="btn" onclick="ckNext(1)">${t('give_passport')}</button></div>`;
+ if(k===0)html+=`<div class="row center mt"><button class="btn" onclick="ckNext(1)">${T.crew.length?t('give_passports'):t('give_passport')}</button></div>`;
  if(k===1)html+=`<p class="center muted mt">${t('cls_both')}</p><div class="row center">
   <button class="card class-card" onclick="pickClass('eco')"><div class="e">💺🍪</div><div class="n">${t('cls_eco')}</div><div class="small">${t('cls_eco_d')}</div><div class="p">${t('included')}</div></button>
   <button class="card class-card first" ${T.money>=FIRST?'':'disabled'} onclick="pickClass('first')"><div class="e">🛏️✨</div><div class="n">${t('cls_first')}</div><div class="small">${t('cls_first_d')}</div><div class="p ${T.money>=FIRST?'':'no'}">🪙 ${FIRST}</div></button></div>`;
@@ -1221,7 +1256,7 @@ function apPassport(){
  return `<div class="scene airport"><div class="sign">✈ ${t('ap_passport')}</div><div class="counter" style="left:auto;right:4%;width:34%;background:var(--purple)"></div>
   <div class="npc" style="right:12%;bottom:30%">👮‍♂️</div><div class="bubble" style="right:4%;top:10%">${t('pc_hello')}</div>
   ${crewHTML(crewIds(),{left:28})}</div>
-  <div class="row center mt"><button class="btn" onclick="showPassportStamp(null,()=>go('airport',{step:3}))">${t('show_passport')}</button></div>`;
+  <div class="row center mt"><button class="btn" onclick="showPassportStamp(null,()=>go('airport',{step:3}))">${T.crew.length?t('show_passports'):t('show_passport')}</button></div>`;
 }
 function apGate(){
  const c=COUNTRIES[T.c];
@@ -1232,14 +1267,20 @@ function apGate(){
 }
 function board(){sfx.ding();go('flight',{fp:0,returning:false});}
 
-function passportPage(extra){
- return `<div class="pp-page"><div class="pp-photo">${avatarSVG(G.player,{head:true})}</div><div>
-  <div class="pp-lbl">${t('name')}</div><div class="pp-val">${pname()}</div>
+// cada pessoa tem o proprio passaporte: 'me' usa G.stamps, a familia usa m.stamps
+function memberStamps(id){if(id==='me')return G.stamps;const m=G.family.find(x=>x.id===id);return m?m.stamps:{};}
+function memberTrips(id){if(id==='me')return G.trips;const m=G.family.find(x=>x.id===id);return m?m.trips:0;}
+function passportPage(extra,id){
+ id=id||'me';
+ return `<div class="pp-page"><div class="pp-photo">${avatarSVG(memberLook(id),{head:true})}</div><div>
+  <div class="pp-lbl">${t('name')}</div><div class="pp-val">${esc(memberName(id))}</div>
   <div class="pp-lbl">${t('pp_nat')}</div><div class="pp-val">${t('pp_world')}</div>
-  <div class="pp-lbl">${t('pp_trips')} · ${t('pp_stamps')}</div><div class="pp-val">${G.trips} · ${Object.keys(G.stamps).length}/${Object.keys(COUNTRIES).length}</div></div>${extra||''}</div>`;
+  <div class="pp-lbl">${t('pp_trips')} · ${t('pp_stamps')}</div><div class="pp-val">${memberTrips(id)} · ${Object.keys(memberStamps(id)).length}/${Object.keys(COUNTRIES).length}</div></div>${extra||''}</div>`;
 }
 function showPassportStamp(cid,next){
- modal(`<h2>${cid?t('stamp_title'):t('ap_passport')}</h2><div class="pp-book"><div class="pp-cover-title">${t('pp_cover')}</div>${passportPage(`<div class="pp-stamp stamp-in">${stampSVG(cid)}</div>`)}</div><button class="btn big green mt" id="ppNext">${t('next')}</button>`);
+ const ids=crewIds(),multi=ids.length>1;
+ modal(`<h2>${cid?(multi?t('stamp_all'):t('stamp_title')):t('ap_passport')}</h2><div class="${multi?'pp-multi':''}">${ids.map((id,i)=>`<div class="pp-book"><div class="pp-cover-title">${t('pp_cover')}</div>${passportPage(`<div class="pp-stamp stamp-in" style="animation-delay:${.35+i*.45}s">${stampSVG(cid)}</div>`,id)}</div>`).join('')}</div><button class="btn big green mt" id="ppNext">${t('next')}</button>`);
+ ids.forEach((_,i)=>{if(i)setTimeout(sfx.stamp,420+i*450);});
  setTimeout(sfx.stamp,420);
  document.getElementById('ppNext').onclick=()=>{closeModal();next();};
 }
@@ -1250,7 +1291,8 @@ SCREENS.flight=()=>{
  const title=ui.landed?(ret?t('fl_landed_home'):t('fl_landed',{city:tx(c.city)})):(ret?t('fl_home'):t('fl_title',{dest:tx(c.dest)}));
  const btns=ui.landed?`<button class="btn big green" onclick="${ret?"go('summary')":"go('arrival',{step:0})"}">${t('get_off')}</button>`
   :`<button class="btn ${ui.sleeping?'yellow':'purple'}" onclick="toggleSleep()">${ui.sleeping?t('wake_btn'):t('sleep_btn')}</button><button class="btn ghost" onclick="skipFlight()">${t('skip')}</button>`;
- return `<h2 class="center">${ui.landed?'🛬':'✈️'} ${title}</h2>
+ const fun=ui.landed||ui.sleeping?'':`<div class="row center mt fl-fun">${['fl_movie','fl_window','fl_music'].map(k=>`<button class="chip-btn" onclick="sfx.click();toast(t('${k}_t'))">${t(k)}</button>`).join('')}</div>`;
+ return `<h2 class="center">${ui.landed?'🛬':'✈️'} ${title}</h2>${ui.landed?'':`<p class="center fl-left" id="flLeft"></p>`}
  <div class="mapbox ${ui.sleeping?'night':''}" id="mapbox">${mapSVG(ret)}</div>
  <div class="cabin ${first?'first':'eco'} ${ui.sleeping?'sleeping':''}" id="cabin">
   <div class="label">${first?t('first_lbl'):t('eco_lbl')} · ${T.seat}</div>
@@ -1260,7 +1302,7 @@ SCREENS.flight=()=>{
   ${T.crew.length?`<div class="crew-seats">${T.crew.map(id=>`<div class="mini-seat ${first?'first':''}"><div>${avatarSVG(memberLook(id),{head:true,sleep:ui.sleeping})}</div></div>`).join('')}</div>`:''}
   <div class="zzz">Zzz</div>
  </div>
- ${ui.sleeping?`<p class="center muted">${t('sleeping_txt')}</p>`:''}
+ ${ui.sleeping?`<p class="center muted">${t('sleeping_txt')}</p>`:''}${fun}
  <div class="row center mt">${btns}</div>`;
 };
 AFTER.flight=()=>{placePlane();if(!ui.landed)startFlight();};
@@ -1269,9 +1311,12 @@ function startFlight(){
  const step=now=>{
   const dt=Math.min(100,now-last);last=now;
   if(ui.screen!=='flight')return;
-  if(!modalOpen&&ui.fp<1)ui.fp=Math.min(1,ui.fp+dt/(ui.sleeping?3500:14000));
+  const dur=flightMs();
+  if(!modalOpen&&ui.fp<1)ui.fp=Math.min(1,ui.fp+dt/(ui.sleeping?dur/5:dur));
   placePlane();
-  if(ui.fp>=.4&&!ui.snackDone&&!modalOpen&&!ui.sleeping)snackModal();
+  const fl=document.getElementById('flLeft');if(fl){const s=Math.ceil((1-ui.fp)*(ui.sleeping?dur/5:dur)/1000);fl.textContent='⏱️ '+t('fl_left',{t:`${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`});}
+  if(ui.fp>=.35&&!ui.snackDone&&!modalOpen&&!ui.sleeping)snackModal();
+  if(ui.fp>=.72&&!ui.drinkDone&&!modalOpen&&!ui.sleeping)drinkModal();
   if(ui.fp>=1&&!ui.landed){landed();return;}
   raf=requestAnimationFrame(step);
  };
@@ -1296,8 +1341,148 @@ function snackModal(){
  modal(`<div class="big">🍽️</div><h2>${t('fl_snack')}</h2><div class="row center">${list.map(s=>`<button class="card" style="min-width:110px" onclick="pickSnack('${s.e}')"><div class="e">${s.e}</div><div class="n">${tx(s.n)}</div></button>`).join('')}</div>`);
 }
 function pickSnack(e){ui.snackDone=true;closeModal();floaty(e);toast(t('fl_yum'));sfx.ok();}
-function skipFlight(){ui.fp=1;ui.snackDone=true;}
+function skipFlight(){ui.fp=1;ui.snackDone=true;ui.drinkDone=true;}
+// voo mais longo quanto mais longe: de 25 segundos (Franca) a uns 75 (Australia)
+function flightMs(){const c=COUNTRIES[T.c];return Math.min(75000,25000+Math.hypot(c.pos.x-HOME.x,c.pos.y-HOME.y)*110);}
+function drinkModal(){
+ const list=[{e:'🧃',n:['Suco','Jus','Nước ép']},{e:'🥛',n:['Leite','Lait','Sữa']},{e:'💧',n:['Água','Eau','Nước']}].concat(T.cls==='first'?[{e:'🥤',n:['Milk-shake','Milk-shake','Sữa lắc']}]:[]);
+ modal(`<div class="big">🧑‍✈️</div><h2>${t('fl_drink')}</h2><div class="row center">${list.map(s=>`<button class="card" style="min-width:100px" onclick="ui.drinkDone=true;closeModal();floaty('${s.e}');toast(t('fl_yum'));sfx.ok()"><div class="e">${s.e}</div><div class="n">${tx(s.n)}</div></button>`).join('')}</div>`);
+}
 function landed(){const wasAsleep=ui.sleeping;ui.landed=true;ui.sleeping=false;sfx.ding();render();if(wasAsleep)toast(t('wake_landed'));}
+
+/* ---- casa, recepcao e quartos ---- */
+function homeSVG(){
+ const LC=['#ff6b8b','#ffc233','#2fc488','#4d7cfe','#8b5cf6'];
+ let lights='';for(let i=0;i<21;i++)lights+=`<circle cx="${10+i*39}" cy="${22+Math.sin(i*.9)*5}" r="5.5" fill="${LC[i%5]}"/>`;
+ let planks='';for(let x=40;x<860;x+=64)planks+=`<path d="M${x},254 L${x-34},320" stroke="#b9824e" stroke-width="2" opacity=".45"/>`;
+ const pins=Object.keys(G.stamps).filter(id=>COUNTRIES[id]).map(id=>{const p=COUNTRIES[id].pos;return `<circle cx="${p.x}" cy="${p.y}" r="16" fill="#ff3b6b" stroke="#fff" stroke-width="6"/>`;}).join('');
+ const books=[['#ff6b8b',14,46],['#4d7cfe',12,40],['#ffc233',16,50],['#2fc488',12,44],['#8b5cf6',14,48]].map(([c,w,h],i,a)=>{const x=576+a.slice(0,i).reduce((s,b)=>s+b[1]+3,0);return `<rect x="${x}" y="${100-h}" width="${w}" height="${h}" rx="2" fill="${c}"/>`;}).join('');
+ return `<svg class="bg" viewBox="0 0 800 320" preserveAspectRatio="xMidYMax slice">
+ <defs><pattern id="wallp" width="36" height="36" patternUnits="userSpaceOnUse"><rect width="36" height="36" fill="#fdeef4"/><circle cx="9" cy="9" r="3" fill="#f7cfe0"/><circle cx="27" cy="27" r="3" fill="#ddd2ff"/></pattern>
+ <linearGradient id="hsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7cc8ff"/><stop offset="1" stop-color="#d6f1ff"/></linearGradient></defs>
+ <rect width="800" height="254" fill="url(#wallp)"/><rect y="240" width="800" height="16" fill="#fff"/>
+ <rect y="254" width="800" height="66" fill="#d9a066"/>${planks}
+ <path d="M0,22 Q200,40 400,22 T800,24" stroke="#6b5a4a" stroke-width="1.5" fill="none"/>${lights}
+ <rect x="48" y="44" width="214" height="8" rx="4" fill="#c58b5a"/>
+ <rect x="70" y="60" width="170" height="140" rx="14" fill="#fff"/><rect x="82" y="72" width="146" height="116" rx="8" fill="url(#hsky)"/>
+ <ellipse cx="124" cy="104" rx="24" ry="9" fill="#fff"/><ellipse cx="190" cy="92" rx="18" ry="7" fill="#fff"/><path d="M82,188 Q122,152 160,172 Q196,150 228,166 L228,188Z" fill="#8fd18b"/>
+ <rect x="152" y="72" width="6" height="116" fill="#fff"/><rect x="82" y="126" width="146" height="6" fill="#fff"/><rect x="62" y="196" width="186" height="10" rx="4" fill="#fff"/>
+ <path d="M56,50 L106,50 Q96,124 114,206 L56,212Z" fill="#ff8fb1"/><path d="M254,50 L204,50 Q214,124 196,206 L254,212Z" fill="#ff8fb1"/>
+ <path d="M60,140 Q84,134 100,146 M250,140 Q226,134 210,146" stroke="#ffc233" stroke-width="5" fill="none"/>
+ <rect x="296" y="54" width="218" height="128" rx="8" fill="#fff" stroke="#c58b5a" stroke-width="6"/>
+ <svg x="306" y="64" width="198" height="108" viewBox="0 0 1000 500" preserveAspectRatio="none"><rect width="1000" height="500" fill="#9fd8ff"/>${CONTINENTS}${pins}</svg>
+ <rect x="350" y="174" width="110" height="22" rx="11" fill="#ff6b8b"/><text x="405" y="190" text-anchor="middle" font-size="13" font-weight="700" fill="#fff" font-family="inherit">✈ ${Object.keys(G.stamps).length}/${Object.keys(COUNTRIES).length}</text>
+ <rect x="566" y="100" width="190" height="10" rx="3" fill="#c58b5a"/>${books}<text x="690" y="98" font-size="34">🪴</text><text x="728" y="96" font-size="28">✈️</text>
+ <rect x="560" y="146" width="226" height="82" rx="24" fill="#8b5cf6"/><circle cx="600" cy="170" r="5" fill="#a98bff"/><circle cx="672" cy="170" r="5" fill="#a98bff"/><circle cx="744" cy="170" r="5" fill="#a98bff"/>
+ <rect x="550" y="200" width="246" height="44" rx="14" fill="#fff"/><rect x="566" y="184" width="74" height="30" rx="14" fill="#fff" stroke="#e8e0f5" stroke-width="2"/>
+ <path d="M612,210 L796,210 L796,252 Q700,262 612,252Z" fill="#ffc233"/><g fill="#fff" opacity=".7"><circle cx="650" cy="228" r="5"/><circle cx="700" cy="240" r="5"/><circle cx="750" cy="226" r="5"/><circle cx="680" cy="218" r="3"/><circle cx="770" cy="244" r="3"/></g>
+ <text x="590" y="228" font-size="34">🧸</text><rect x="556" y="240" width="10" height="16" fill="#6a3fd1"/><rect x="782" y="240" width="10" height="16" fill="#6a3fd1"/>
+ <ellipse cx="400" cy="288" rx="200" ry="26" fill="#9fd8c8"/><ellipse cx="400" cy="288" rx="168" ry="19" fill="none" stroke="#fff" stroke-width="4" stroke-dasharray="12 9"/>
+ <rect x="14" y="200" width="44" height="54" rx="6" fill="#c58b5a"/><text x="10" y="200" font-size="40">🪴</text>
+ <text x="490" y="258" font-size="44">🧳</text>
+ </svg>`;
+}
+const LODGE_NPC={hotel:'💁‍♀️',casa:'👵',apto:'🧑‍💼',albergue:'🙋‍♂️'};
+function lodgeName(){const l=LODGING.find(x=>x.id===T.lodging)||LODGING[0];return T.lodging==='hotel'?t('hotel_name',{city:tx(COUNTRIES[T.c].city)}):tx(l.n);}
+// paisagem do pais vista pela janela do quarto
+function windowView(x,y,w,h){
+ const c=COUNTRIES[T.c],sc=c.scene||{},ground={deserto:'#f2c374',neve:'#f4f8ff',savana:'#d8c06a',praia:'#35b5e0',cidade:'#9aa3b5'}[sc.type]||'#8cc47a';
+ const custom={brasil:'⛰️',japao:'🗻',eua:'🗽',italia:'🏛️',vietna:'🛶'}[T.c];
+ const mark=T.c==='franca'?`<path d="M86,128 L96,70 L104,70 L114,128 L107,128 Q100,108 93,128Z M96,70 L99,36 L101,36 L104,70Z" fill="#8a7660"/>`:`<text x="100" y="124" font-size="62" text-anchor="middle">${custom||sc.landmark||c.stampE}</text>`;
+ const city=sc.type==='cidade'?`<g fill="#8b96c4">${[[6,70,26],[36,58,22],[150,64,24],[178,76,22]].map(([a,b,w2])=>`<rect x="${a}" y="${b}" width="${w2}" height="${140-b}"/>`).join('')}</g>`:'';
+ return `<svg x="${x}" y="${y}" width="${w}" height="${h}" viewBox="0 0 200 140" preserveAspectRatio="xMidYMid slice"><rect width="200" height="140" fill="#9fd8ff"/><rect y="64" width="200" height="76" fill="#cfeeff"/><circle cx="164" cy="28" r="13" fill="#ffd23f"/><ellipse cx="50" cy="30" rx="20" ry="7" fill="#fff"/>${city}<path d="M0,112 Q50,90 100,106 Q150,88 200,102 L200,140 L0,140Z" fill="${ground}"/>${mark}</svg>`;
+}
+function lobbySVG(type){
+ const name=esc(lodgeName());
+ const sign=(x,y,w,bg,fg)=>`<rect x="${x}" y="${y}" width="${w}" height="40" rx="10" fill="${bg}"/><text x="${x+w/2}" y="${y+27}" text-anchor="middle" font-size="19" font-weight="700" fill="${fg}" font-family="inherit">${name}</text>`;
+ if(type==='casa')return `<svg class="bg" viewBox="0 0 800 320" preserveAspectRatio="xMidYMax slice"><rect width="800" height="320" fill="#a8dcff"/><ellipse cx="660" cy="60" rx="40" ry="14" fill="#fff"/>
+  <rect y="240" width="800" height="80" fill="#8cc47a"/><path d="M220,320 L250,250 L300,250 L330,320Z" fill="#d9c09a"/>
+  <rect x="90" y="110" width="330" height="140" fill="#ffe0b2"/><path d="M66,118 L255,32 L444,118Z" fill="#d9534f"/><rect x="330" y="50" width="34" height="50" fill="#a33b37"/>
+  <rect x="236" y="160" width="74" height="90" rx="8" fill="#8d6e63"/><circle cx="296" cy="208" r="5" fill="#ffc233"/><rect x="250" y="174" width="46" height="26" rx="4" fill="#c7a99a"/>
+  <rect x="116" y="146" width="76" height="56" rx="6" fill="#bfe6ff" stroke="#fff" stroke-width="6"/><rect x="350" y="146" width="52" height="56" rx="6" fill="#bfe6ff" stroke="#fff" stroke-width="6"/>
+  <rect x="112" y="200" width="84" height="14" rx="4" fill="#8d6e63"/><text x="118" y="206" font-size="20">🌷🌷🌷</text>
+  <text x="640" y="250" font-size="110">🌳</text><text x="470" y="250" font-size="40">📮</text><text x="16" y="250" font-size="42">🌻</text>
+  ${sign(140,60,230,'#fff','#8d6e63')}</svg>`;
+ if(type==='apto')return `<svg class="bg" viewBox="0 0 800 320" preserveAspectRatio="xMidYMax slice"><rect width="800" height="320" fill="#dfe6ef"/><rect y="252" width="800" height="68" fill="#b9c3d1"/>
+  <g stroke="#a7b3c4" stroke-width="2">${[0,1,2,3,4,5,6,7].map(i=>`<path d="M${i*110},252 L${i*110-40},320"/>`).join('')}</g>
+  <rect x="60" y="176" width="260" height="80" rx="8" fill="#4a5a7a"/><rect x="50" y="166" width="280" height="14" rx="6" fill="#2b3550"/>
+  <g fill="#c9d3e3">${[0,1,2,3].map(r=>[0,1,2,3,4].map(c=>`<rect x="${80+c*44}" y="${56+r*24}" width="38" height="18" rx="3"/>`).join('')).join('')}</g>
+  <rect x="520" y="70" width="190" height="186" rx="6" fill="#9aa6b8"/><rect x="530" y="80" width="82" height="176" fill="#c4ccd8"/><rect x="618" y="80" width="82" height="176" fill="#c4ccd8"/><text x="590" y="64" font-size="22">🔼🔽</text>
+  <text x="740" y="250" font-size="54">🪴</text><text x="270" y="166" font-size="30">🔑</text>${sign(260,14,280,'#2b3550','#fff')}</svg>`;
+ if(type==='albergue'){const LC=['#ff6b8b','#ffc233','#2fc488','#4d7cfe','#8b5cf6','#ff8c42'];
+  return `<svg class="bg" viewBox="0 0 800 320" preserveAspectRatio="xMidYMax slice"><rect width="800" height="320" fill="#7fd1c7"/><rect y="252" width="800" height="68" fill="#e9b872"/>
+  <path d="M0,20 Q400,60 800,20" stroke="#2b2350" stroke-width="2" fill="none"/>${Array.from({length:20},(_,i)=>{const x=i*41,y=20+Math.sin(i/19*Math.PI)*36;return `<path d="M${x},${y} L${x+30},${y+2} L${x+15},${y+28}Z" fill="${LC[i%6]}"/>`;}).join('')}
+  <rect x="60" y="176" width="280" height="80" rx="10" fill="#ff8c42"/><rect x="50" y="166" width="300" height="14" rx="6" fill="#c75f1f"/>
+  <rect x="420" y="80" width="180" height="110" rx="6" fill="#fff" stroke="#2b2350" stroke-width="4"/><svg x="428" y="88" width="164" height="94" viewBox="0 0 1000 500" preserveAspectRatio="none"><rect width="1000" height="500" fill="#9fd8ff"/>${CONTINENTS}</svg>
+  <text x="640" y="250" font-size="54">🎒</text><text x="700" y="250" font-size="54">🎸</text><text x="300" y="166" font-size="30">🛎️</text>${sign(110,60,240,'#2b2350','#ffc233')}</svg>`;}
+ return `<svg class="bg" viewBox="0 0 800 320" preserveAspectRatio="xMidYMax slice"><rect width="800" height="320" fill="#e8d5b5"/>
+  <g fill="#dcc59c">${[0,1,2,3,4,5,6,7,8,9].map(i=>`<rect x="${i*84+10}" y="20" width="64" height="210" rx="4"/>`).join('')}</g>
+  <rect y="252" width="800" height="68" fill="#f1ebe3"/><g stroke="#d8cfc2" stroke-width="2">${[0,1,2,3,4,5,6,7,8,9].map(i=>`<path d="M${i*90},252 L${i*90-50},320 M${i*90},252 L${i*90+50},320"/>`).join('')}</g>
+  <path d="M600,0 L600,30" stroke="#b8963e" stroke-width="2"/><path d="M560,30 Q600,60 640,30" stroke="#e8c15a" stroke-width="5" fill="none"/>${[560,580,600,620,640].map(x=>`<circle cx="${x}" cy="${x===600?52:42}" r="5" fill="#fff6c9"/>`).join('')}
+  <rect x="90" y="70" width="170" height="80" rx="6" fill="#5d4037"/>${[0,1,2].map(r=>[0,1,2,3,4].map(c=>`<circle cx="${112+c*32}" cy="${90+r*22}" r="5" fill="#e8c15a"/>`).join('')).join('')}
+  <rect x="60" y="176" width="300" height="80" rx="8" fill="#6d4c41"/><rect x="50" y="166" width="320" height="16" rx="6" fill="#3e2723"/><path d="M60,196 L360,196" stroke="#e8c15a" stroke-width="3"/>
+  <text x="300" y="166" font-size="32">🛎️</text><text x="720" y="252" font-size="60">🪴</text><text x="420" y="252" font-size="56">🧳</text>
+  ${sign(300,74,220,'#1d2a4d','#ffd84d')}</svg>`;
+}
+function roomSVG(type){
+ if(type==='casa'){const Q=['#ff8fb1','#ffc233','#8fd18b','#9fc6ff','#c9b2ff'];let quilt='';for(let r=0;r<2;r++)for(let c=0;c<6;c++)quilt+=`<rect x="${452+c*32}" y="${208+r*20}" width="32" height="20" fill="${Q[(r+c)%5]}"/>`;
+  return `<svg class="bg" viewBox="0 0 800 320" preserveAspectRatio="xMidYMax slice"><rect width="800" height="320" fill="#f1d9b5"/>
+  <g stroke="#e0c193" stroke-width="2">${Array.from({length:16},(_,i)=>`<path d="M${i*52},0 L${i*52},250"/>`).join('')}</g>
+  <rect y="248" width="800" height="72" fill="#b07b4f"/><rect x="200" y="262" width="400" height="58" rx="8" fill="#e25c5c"/><g stroke="#fff" stroke-width="5" opacity=".6"><path d="M200,276 L600,276 M200,296 L600,296"/></g>
+  <rect x="190" y="40" width="210" height="160" rx="8" fill="#fff"/>${windowView(202,52,186,136)}<rect x="292" y="52" width="6" height="136" fill="#fff"/><rect x="184" y="196" width="222" height="16" rx="4" fill="#8d6e63"/><text x="196" y="204" font-size="22">🌷🌼🌷🌼🌷🌼</text>
+  <rect x="440" y="130" width="210" height="90" rx="12" fill="#8d6e63"/><rect x="436" y="190" width="222" height="40" rx="8" fill="#fff"/>${quilt}<rect x="452" y="176" width="64" height="26" rx="12" fill="#fff"/>
+  <rect x="664" y="190" width="44" height="58" rx="4" fill="#8d6e63"/><text x="664" y="190" font-size="34">💐</text>
+  <rect x="30" y="60" width="130" height="190" rx="6" fill="#8d6e63"/><g>${[0,1,2].map(r=>`<rect x="40" y="${78+r*58}" width="110" height="6" fill="#6d4c41"/>`+[0,1,2,3,4].map(i=>`<rect x="${44+i*20}" y="${42+r*58}" width="14" height="36" rx="2" fill="${Q[(i+r)%5]}"/>`).join('')).join('')}</g>
+  <text x="520" y="312" font-size="40">🐈</text><text x="740" y="250" font-size="50">🪴</text></svg>`;}
+ if(type==='apto')return `<svg class="bg" viewBox="0 0 800 320" preserveAspectRatio="xMidYMax slice"><rect width="800" height="320" fill="#eef1f6"/>
+  <rect y="250" width="800" height="70" fill="#e3c9a0"/><g stroke="#d1b384" stroke-width="2">${Array.from({length:14},(_,i)=>`<path d="M${i*64},250 L${i*64-30},320"/>`).join('')}</g>
+  <rect x="140" y="26" width="520" height="190" rx="6" fill="#fff"/>${windowView(150,36,500,170)}<g fill="#fff">${[280,410,540].map(x=>`<rect x="${x}" y="36" width="5" height="170"/>`).join('')}</g><g stroke="#55607a" stroke-width="3"><path d="M150,170 L650,170"/>${Array.from({length:21},(_,i)=>`<path d="M${150+i*25},170 L${150+i*25},206"/>`).join('')}</g>
+  <ellipse cx="400" cy="290" rx="190" ry="24" fill="#ffc9d6"/>
+  <rect x="430" y="196" width="250" height="40" rx="10" fill="#9aa3b5"/><rect x="430" y="214" width="250" height="26" rx="8" fill="#6b7a99"/><rect x="446" y="178" width="58" height="28" rx="12" fill="#ffc233"/><rect x="512" y="180" width="54" height="26" rx="12" fill="#2fc488"/><rect x="574" y="182" width="50" height="24" rx="12" fill="#ff6b8b"/>
+  <path d="M90,250 L90,120" stroke="#2b2350" stroke-width="4"/><path d="M66,120 L114,120 L104,92 L76,92Z" fill="#ffc233"/><text x="700" y="250" font-size="64">🪴</text><text x="20" y="250" font-size="48">📺</text></svg>`;
+ if(type==='albergue'){const LC=['#ff6b8b','#ffc233','#2fc488','#4d7cfe','#8b5cf6','#ff8c42'];
+  const bunk=x=>`<rect x="${x}" y="70" width="12" height="182" fill="#8d6e63"/><rect x="${x+178}" y="70" width="12" height="182" fill="#8d6e63"/><rect x="${x+6}" y="130" width="178" height="22" rx="6" fill="#fff"/><rect x="${x+6}" y="214" width="178" height="22" rx="6" fill="#fff"/><rect x="${x+40}" y="136" width="144" height="16" fill="#4d7cfe"/><rect x="${x+40}" y="220" width="144" height="16" fill="#ff8c42"/><rect x="${x+10}" y="120" width="34" height="14" rx="6" fill="#fff" stroke="#ddd"/><rect x="${x+10}" y="204" width="34" height="14" rx="6" fill="#fff" stroke="#ddd"/><g stroke="#8d6e63" stroke-width="5"><path d="M${x+170},150 L${x+170},236 M${x+164},170 L${x+182},170 M${x+164},196 L${x+182},196 M${x+164},222 L${x+182},222"/></g>`;
+  return `<svg class="bg" viewBox="0 0 800 320" preserveAspectRatio="xMidYMax slice"><rect width="800" height="320" fill="#7fd1c7"/><rect y="250" width="800" height="70" fill="#e9b872"/>
+  ${Array.from({length:20},(_,i)=>{const x=i*41,y=10+Math.sin(i/19*Math.PI)*30;return `<path d="M${x},${y} L${x+30},${y+2} L${x+15},${y+26}Z" fill="${LC[i%6]}"/>`;}).join('')}
+  ${bunk(150)}${bunk(470)}
+  <g>${[0,1].map(i=>`<rect x="${356+i*48}" y="132" width="42" height="118" rx="4" fill="${LC[i+2]}"/><circle cx="${390+i*48}" cy="190" r="3" fill="#2b2350"/>`).join('')}</g>
+  <rect x="356" y="56" width="90" height="64" rx="6" fill="#fff"/>${windowView(362,62,78,52)}
+  <text x="250" y="132" font-size="34">🎒</text><text x="560" y="216" font-size="34">🧸</text><text x="20" y="250" font-size="54">🎸</text><text x="700" y="250" font-size="50">🪴</text></svg>`;}
+ // hotel
+ return `<svg class="bg" viewBox="0 0 800 320" preserveAspectRatio="xMidYMax slice"><rect width="800" height="320" fill="#f6ead7"/>
+  <g fill="#efdcbf">${Array.from({length:20},(_,i)=>`<rect x="${i*40}" y="12" width="16" height="236"/>`).join('')}</g><rect width="800" height="12" fill="#e3c99b"/>
+  <rect y="248" width="800" height="72" fill="#a1704a"/><rect x="100" y="258" width="600" height="62" rx="12" fill="#9b2c46"/><rect x="114" y="266" width="572" height="54" rx="8" fill="none" stroke="#e8c15a" stroke-width="3"/>
+  <rect x="170" y="34" width="250" height="172" rx="6" fill="#fff"/>${windowView(182,46,226,148)}<rect x="292" y="46" width="6" height="148" fill="#fff"/>
+  <path d="M142,24 L200,24 Q186,120 206,214 L142,218Z" fill="#9b2c46"/><path d="M448,24 L390,24 Q404,120 384,214 L448,218Z" fill="#9b2c46"/><rect x="134" y="18" width="322" height="8" rx="4" fill="#b8963e"/>
+  <path d="M150,130 Q170,124 186,134 M440,130 Q420,124 404,134" stroke="#e8c15a" stroke-width="5" fill="none"/>
+  <rect x="480" y="112" width="230" height="104" rx="18" fill="#6d4c41"/>${[0,1,2,3].map(i=>`<circle cx="${512+i*56}" cy="140" r="5" fill="#8d6e63"/><circle cx="${540+i*56}" cy="168" r="5" fill="#8d6e63"/>`).join('')}
+  <rect x="468" y="186" width="254" height="38" rx="10" fill="#fff"/><rect x="486" y="170" width="70" height="30" rx="14" fill="#fff" stroke="#eee"/><rect x="566" y="170" width="70" height="30" rx="14" fill="#fff" stroke="#eee"/><rect x="646" y="170" width="62" height="30" rx="14" fill="#fff" stroke="#eee"/>
+  <rect x="486" y="204" width="236" height="44" rx="8" fill="#fff" stroke="#e8c15a" stroke-width="4"/><rect x="486" y="220" width="236" height="12" fill="#9b2c46"/>
+  <text x="600" y="214" font-size="34">🦢</text><text x="510" y="194" font-size="18">🍫</text>
+  <rect x="728" y="196" width="40" height="52" rx="4" fill="#6d4c41"/><path d="M732,170 L764,170 L756,148 L740,148Z" fill="#fff2c9"/><rect x="746" y="170" width="4" height="26" fill="#3e2723"/><circle cx="748" cy="160" r="26" fill="#fff2c9" opacity=".25"/>
+  <rect x="20" y="176" width="110" height="40" rx="14" fill="#3a6fa3"/><rect x="14" y="200" width="122" height="50" rx="14" fill="#2f5d8a"/><text x="70" y="176" font-size="34">💐</text></svg>`;
+}
+SCREENS.lodge=()=>{
+ const type=T.lodging,st=ui.lk||0;
+ if(ui.room){
+  return `<h2 class="center">✨ ${t('room_wow')}</h2>
+  <div class="scene room-scene">${roomSVG(type)}${crewHTML(crewIds(),{left:60,walk:true,h:64})}<div class="sparkles">✨</div><div class="sparkles s2">✨</div><div class="sparkles s3">⭐</div></div>
+  <p class="center mt" style="font-size:1.2rem">${t('room_feat_'+type)}</p>
+  <div class="row center"><button class="btn big green" onclick="startStay()">${t('start_day')}</button></div>`;
+ }
+ const say=st===0?t('lk_hello_'+type,{place:esc(lodgeName())}):type==='casa'?t('lk_done_casa'):type==='albergue'?t('lk_done_bed',{room:T.room}):t('lk_done_room',{room:T.room});
+ const npcPos=type==='casa'?'left:30%;bottom:6%':'left:14%;bottom:30%';
+ let html=`<h2 class="center">${(LODGING.find(l=>l.id===type)||{}).e||'🏨'} ${esc(lodgeName())}</h2>
+ <div class="scene lobby">${lobbySVG(type)}<div class="npc" style="${npcPos}">${LODGE_NPC[type]}</div><div class="bubble" style="left:4%;top:${type==='casa'?'34%':'26%'}">${say}</div>${crewHTML(crewIds(),{left:72})}</div>`;
+ if(st===0)html+=`<div class="row center mt"><button class="btn" onclick="lodgeCheckin()">${T.crew.length?t('give_passports'):t('give_passport')}</button></div>`;
+ else html+=`<div class="keycard"><span>🔑</span><b>${type==='casa'?'🏡':T.room}</b><small>${esc(lodgeName())}</small></div><div class="row center"><button class="btn big green" onclick="sfx.ding();ui.room=true;render()">${type==='casa'?t('see_house'):t('see_room')}</button></div>`;
+ return html;
+};
+function lodgeCheckin(){sfx.stamp();floaty('🛂');later(()=>{ui.lk=1;sfx.coin();render();},700);}
+function startStay(){
+ if(T.missing.length){modal(`<div class="big">🧳</div><h2>${t('forgot')}</h2><div class="stack" style="max-width:300px;margin:8px auto">${T.missing.map(x=>`<div class="chk-line">❌ ${ITEMS[x].e} ${tx(ITEMS[x].n)}</div>`).join('')}</div><p>${t('forgot_tip')}</p><button class="btn big green mt" onclick="beginDays()">${t('start_day')}</button>`);}
+ else beginDays();
+}
 
 /* ---- chegada ---- */
 SCREENS.arrival=()=>{
@@ -1308,18 +1493,17 @@ SCREENS.arrival=()=>{
    <div class="npc" style="right:12%;bottom:30%">👮🏽‍♀️</div>
    <div class="bubble" style="right:4%;top:20%">${esc(h.show)}${same?'':`<br><small class="muted">${t('means')} ${esc(trx)}</small>`}</div>
    ${crewHTML(crewIds(),{left:28})}</div>
-  <div class="row center mt"><button class="btn yellow" onclick="speakHello()">${t('listen')}</button><button class="btn" onclick="arrivalStamp()">${t('show_passport')}</button></div>`;}
+  <div class="row center mt"><button class="btn yellow" onclick="speakHello()">${t('listen')}</button><button class="btn" onclick="arrivalStamp()">${T.crew.length?t('show_passports'):t('show_passport')}</button></div>`;}
  const n=T.days;
  const cards=LODGING.map(l=>{const tot=l.p*n,can=tot<=T.money;return `<button class="card" ${can?'':'disabled'} onclick="pickLodging('${l.id}')"><div class="e">${l.e}</div><div class="n">${tx(l.n)}</div><div class="small">${tx(l.d)}</div><div class="p">🪙 ${l.p}${t('per_night')}</div><div class="p"><b>${t('total')}: ${tot}</b> · ${n===1?t('nights_1'):t('nights_n',{n})}</div><div class="small ${can?'':'no'}">${can?t('left_after',{n:T.money-tot}):t('no_money')}</div></button>`;}).join('');
  return `<h2 class="center">${t('lodge_title')}</h2><p class="center muted">💡 ${t('keep_uber')}</p><div class="grid c4">${cards}</div>`;
 };
 function speakHello(){const h=COUNTRIES[T.c].hello;speak(h.say,h.lang);}
-function arrivalStamp(){showPassportStamp(T.c,()=>{G.stamps[T.c]=(G.stamps[T.c]||0)+1;save();go('arrival',{step:1});});}
+function arrivalStamp(){showPassportStamp(T.c,()=>{crewIds().forEach(id=>{const s=memberStamps(id);s[T.c]=(s[T.c]||0)+1;});save();go('arrival',{step:1});});}
 function pickLodging(id){
  const l=LODGING.find(x=>x.id===id),tot=l.p*T.days;if(tot>T.money)return;
- T.lodging=id;pay(tot);floaty(l.e);
- if(T.missing.length){modal(`<div class="big">🧳</div><h2>${t('forgot')}</h2><div class="stack" style="max-width:300px;margin:8px auto">${T.missing.map(x=>`<div class="chk-line">❌ ${ITEMS[x].e} ${tx(ITEMS[x].n)}</div>`).join('')}</div><p>${t('forgot_tip')}</p><button class="btn big green mt" onclick="beginDays()">${t('start_day')}</button>`);}
- else beginDays();
+ T.lodging=id;T.room=id==='albergue'?rnd(1,12):(rnd(1,9)*100+rnd(1,24));pay(tot);floaty(l.e);
+ later(()=>go('lodge',{lk:0}),500);
 }
 function beginDays(){T.day=1;T.elapsed=0;T.today=[];go('day',{tab:'eat'});toast(t('good_morning',{d:1}));}
 
@@ -1435,7 +1619,7 @@ function startReturn(){go('flight',{fp:0,returning:true});}
 function finishTrip(){
  if(T.finished)return;T.finished=true;
  T.uberPaid=T.money>=UBER;if(T.uberPaid){T.money-=UBER;T.spent+=UBER;}
- G.piggy=T.money;G.trips++;save();
+ G.piggy=T.money;G.trips++;T.crew.forEach(id=>{const m=G.family.find(x=>x.id===id);if(m)m.trips++;});save();
 }
 SCREENS.summary=()=>{
  finishTrip();
@@ -1456,8 +1640,10 @@ SCREENS.passport=()=>{
  const tab=ui.ptab||'pp';
  const tabs=`<div class="tabs">${[['pp','pp_tab'],['album','pp_album'],['souv','pp_souv']].map(([k,l])=>`<button class="${tab===k?'on':''}" onclick="ui.ptab='${k}';sfx.click();render()">${t(l)}</button>`).join('')}</div>`;
  let body='';
- if(tab==='pp')body=`<div class="pp-book"><div class="pp-cover-title">🌍 ${t('pp_cover')}</div>${passportPage()}</div>
-  <h3 class="mt">${t('pp_stamps')}</h3><div class="stamps">${Object.keys(COUNTRIES).map(id=>`<div class="stamp-slot ${G.stamps[id]?'':'empty'}">${stampSVG(id,{date:G.stamps[id]?'× '+G.stamps[id]:t('not_yet')})}</div>`).join('')}</div>
+ const who=ui.pwho||'me',st=memberStamps(who);
+ if(tab==='pp')body=`<p class="center muted">${t('whose_pp')}</p><div class="row center">${['me',...G.family.map(m=>m.id)].map(id=>`<button class="fam-pick ${who===id?'on':''}" onclick="ui.pwho='${id}';sfx.click();render()"><div class="fh">${avatarSVG(memberLook(id),{head:true})}</div><span>${esc(memberName(id))}</span></button>`).join('')}</div>
+  <div class="pp-book mt"><div class="pp-cover-title">🌍 ${t('pp_cover')}</div>${passportPage('',who)}</div>
+  <h3 class="mt">${t('pp_stamps')}</h3><div class="stamps">${Object.keys(COUNTRIES).map(id=>`<div class="stamp-slot ${st[id]?'':'empty'}">${stampSVG(id,{date:st[id]?'× '+st[id]:t('not_yet')})}</div>`).join('')}</div>
   <div class="center mt"><button class="btn ghost" style="font-size:.9rem;min-height:40px;padding:8px 16px" onclick="askReset()">🗑️ ${t('reset')}</button></div>`;
  if(tab==='album')body=G.album.length?`<div class="album">${G.album.slice().reverse().map((ph,i)=>polaroid(ph,i)).join('')}</div>`:`<p class="center panel">${t('pp_empty_album')}</p>`;
  if(tab==='souv')body=G.souvenirs.length?`<div class="grid">${G.souvenirs.slice().reverse().map(s=>{const it=COUNTRIES[s.c].shop.find(a=>a.id===s.id);return it?`<div class="card"><div class="e">${it.e}</div><div class="n">${tx(it.n)}</div><div class="flag" style="width:36px;height:24px">${flagSVG(s.c)}</div></div>`:'';}).join('')}</div>`:`<p class="center panel">${t('pp_empty_souv')}</p>`;
