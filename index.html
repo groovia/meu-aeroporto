@@ -308,6 +308,34 @@ button.card:active{transform:translateY(3px) scale(.98)}
 .stats .card{min-height:110px;justify-content:center}
 .stats .big-n{font-size:2rem;font-weight:700}
 
+/* passeios e filmes */
+.road-scene.going{container-type:size}
+.road-scene.on-foot .city{animation-duration:8s}.road-scene.on-foot .city.far{animation-duration:16s}
+.road.sidewalk{background:linear-gradient(#cfc6b8 0 30%,#5b5f72 30%)}.road.sidewalk:before{top:66%}
+.road-scene .goal{position:absolute;right:4%;bottom:36%;font-size:clamp(3rem,10vw,5.5rem);animation:goal 5s ease-out forwards}
+@keyframes goal{from{transform:translateX(60vw) scale(.5)}to{transform:none}}
+.place-mark{position:absolute;right:8%;bottom:16%;font-size:clamp(5rem,18vw,10rem);filter:drop-shadow(0 8px 6px rgba(0,0,0,.25));animation:pop .6s}
+.flash{position:absolute;inset:0;background:#fff;animation:fade .45s reverse forwards;z-index:5}
+.seat-screen{background:#1d1b2e;border-radius:22px;padding:12px;margin-top:12px;color:#fff;text-align:center;border:6px solid #3a3550;display:flex;flex-direction:column;gap:8px}
+.ss-title{font-weight:700;font-size:1.1rem}.ss-hint{margin:0;font-size:.9rem;opacity:.75}
+.ss-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.ss-item{border:0;border-radius:14px;background:#2e2a48;color:#fff;padding:10px;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:.92rem}
+.ss-item .e{font-size:2.2rem}.ss-item small{opacity:.7}
+.ss-custom{background:#2e2a48;border-radius:14px;padding:10px;display:flex;flex-direction:column;gap:8px;align-items:center}
+.ss-custom .name-in{max-width:100%;font-size:1.05rem;padding:8px 12px}
+.num-in{width:64px;font:inherit;font-size:1.1rem;padding:6px;border-radius:10px;border:0;text-align:center}
+.ss-scene{position:relative;height:clamp(160px,30vh,260px);border-radius:12px;overflow:hidden}
+.ss-main{position:absolute;bottom:14%;left:40%;font-size:clamp(3.4rem,11vw,6rem)}
+.ss-scene.playing .ss-main{animation:mvmain 4s ease-in-out infinite}
+@keyframes mvmain{0%,100%{transform:translateX(-30%)}50%{transform:translateX(40%) scale(1.1)}}
+.ss-side span{position:absolute;font-size:clamp(1.6rem,5vw,2.6rem);top:12%}
+.ss-side span:nth-child(1){left:10%}.ss-side span:nth-child(2){left:70%;top:20%}.ss-side span:nth-child(3){left:40%;top:6%}
+.ss-scene.playing .ss-side span{animation:mvside 3.9s ease-in-out infinite}
+@keyframes mvside{50%{transform:translateY(20px) rotate(15deg)}}
+.ss-end{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:1.6rem;font-weight:800;background:rgba(0,0,0,.45)}
+.ss-bar{height:8px;background:#3a3550;border-radius:999px;overflow:hidden}.ss-bar div{height:100%;background:#ff6b8b}
+.ss-time{font-family:ui-monospace,Menlo,monospace;opacity:.85}
+.seat-screen .chip-btn{color:var(--ink)}
 /* cozinha, mercado, alerta de comida */
 .red-alert{background:#e63946;color:#fff;font-weight:800;font-size:clamp(1.3rem,4.5vw,1.8rem);border-radius:16px;padding:12px;animation:redblink 1s ease-in-out infinite}
 @keyframes redblink{50%{background:#ff6b6b;transform:scale(1.03)}}
@@ -799,6 +827,27 @@ const S={
  or_uber:["ou chame um Uber:", "ou appelle un Uber :", "hoặc gọi Uber:"],
  car_ride:["Indo para o aeroporto no carro de {name}...", "En route pour l’aéroport avec la voiture de {name}...", "Đang đến sân bay bằng xe của {name}..."],
  car_back:["🚗 Voltaram para casa no carro de {name}. De graça!", "🚗 Retour à la maison avec la voiture de {name}. Gratuit !", "🚗 Về nhà bằng xe của {name}. Miễn phí!"],
+ how_go:["Como vamos até lá?", "Comment on y va ?", "Mình đi bằng gì?"],
+ go_walk:["🚶 Ir a pé (grátis)", "🚶 À pied (gratuit)", "🚶 Đi bộ (miễn phí)"],
+ go_uber:["🚗 Ir de Uber (+🪙 {n})", "🚗 En Uber (+🪙 {n})", "🚗 Đi Uber (+🪙 {n})"],
+ going_walk:["Caminhando até: {place}", "En marchant jusqu’à : {place}", "Đang đi bộ đến: {place}"],
+ going_car:["De Uber até: {place}", "En Uber jusqu’à : {place}", "Đi Uber đến: {place}"],
+ arrived_place:["Chegamos! {place}", "On est arrivés ! {place}", "Đến nơi rồi! {place}"],
+ take_photo:["📸 Tirar foto", "📸 Prendre une photo", "📸 Chụp ảnh"],
+ back_walk:["Voltar a passear", "Continuer la balade", "Đi chơi tiếp"],
+ entry:["Entrada: 🪙 {n}", "Entrée : 🪙 {n}", "Vé vào: 🪙 {n}"],
+ movie_pick:["Escolha um filme", "Choisis un film", "Chọn một bộ phim"],
+ movie_hint:["No jogo, 1 hora de filme dura 1 minuto.", "Dans le jeu, 1 heure de film dure 1 minute.", "Trong trò chơi, 1 giờ phim kéo dài 1 phút."],
+ movie_custom:["Outro filme (você escreve):", "Un autre film (tu l’écris) :", "Phim khác (bạn tự viết):"],
+ movie_name_ph:["Nome do filme", "Nom du film", "Tên phim"],
+ movie_h:["horas", "heures", "giờ"],
+ movie_m:["minutos", "minutes", "phút"],
+ movie_play:["▶️ Assistir", "▶️ Regarder", "▶️ Xem"],
+ movie_pause:["⏸️ Pausar", "⏸️ Pause", "⏸️ Tạm dừng"],
+ movie_resume:["▶️ Continuar", "▶️ Reprendre", "▶️ Tiếp tục"],
+ movie_stop:["⏹️ Parar", "⏹️ Arrêter", "⏹️ Dừng"],
+ movie_end:["Fim do filme! 👏", "Fin du film ! 👏", "Hết phim rồi! 👏"],
+ movie_wait:["O avião está dando voltas até o filme acabar! 🛩️", "L’avion tourne en rond jusqu’à la fin du film ! 🛩️", "Máy bay bay vòng chờ hết phim! 🛩️"],
 };
 
 /* ============ DADOS ============ */
@@ -906,7 +955,7 @@ function go(s,params){
  render();window.scrollTo(0,0);
 }
 function topbar(){
- const inTrip=T&&['uber','airport','flight','arrival','lodge','day','meal','market','cook','night','summary'].includes(ui.screen);
+ const inTrip=T&&['uber','airport','flight','arrival','lodge','day','meal','market','cook','night','going','place','summary'].includes(ui.screen);
  const showHome=!inTrip&&ui.screen!=='title';
  const showCoins=T&&!['summary','choose','home'].includes(ui.screen);
  return `<div class="topbar">
@@ -1481,9 +1530,10 @@ SCREENS.flight=()=>{
  const title=ui.landed?(ret?t('fl_landed_home'):t('fl_landed',{city:tx(c.city)})):(ret?t('fl_home'):t('fl_title',{dest:tx(c.dest)}));
  const btns=ui.landed?`<button class="btn big green" onclick="${ret?"go('summary')":"go('arrival',{step:0})"}">${t('get_off')}</button>`
   :`<button class="btn ${ui.sleeping?'yellow':'purple'}" onclick="toggleSleep()">${ui.sleeping?t('wake_btn'):t('sleep_btn')}</button><button class="btn ghost" onclick="skipFlight()">${t('skip')}</button>`;
- const fun=ui.landed||ui.sleeping?'':`<div class="row center mt fl-fun">${['fl_movie','fl_window','fl_music'].map(k=>`<button class="chip-btn" onclick="sfx.click();toast(t('${k}_t'))">${t(k)}</button>`).join('')}</div>`;
+ const fun=ui.landed||ui.sleeping?'':`<div class="row center mt fl-fun">${['fl_movie','fl_window','fl_music'].map(k=>`<button class="chip-btn" onclick="${k==='fl_movie'?'openMovies()':`sfx.click();toast(t('${k}_t'))`}">${t(k)}</button>`).join('')}</div>`;
  return `<h2 class="center">${ui.landed?'🛬':'✈️'} ${title}</h2>${ui.landed?'':`<p class="center fl-left" id="flLeft"></p>`}
  <div class="mapbox ${ui.sleeping?'night':''}" id="mapbox">${mapSVG(ret)}</div>
+ ${!ui.landed&&!ui.sleeping&&(ui.movie||ui.moviePick)?moviePanel():''}
  <div class="cabin ${first?'first':'eco'} ${ui.sleeping?'sleeping':''}" id="cabin">
   <div class="label">${first?t('first_lbl'):t('eco_lbl')} · ${T.seat}</div>
   <div class="porthole"></div>
@@ -1495,16 +1545,18 @@ SCREENS.flight=()=>{
  ${ui.sleeping?`<p class="center muted">${t('sleeping_txt')}</p>`:''}${fun}
  <div class="row center mt">${btns}</div>`;
 };
-AFTER.flight=()=>{placePlane();if(!ui.landed)startFlight();};
+AFTER.flight=()=>{placePlane();if(!ui.landed)startFlight();if(ui.movie&&ui.movie.playing&&!ui.movieLoop){ui.movieLoop=true;}};
 function startFlight(){
  cancelAnimationFrame(raf);let last=performance.now();
  const step=now=>{
   const dt=Math.min(100,now-last);last=now;
   if(ui.screen!=='flight')return;
   const dur=flightMs();
-  if(!modalOpen&&ui.fp<1)ui.fp=Math.min(1,ui.fp+dt/(ui.sleeping?dur/5:dur));
+  // com filme passando, o aviao so pousa quando o filme acabar
+  const cap=ui.movie&&!ui.movie.done?0.995:1;
+  if(!modalOpen&&ui.fp<cap)ui.fp=Math.min(cap,ui.fp+dt/(ui.sleeping?dur/5:dur));
   placePlane();
-  const fl=document.getElementById('flLeft');if(fl){const s=Math.ceil((1-ui.fp)*(ui.sleeping?dur/5:dur)/1000);fl.textContent='⏱️ '+t('fl_left',{t:`${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`});}
+  const fl=document.getElementById('flLeft');if(fl&&ui.fp>=0.995&&ui.movie&&!ui.movie.done)fl.textContent=t('movie_wait');else if(fl){const s=Math.ceil((1-ui.fp)*(ui.sleeping?dur/5:dur)/1000);fl.textContent='⏱️ '+t('fl_left',{t:`${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`});}
   if(ui.fp>=.35&&!ui.snackDone&&!modalOpen&&!ui.sleeping)snackModal();
   if(ui.fp>=.72&&!ui.drinkDone&&!modalOpen&&!ui.sleeping)drinkModal();
   if(ui.fp>=1&&!ui.landed){landed();return;}
@@ -1522,7 +1574,7 @@ function placePlane(){
  path.style.strokeDasharray=len;path.style.strokeDashoffset=len*(1-f);
 }
 function toggleSleep(){
- ui.sleeping=!ui.sleeping;
+ ui.sleeping=!ui.sleeping;if(ui.sleeping&&ui.movie)ui.movie.playing=false;
  if(ui.sleeping){beep(392,.4,'sine',.08);beep(330,.6,'sine',.08,.3);}else sfx.ok();
  render();
 }
@@ -1533,7 +1585,8 @@ function snackModal(){
 function pickSnack(e){ui.snackDone=true;closeModal();floaty(e);toast(t('fl_yum'));sfx.ok();}
 function skipFlight(){ui.fp=1;ui.snackDone=true;ui.drinkDone=true;}
 // voo mais longo quanto mais longe: de 25 segundos (Franca) a uns 75 (Australia)
-function flightMs(){const c=COUNTRIES[T.c];return Math.min(75000,25000+Math.hypot(c.pos.x-HOME.x,c.pos.y-HOME.y)*110);}
+// voo de 1 minuto (Franca) a 3 minutos (Japao, Australia)
+function flightMs(){const c=COUNTRIES[T.c];return Math.min(180000,60000+Math.hypot(c.pos.x-HOME.x,c.pos.y-HOME.y)*250);}
 function drinkModal(){
  const list=[{e:'🧃',n:['Suco','Jus','Nước ép']},{e:'🥛',n:['Leite','Lait','Sữa']},{e:'💧',n:['Água','Eau','Nước']}].concat(T.cls==='first'?[{e:'🥤',n:['Milk-shake','Milk-shake','Sữa lắc']}]:[]);
  modal(`<div class="big">🧑‍✈️</div><h2>${t('fl_drink')}</h2><div class="row center">${list.map(s=>`<button class="card" style="min-width:100px" onclick="ui.drinkDone=true;closeModal();floaty('${s.e}');toast(t('fl_yum'));sfx.ok()"><div class="e">${s.e}</div><div class="n">${tx(s.n)}</div></button>`).join('')}</div>`);
@@ -1832,6 +1885,86 @@ function itemLabel(id,who){return id==='maio'&&swimOf(who||'me')==='sunga'?ITEM_
 function bagOf(who){T.bags=T.bags||{me:T.packed};return T.bags[who]||(T.bags[who]=[]);}
 function copyMine(){const who=ui.pw;if(!who||who==='me')return;T.bags[who]=T.packed.slice(0,CAP);sfx.ok();toast('📋 ✓');render();}
 
+/* ---- passeios: ir a pe ou de Uber, chegar e tirar foto ---- */
+const UBER_CITY=5;
+function goVisit(id,mode){
+ const a=findAct('visit',id),price=a.p+(mode==='uber'?UBER_CITY:0);
+ if(T.money<price){sfx.bad();toast(t('no_money'));return;}
+ closeModal();if(price)pay(price);else sfx.ok();
+ T.visited.push(id);T.today.push(a.e);
+ T.elapsed=Math.min(T.dayMs-1000,T.elapsed+T.dayMs*(mode==='walk'?0.05:0.02));
+ go('going',{place:id,mode});
+ later(()=>go('place',{place:id}),mode==='walk'?5200:3800);
+}
+SCREENS.going=()=>{
+ const a=findAct('visit',ui.place),c=COUNTRIES[T.c],walk=ui.mode==='walk';
+ const row=`🏠🌳🏪${c.icons}🌳🏢🏡🌳${(c.scene&&c.scene.deco||[]).join('')}🏫🌳`,far='🏙️ 🌲 🏙️ 🌲 🏙️ 🌲';
+ return `<h2 class="center">${walk?'🚶':'🚗'} ${t(walk?'going_walk':'going_car',{place:tx(a.n)})}</h2>
+ <div class="road-scene going ${walk?'on-foot':''}"><div class="city far"><span>${far}</span><span>${far}</span></div><div class="city"><span>${row}</span><span>${row}</span></div>
+  <div class="road ${walk?'sidewalk':''}"></div>
+  ${walk?crewHTML(crewIds(),{left:50,walk:true,h:62}):`<div class="car">${carSVG('#ffc233','carro')}</div>`}
+  <div class="goal">${a.e}</div></div>`;
+};
+SCREENS.place=()=>{
+ const a=findAct('visit',ui.place);
+ return `<h2 class="center">${a.e} ${t('arrived_place',{place:tx(a.n)})}</h2>
+ <div class="scene place-scene">${sceneSVG(T.c)}${T.c==='franca'&&a.e==='🗼'?'':`<div class="place-mark">${a.e}</div>`}${crewHTML(crewIds(),{left:43,h:62})}${ui.flash?'<div class="flash"></div>':''}</div>
+ <p class="center mt" style="font-size:1.15rem">${tx(a.f)}</p>
+ <div class="row center">${ui.snapped?'':`<button class="btn yellow big" onclick="snapPhoto()">${t('take_photo')}</button>`}<button class="btn green" onclick="go('day',{tab:'visit'})">${t('back_walk')}</button></div>`;
+};
+AFTER.place=()=>updateDayVisuals();
+function snapPhoto(){
+ const a=findAct('visit',ui.place);ui.snapped=true;
+ if(!hasCamera()){sfx.bad();toast(t('no_camera'));render();return;}
+ addPhoto(a.e,a.n,false);sfx.shutter();ui.flash=true;render();toast(t('photo_saved'));
+ later(()=>{ui.flash=false;render();},450);
+}
+
+/* ---- filmes no aviao: 1 hora de filme = 1 minuto de jogo ---- */
+const MOVIES=[
+ {id:'dragao',e:'🐉',d:92,col:'#2b2d6e',side:['🔦','⭐','🏰'],n:['O Dragão que Tinha Medo do Escuro','Le Dragon qui avait peur du noir','Chú rồng sợ bóng tối']},
+ {id:'sereia',e:'🧜‍♀️',d:105,col:'#1f7fb3',side:['🐠','🐚','🌊'],n:['A Sereia do Lago Azul','La Sirène du lac bleu','Nàng tiên cá hồ xanh']},
+ {id:'lua',e:'🚀',d:98,col:'#141640',side:['🌕','👩‍🚀','⭐'],n:['Aventura na Lua','Aventure sur la Lune','Phiêu lưu trên Mặt Trăng']},
+ {id:'leao',e:'🦁',d:88,col:'#c98a2b',side:['🦒','🌳','🐘'],n:['O Leãozinho da Savana','Le Petit Lion de la savane','Chú sư tử nhỏ ở thảo nguyên']},
+ {id:'magia',e:'🧙',d:156,col:'#4b2a7a',side:['🪄','🦉','✨'],n:['A Escola de Magia','L’École de magie','Trường học phép thuật']},
+ {id:'detetive',e:'🐶',d:81,col:'#5b4b3a',side:['🔍','🦴','🐱'],n:['Cachorro Detetive','Le Chien détective','Chú chó thám tử']},
+ {id:'princesa',e:'👸',d:110,col:'#b03a7a',side:['⚙️','💡','👑'],n:['A Princesa Inventora','La Princesse inventrice','Công chúa nhà phát minh']}
+];
+function fmtMs(ms){const s=Math.max(0,Math.ceil(ms/1000));return `${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`;}
+function openMovies(){sfx.click();ui.moviePick=true;render();setTimeout(()=>{const el=document.getElementById('seatScreen');if(el)el.scrollIntoView({behavior:'smooth',block:'center'});},60);}
+function moviePanel(){
+ if(ui.movie){const m=ui.movie,p=Math.min(1,m.el/m.total);
+  return `<div class="seat-screen" id="seatScreen"><div class="ss-scene ${m.playing?'playing':''}" style="background:radial-gradient(circle at 50% 70%,${m.col},#0b0b1e)">
+   <div class="ss-side">${m.side.map((e,i)=>`<span style="animation-delay:-${i*1.3}s">${e}</span>`).join('')}</div><div class="ss-main">${m.e}</div>${m.done?`<div class="ss-end">${t('movie_end')}</div>`:''}</div>
+   <div class="ss-title">🎬 ${esc(m.title)}</div><div class="ss-bar"><div id="ssFill" style="width:${p*100}%"></div></div>
+   <div class="ss-time" id="ssTime">${fmtMs(m.el)} / ${fmtMs(m.total)}</div>
+   <div class="row center">${m.done?'':`<button class="chip-btn" onclick="moviePlayPause()">${m.playing?t('movie_pause'):t('movie_resume')}</button>`}<button class="chip-btn" onclick="movieStop()">${t('movie_stop')}</button></div></div>`;}
+ return `<div class="seat-screen" id="seatScreen"><div class="ss-title">🎬 ${t('movie_pick')}</div><p class="ss-hint">${t('movie_hint')}</p>
+  <div class="ss-list">${MOVIES.map(m=>`<button class="ss-item" onclick="startMovie('${m.id}')"><span class="e">${m.e}</span><b>${tx(m.n)}</b><small>${Math.floor(m.d/60)}h${String(m.d%60).padStart(2,'0')}</small></button>`).join('')}</div>
+  <div class="ss-custom"><b>${t('movie_custom')}</b><input id="mvName" class="name-in" maxlength="40" placeholder="${t('movie_name_ph')}">
+   <div class="row center"><input id="mvH" type="number" min="0" max="5" value="2" class="num-in"> ${t('movie_h')} <input id="mvM" type="number" min="0" max="59" value="0" class="num-in"> ${t('movie_m')}</div>
+   <button class="btn green" onclick="startMovie('custom')">${t('movie_play')}</button></div>
+  <button class="chip-btn" onclick="ui.moviePick=false;render()">${t('close')}</button></div>`;
+}
+function startMovie(id){
+ let m;
+ if(id==='custom'){const name=(document.getElementById('mvName').value||'').trim()||'🎬';const h=Math.max(0,Math.min(5,parseInt(document.getElementById('mvH').value)||0)),mi=Math.max(0,Math.min(59,parseInt(document.getElementById('mvM').value)||0));
+  const d=Math.max(1,h*60+mi);m={title:name,e:'🎬',col:'#8b5cf6',side:['🍿','⭐','🎞️'],d};}
+ else{const x=MOVIES.find(v=>v.id===id);m={title:tx(x.n),e:x.e,col:x.col,side:x.side,d:x.d};}
+ ui.moviePick=false;ui.movie=Object.assign(m,{total:m.d*1000,el:0,playing:true,done:false,last:performance.now()});
+ sfx.ok();render();movieTick();
+}
+function movieTick(){
+ const m=ui.movie;if(!m||ui.screen!=='flight'||m.done)return;
+ const now=performance.now();if(m.playing&&!modalOpen)m.el+=now-m.last;m.last=now;
+ if(m.el>=m.total){m.el=m.total;m.done=true;m.playing=false;sfx.ding();toast(t('movie_end'));render();return;}
+ const f=document.getElementById('ssFill'),tm=document.getElementById('ssTime');
+ if(f)f.style.width=(m.el/m.total*100)+'%';if(tm)tm.textContent=`${fmtMs(m.el)} / ${fmtMs(m.total)}`;
+ later(movieTick,250);
+}
+function moviePlayPause(){const m=ui.movie;if(!m)return;m.playing=!m.playing;m.last=performance.now();sfx.click();render();if(m.playing)movieTick();}
+function movieStop(){ui.movie=null;ui.moviePick=false;sfx.click();render();}
+
 /* ---- onde comer: restaurante, restaurante do hotel ou cozinha de casa ---- */
 function mealWhere(){return ui.where||'rest';}
 function mealPrice(a,w){w=w||mealWhere();return Math.max(1,Math.round(a.p*(w==='home'?0.7:w==='hotel'?1.25:1)));}
@@ -1931,7 +2064,8 @@ function openAct(kind,id){
  const lbl=t(kind==='eat'?'eat_btn':kind==='visit'?'visit_btn':'buy_btn');
  modal(`<div class="big">${a.e}</div><h2>${tx(a.n)}</h2>${a.f?`<p style="font-size:1.1rem">${tx(a.f)}</p>`:''}
  <p style="font-size:1.3rem;font-weight:700">${pr?'🪙 '+pr:t('free')}</p>${can?'':`<p class="no">${t('no_money')}</p>`}
- <div class="row center mt"><button class="btn ghost" onclick="closeModal()">${t('cancel')}</button><button class="btn green" ${can?'':'disabled'} onclick="doAct('${kind}','${id}')">${lbl}</button></div>`);
+ ${kind==='visit'?`<h3 class="mt">${t('how_go')}</h3><div class="stack" style="max-width:320px;margin:0 auto"><button class="btn green" ${can?'':'disabled'} onclick="goVisit('${id}','walk')">${t('go_walk')}</button><button class="btn blue" ${T.money>=pr+UBER_CITY?'':'disabled'} onclick="goVisit('${id}','uber')">${t('go_uber',{n:UBER_CITY})}</button><button class="btn ghost" onclick="closeModal()">${t('cancel')}</button></div>`
+ :`<div class="row center mt"><button class="btn ghost" onclick="closeModal()">${t('cancel')}</button><button class="btn green" ${can?'':'disabled'} onclick="doAct('${kind}','${id}')">${lbl}</button></div>`}`);
 }
 function doAct(kind,id){
  const a=findAct(kind,id),pr=priceOf(kind,a);if(T.money<pr)return;closeModal();
